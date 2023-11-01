@@ -9,7 +9,6 @@ const OrderDetails = () => {
             <h2>this is OrderDetails navbar</h2>
             <OrderProductsList/>
         </div>
-
     )
 }
 
