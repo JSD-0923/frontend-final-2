@@ -1,7 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import Layout from "../Layouts/Layout";
-import CheckoutPageInformation from "../components/CheckoutPageInformation/CheckoutPageInformation";
+import CheckoutPageInformation from "../pages/CheckoutPageInformation";
 
 
 export const router = createBrowserRouter([
