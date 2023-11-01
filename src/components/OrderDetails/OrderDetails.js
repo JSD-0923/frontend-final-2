@@ -1,8 +1,14 @@
 
 import './OrderDetails.css'
+import OrderProductsList from "../OrderProductsList/OrderProductsList";
+
 const OrderDetails = () => {
+
     return (
-        <h2>this is Order Details component</h2>
+        <div>
+            <h2>this is OrderDetails navbar</h2>
+            <OrderProductsList/>
+        </div>
     )
 }
 
