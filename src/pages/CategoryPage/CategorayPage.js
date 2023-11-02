@@ -1,9 +1,13 @@
 import React from 'react'
-import CategoryPageContainer from '../../components/CategoryPageContainer/CategoryPageContainer'
+import CategoryCards from '../../components/CategoryCards/CategoryCards'
+import PaginationButtons from '../../components/PaginationButtons/PaginationButtons'
+import CategoryPath from '../../components/CategoryPath/CategoryPath'
 const CategorayPage = () => {
   return (
     <div>
-      <CategoryPageContainer />
+      <CategoryCards />
+      <PaginationButtons />
+      <CategoryPath />
     </div>
   )
 }

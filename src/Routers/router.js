@@ -13,10 +13,7 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: <LandingPage />,
             },
-            {
-                path: "/category",
-                element: <CategorayPage />,
-            },
+            
 
         ]
     }
