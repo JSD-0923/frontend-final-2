@@ -1,6 +1,7 @@
-import AddAddress from "../components/AddAddress/AddAddress";
-import OrderSummary from "../components/OrderSummary/OrderSummary";
-import OrderDetails from "../components/OrderDetails/OrderDetails";
+import './CheckoutPageInformation.css'
+import AddAddress from "../../components/AddAddress/AddAddress";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
+import OrderDetails from "../../components/OrderDetails/OrderDetails";
 
 
 const CheckoutPageInformation = () => {

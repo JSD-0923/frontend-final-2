@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
-import HeroSection from '../components/HeroSection/HeroSection'
-import NewArrival from '../components/NewArrival/NewArrival'
-import HandpickedCollections from '../components/HandpickedCollections/HandpickedCollections'
-import Brands from '../components/Brands/Brands'
-import FilterCards from '../components/FilterCards/FilterCards'
+import HeroSection from '../../components/HeroSection/HeroSection'
+import NewArrival from '../../components/NewArrival/NewArrival'
+import HandpickedCollections from '../../components/HandpickedCollections/HandpickedCollections'
+import Brands from '../../components/Brands/Brands'
+import FilterCards from '../../components/FilterCards/FilterCards'
 
 const LandingPage = () => {
 
