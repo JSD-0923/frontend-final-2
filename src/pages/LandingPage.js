@@ -1,11 +1,11 @@
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 
 
 const LandingPage = () => {
 
     return (
         <div>
-            <Typography  variant='displayLarge' component={'h2'}>Test</Typography>
+            <Typography variant='displayLarge' component={'h2'}>Test</Typography>
         </div>
     )
 }
