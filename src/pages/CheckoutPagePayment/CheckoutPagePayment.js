@@ -1,6 +1,7 @@
-import ContactInformation from "../components/ContactInformation/ContactInformation";
-import PaymentMethods from "../components/PaymentMethods/PaymentMethods";
-import PaymentMethodDetails from "../components/PaymentMethodDetails/PaymentMethodDetails";
+import './CheckoutPagePayment.css'
+import ContactInformation from "../../components/ContactInformation/ContactInformation";
+import PaymentMethods from "../../components/PaymentMethods/PaymentMethods";
+import PaymentMethodDetails from "../../components/PaymentMethodDetails/PaymentMethodDetails";
 
 
 const CheckoutPagePayment = () => {

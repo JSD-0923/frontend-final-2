@@ -1,5 +1,5 @@
 
-
+import './AboutPage.css'
 const AboutPage = () => {
 
     return (
