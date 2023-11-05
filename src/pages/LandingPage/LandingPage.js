@@ -15,6 +15,7 @@ const LandingPage = () => {
             <HandpickedCollections />
             <Brands />
             <FilterCards />
+            
         </div>
     )
 }

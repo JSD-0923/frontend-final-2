@@ -20,42 +20,42 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: <LandingPage />,
             },
-            {
-                path: "/categories",
-                element: <CategorayPage />,
-            },
-            {
-                path: "/product",
-                element: <ProductPage />,
-            },
-            {
-                path: "/my-cart",
-                element: <MyCartPage />,
-            },
-            {
-                path: "/checkout-information",
-                element: <CheckoutPageInformation />,
-            },
-            {
-                path: "/checkout-payment",
-                element: <CheckoutPagePayment />,
-            },
-            {
-                path: "/user-profile",
-                element: <UserProfilePage />,
-            },
-            {
-                path: "/my-orders",
-                element: <MyOrdersPage />,
-            },
-            {
-                path: "/my-orders/:id",
-                element: <OrderDetailsPage />,
-            },
-            {
-                path: "/about",
-                element: <AboutPage />,
-            },
+            // {
+            //     path: "/categories",
+            //     element: <CategorayPage />,
+            // },
+            // {
+            //     path: "/product",
+            //     element: <ProductPage />,
+            // },
+            // {
+            //     path: "/my-cart",
+            //     element: <MyCartPage />,
+            // },
+            // {
+            //     path: "/checkout-information",
+            //     element: <CheckoutPageInformation />,
+            // },
+            // {
+            //     path: "/checkout-payment",
+            //     element: <CheckoutPagePayment />,
+            // },
+            // {
+            //     path: "/user-profile",
+            //     element: <UserProfilePage />,
+            // },
+            // {
+            //     path: "/my-orders",
+            //     element: <MyOrdersPage />,
+            // },
+            // {
+            //     path: "/my-orders/:id",
+            //     element: <OrderDetailsPage />,
+            // },
+            // {
+            //     path: "/about",
+            //     element: <AboutPage />,
+            // },
         ]
     }
 
