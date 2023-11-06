@@ -12,9 +12,9 @@ const LandingPage = () => {
             <Typography variant='displayLarge' component={'h2'}>Landing Page</Typography>
             <HeroSection />
             <NewArrival />
-            <HandpickedCollections />
-            <Brands />
-            <FilterCards />
+            {/* <HandpickedCollections /> */}
+            {/* <Brands />
+            <FilterCards /> */}
         </div>
     )
 }
