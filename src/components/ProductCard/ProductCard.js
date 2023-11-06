@@ -7,14 +7,14 @@ import Typography from '@mui/material/Typography';
 import { Box } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import product from '../../assets/images/pink-bag.png'
-// import {newArrivalProducts} from '../data'
+
 const ProductCard = (props) => {
   return (
     <Card sx={{ boxShadow: "none", width:'100%' }}>
       <CardMedia
         sx={{ height: 200 }}
         image={product}
-        // title="green iguana"
+        
       />
       <CardContent>
         <Box
