@@ -1,7 +1,7 @@
 import {createTheme} from "@mui/material";
 
 
-export const theme = createTheme({
+ let theme = createTheme({
     palette: {
         primary: {
             main: '#1B4B66',
@@ -135,3 +135,34 @@ export const theme = createTheme({
     },
 
 });
+
+
+theme = createTheme(theme, {
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: 'none',
+                    borderWidth: '2px',
+                    borderRadius: '8px'
+                },
+            },
+        },
+        MuiTab: {
+            styleOverrides : {
+                root: {
+                    textTransform: 'none',
+                    '&.Mui-selected' : {
+                        backgroundColor:  theme.palette.primary.main,
+                        color: theme.palette.primary.contrastText,
+                        margin: '1rem',
+                        borderRadius: '12px',
+                    },
+                },
+            }
+
+        }
+    },
+});
+
+export default theme;
