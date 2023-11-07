@@ -12,19 +12,19 @@ const newArrivalProducts = [
     productPrice: "$39.49",
   },
   {
-    
+
     productName: "Coach",
     productDescription: "Leather Coach Bag",
     productPrice: "$54.69",
   },
   {
-    
+
     productName: "Remus",
     productDescription: "Brown Strap Bag",
     productPrice: "$57",
   },
   {
-   
+
     productName: "Boujee",
     productDescription: "Black Bag",
     productPrice: "$56.49",
@@ -32,13 +32,11 @@ const newArrivalProducts = [
 
 ]
 
-
 const NewArrival = () => {
-  
 
   return (
-  <Container maxWidth='xl'>
-      <Paper>
+    <Container maxWidth='xl'>
+      <Paper sx={{boxShadow:'none'}}>
         <Box
 
           sx={{
@@ -49,28 +47,34 @@ const NewArrival = () => {
           <Typography variant='h3' component='div'
 
             sx={{
-              fontSize: '34px',
-              fontWeight: '400'
+              fontSize: '30px',
+              fontWeight: '400',
+              pt: '40px',
+              pb: '20px',
+              color:'dark.main'
             }}>
             New Arrival
           </Typography>
 
-<Button color="secondary" endIcon={<ArrowForwardIosIcon />}>View All</Button>
+          <Button color="secondary" endIcon={<ArrowForwardIosIcon />}
+            sx={{
+              mt: '40px',
+              mb: '20px',
+              color:'darkTeal.main'
+            }}>View All</Button>
 
         </Box>
-        <Grid container spacing={1}>
+        <Grid container spacing={3}>
           {newArrivalProducts.map((product, index) => (
-            <Grid product xs={12} sm={6} md={4} lg={3} key={index}>
-
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <ProductCard productDetaile={product} />
-
             </Grid>
           ))}
         </Grid>
       </Paper>
-      </Container>
+    </Container>
 
-      
+
   )
 }
 

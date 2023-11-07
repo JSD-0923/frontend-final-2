@@ -14,6 +14,7 @@ const HeroItem = ({ item }) => {
             fontSize: '23px',
         },
     }))
+
     const StyledSubtitle = styled(Typography)(({ theme }) => ({
         paddingBottom: '30px',
         paddingLeft: '20px',
@@ -22,12 +23,11 @@ const HeroItem = ({ item }) => {
 
 
         [theme.breakpoints.down('md')]: {
-            fontSize: '0.5rem',
+            fontSize: '20px',
             paddingBottom: '8px',
             paddingLeft: '1px',
         },
-
-
+       
     }))
     return (
         <Box
@@ -53,7 +53,7 @@ const HeroItem = ({ item }) => {
                     {item.subtitle}
                 </StyledSubtitle>
 
-                <Box sx={{ display: { xs: 'none', md: 'flex' }, pl: '8px' }}>
+                <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: '22px' }}>
                     <Button variant="contained">
                         <ArrowRightAltIcon />
                         see more
