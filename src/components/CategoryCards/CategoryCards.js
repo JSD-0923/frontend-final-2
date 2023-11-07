@@ -126,7 +126,9 @@ const CategoryCards = () => {
 
   return (
 
-    <Container maxWidth='xl'>
+    // <Container maxWidth='xl'>
+      <Paper sx={{boxShadow:'none'}}>
+        
       <Grid container spacing={3}>
         {product.map((productItem, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -134,7 +136,9 @@ const CategoryCards = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+      </Paper>
+     
+    // </Container>
   )
 }
 
