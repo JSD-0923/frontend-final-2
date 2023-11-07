@@ -48,8 +48,6 @@ function a11yProps(index) {
         setValue(newValue);
     };
 
-
-
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: '#F1F1F1' }}>
@@ -78,7 +76,7 @@ function a11yProps(index) {
                 Item Two
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-               <Grid container>
+               <Grid container spacing={1}>
                    <ReviewCard  reviews={reviews}/>
                </Grid>
             </CustomTabPanel>
