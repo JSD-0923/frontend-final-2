@@ -11,7 +11,9 @@ export const SearchBox = () => {
         <>
             <InputBase
                 startAdornment={
-                    <InputAdornment position="start">
+                    <InputAdornment
+                        position="start"
+                    >
                         <IconButton sx={{color:'TypeHighEmphasis.main'}} >
                             <SearchIcon />
                         </IconButton>
@@ -19,6 +21,7 @@ export const SearchBox = () => {
                 }
                 placeholder="Search for products or brands ..."
                 inputProps={{ 'aria-label': 'enter text' }}
+                sx={{width: '100%'}}
             />
         </>
     );

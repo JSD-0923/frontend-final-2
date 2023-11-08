@@ -3,6 +3,10 @@ import { Card, Box, Rating, Typography, CardMedia, CardContent } from "@mui/mate
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import product from '../../assetsnoura/images/pink-bag.png'
 const ProductCard = (props) => {
+
+   if (!props.productDetails) {
+       return <></>
+   }
   return (
     <Card sx={{ width: '100%', boxShadow: "none" }}>
       <CardMedia
