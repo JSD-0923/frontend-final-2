@@ -3,6 +3,13 @@ import {createTheme} from "@mui/material";
 
  let theme = createTheme({
     palette: {
+        
+        darkTeal:{
+            main: '#17494D',
+            light: '#237076',
+            dark: '#12383b',
+            contrastText: '#FFFFFF',
+        },
         primary: {
             main: '#1B4B66',
             light: '#25678d',
