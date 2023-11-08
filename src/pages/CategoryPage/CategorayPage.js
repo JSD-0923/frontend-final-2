@@ -1,4 +1,5 @@
 import React from 'react'
+import './CategoryPage.css'
 import CategoryCards from '../../components/CategoryCards/CategoryCards'
 import imghero from '../../assetsnoura/images/hero.png'
 import { Typography, Paper, Box, Grid, Container, IconButton } from '@mui/material'

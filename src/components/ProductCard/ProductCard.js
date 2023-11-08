@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Box, Rating, Typography, CardMedia, CardContent } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import product from '../../assetsnoura/images/pink-bag.png'
-
 const ProductCard = (props) => {
   return (
     <Card sx={{ width: '100%', boxShadow: "none" }}>
@@ -16,9 +15,7 @@ const ProductCard = (props) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-
           }}>
-
           <Typography gutterBottom variant="h5" component="div"
             sx={{
               fontSize: '16px',
@@ -33,7 +30,6 @@ const ProductCard = (props) => {
             fontSize: '14px',
             fontWeight: '400'
           }}>
-
           {props.productDetails.productDescription}
         </Typography>
         <Box sx={{ display: 'flex' }}>
@@ -43,7 +39,6 @@ const ProductCard = (props) => {
               fontWeight: '500',
               mt: '5px'
             }}>
-
             {props.newArrival ? null : <Rating name="half-rating-read" value={props.productDetails.rating} precision={0.5} readOnly />}
           </Typography>
           <Typography sx={{ paddingTop: '8px', paddingLeft: '10px', fontWaigth: '500', fontSize: '14px', color: 'primary.main' }} component={'p'}>43 Ratting</Typography>
@@ -54,14 +49,10 @@ const ProductCard = (props) => {
             fontWeight: '500',
             mt: '5px'
           }}>
-
           {props.productDetails.productPrice}
         </Typography>
-
       </CardContent>
-
     </Card>
   )
 }
-
 export default ProductCard
