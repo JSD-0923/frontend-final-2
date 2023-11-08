@@ -1,8 +1,6 @@
 import React from 'react'
 import CategoryCards from '../../components/CategoryCards/CategoryCards'
-import PaginationButtons from '../../components/PaginationButtons/PaginationButtons'
-import CategoryPath from '../../components/CategoryPath/CategoryPath'
-import imghero from '../../assets/images/hero.png'
+import imghero from '../../assetsnoura/images/hero.png'
 import { Typography, Paper, Box, Grid, Container, IconButton } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { styled } from '@mui/system';
@@ -19,6 +17,7 @@ const StyledTitle = styled(Typography)(({ theme }) => ({
   fontSize: '34px',
   color: theme.palette.primary.main,
   marginBottom: '30px',
+
   [theme.breakpoints.down('md')]: {
     fontSize: '20px',
     marginBottom: '10px',
@@ -61,39 +60,37 @@ const CategorayPage = () => {
       </StyledTitle>
       <CategoryCards />
       <nav>
-      <List >
-        {items.map(({ page, type, selected, ...item }, index) => {
-          let children = null;
+        <List >
+          {items.map(({ page, type, selected, ...item }, index) => {
+            let children = null;
 
-          if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-            children = '…';
-          } else if (type === 'page') {
-            children = (
-              <button
-                type="button"
-                style={{
-                  fontWeight: selected ? 'bold' : undefined,
-                }}
-                {...item}
-              >
-                {page}
-              </button>
-            );
-          } else {
-            children = (
-              <button type="button" {...item}>
-                {type}
-              </button>
-            );
-          }
+            if (type === 'start-ellipsis' || type === 'end-ellipsis') {
+              children = '…';
+            } else if (type === 'page') {
+              children = (
+                <button
+                  type="button"
+                  style={{
+                    fontWeight: selected ? 'bold' : undefined,
+                  }}
+                  {...item}
+                >
+                  {page}
+                </button>
+              );
+            } else {
+              children = (
+                <button type="button" {...item}>
+                  {type}
+                </button>
+              );
+            }
 
-          return <li key={index}>{children}</li>;
-        })}
-      </List>
-    </nav>
+            return <li key={index}>{children}</li>;
+          })}
+        </List>
+      </nav>
     </Container>
-
-    
   )
 }
 
