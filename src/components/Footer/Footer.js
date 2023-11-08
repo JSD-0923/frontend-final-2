@@ -7,7 +7,7 @@ import {
     AccordionSummary,
     Typography, useMediaQuery
 } from "@mui/material";
-import {theme} from "../../MUI Themse/customTheme";
+import theme from "../../MUI Themse/customTheme";
 import FooterContainer from "./FooterContainer";
 
 
