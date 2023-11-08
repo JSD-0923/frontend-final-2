@@ -5,7 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import product from '../../assets/images/pink-bag.png'
+import product from "../../assets/images/pink-bag.png"
+
 
 const ProductCard = (props) => {
   return (
@@ -54,7 +55,7 @@ const ProductCard = (props) => {
             mt: '5px',
             color: 'TypeHighEmphasis.main'
           }}>
-          {props.productDetaile.productPrice}
+          ${props.productDetaile.productPrice}
 
         </Typography>
       </CardContent>
