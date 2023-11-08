@@ -1,12 +1,36 @@
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Typography, useMediaQuery
+} from "@mui/material";
+import {theme} from "../../MUI Themse/customTheme";
+import FooterContainer from "./FooterContainer";
 
 
-const Footer = () => {
+export default function Footer() {
+
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <div>
-            this is Footer
-        </div>
+        <>
+            {isSmallScreen ?  <AppBar sx={{ top: 'auto', bottom: 0 }}>
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography variant={'titleMedium'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails sx={{backgroundColor: 'primary.main'}}>
+                        <FooterContainer />
+                    </AccordionDetails>
+                </Accordion>
+            </AppBar> : <AppBar sx={{ top: 'auto', bottom: 0 }}> <FooterContainer /> </AppBar>}
+        </>
     )
 }
-
-export default Footer;

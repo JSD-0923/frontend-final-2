@@ -27,6 +27,12 @@ import {createTheme} from "@mui/material";
             dark: '#cccccc',
             contrastText: '#1a1a1a',
         },
+        cc: {
+            main: '#17494D',
+            light: '#ffffff',
+            dark: '#cccccc',
+            contrastText: '#1a1a1a',
+        },
         dark: {
             main: '#13101E',
             light: '#201b32',

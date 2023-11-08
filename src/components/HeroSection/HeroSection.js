@@ -1,9 +1,9 @@
 import React from 'react'
-import FeatureCard from '../FeatureCard/FeatureCard'
+
 const HeroSection = () => {
   return (
     <div>
-      <FeatureCard />
+      Hero Section
     </div>
   )
 }
