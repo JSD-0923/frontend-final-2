@@ -1,20 +1,13 @@
 import React from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Box } from "@mui/material";
+import { Card, Box, Rating, Typography, CardMedia, CardContent } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import product from "../../assets/images/pink-bag.png"
-
-
+import product from '../../assetsnoura/images/pink-bag.png'
 const ProductCard = (props) => {
   return (
-    <Card sx={{ boxShadow: "none", width: '100%' }}>
+    <Card sx={{ width: '100%', boxShadow: "none" }}>
       <CardMedia
-        sx={{ height: 200 }}
+        sx={{ height: 280 }}
         image={product}
-
       />
       <CardContent>
         <Box
@@ -22,46 +15,44 @@ const ProductCard = (props) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-
           }}>
-
           <Typography gutterBottom variant="h5" component="div"
             sx={{
               fontSize: '16px',
-              fontWeight: '500',
-              color:'TypeHighEmphasis.main'
+              fontWeight: '500'
             }}>
-            {props.productDetaile.productName}
+            {props.productDetails.productName}
           </Typography>
-
-          <FavoriteBorderIcon sx={{color:'dark.main'}} />
-
+          <FavoriteBorderIcon />
         </Box>
-
         <Typography variant="body2" color="text.secondary"
           sx={{
             fontSize: '14px',
-            fontWeight: '400',
-            color:'TypeLowEmphasis.main'
+            fontWeight: '400'
           }}>
-          {props.productDetaile.productDescription}
-
+          {props.productDetails.productDescription}
         </Typography>
-
+        <Box sx={{ display: 'flex' }}>
+          <Typography gutterBottom variant="none" component="div"
+            sx={{
+              fontSize: '16px',
+              fontWeight: '500',
+              mt: '5px'
+            }}>
+            {props.newArrival ? null : <Rating name="half-rating-read" value={props.productDetails.rating} precision={0.5} readOnly />}
+          </Typography>
+          <Typography sx={{ paddingTop: '8px', paddingLeft: '10px', fontWaigth: '500', fontSize: '14px', color: 'primary.main' }} component={'p'}>43 Ratting</Typography>
+        </Box>
         <Typography gutterBottom variant="none" component="div"
           sx={{
             fontSize: '16px',
             fontWeight: '500',
-            mt: '5px',
-            color: 'TypeHighEmphasis.main'
+            mt: '5px'
           }}>
-          ${props.productDetaile.productPrice}
-
+          {props.productDetails.productPrice}
         </Typography>
       </CardContent>
-
     </Card>
   )
 }
-
 export default ProductCard
