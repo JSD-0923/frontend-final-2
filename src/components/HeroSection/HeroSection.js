@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Carousel from 'react-material-ui-carousel'
 import FeatureCard from '../FeatureCard/FeatureCard'
 import HeroItem from '../HeroItem/HeroItem'
@@ -24,7 +25,7 @@ const HeroSection = () => {
         </Carousel>
         </Container>
     )
-    
+   
 }
 
 export default HeroSection

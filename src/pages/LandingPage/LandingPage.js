@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
+import { Typography} from "@mui/material";
 import HeroSection from '../../components/HeroSection/HeroSection'
 import NewArrival from '../../components/NewArrival/NewArrival'
 import HandpickedCollections from '../../components/HandpickedCollections/HandpickedCollections'
-import Brands from '../../components/Brands/Brands'
-import FilterCards from '../../components/FilterCards/FilterCards'
+import ShopByBrands from '../../components/ShopByBrands/ShopByBrands'
+import FilteredSection from '../../components/FilteredSection/FilteredSection'
 
 const LandingPage = () => {
 
@@ -12,9 +12,9 @@ const LandingPage = () => {
             <Typography variant='displayLarge' component={'h2'}>Landing Page</Typography>
             <HeroSection />
             <NewArrival />
-            {/* <HandpickedCollections /> */}
-            {/* <Brands />
-            <FilterCards /> */}
+            <HandpickedCollections />
+            <ShopByBrands />
+            <FilteredSection />
         </div>
     )
 }
