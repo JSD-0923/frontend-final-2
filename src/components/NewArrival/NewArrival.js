@@ -74,7 +74,7 @@ const NewArrival = () => {
         <Grid container spacing={3}>
           {newArrivalProducts.map((product, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <ProductCard productDetaile={product} />
+              <ProductCard productDetails={product} />
             </Grid>
           ))}
         </Grid>

@@ -2,7 +2,7 @@ import React from 'react';
 import BrandItem from '../BrandItem/BrandItem';
 import {Button, Paper, useMediaQuery} from "@mui/material";
 import { BrandMockData } from "./brandMockData";
-import {theme} from "../../MUI Themse/customTheme";
+import theme from "../../MUI Themse/customTheme";
 
 const ShopByBrands = () => {
 
