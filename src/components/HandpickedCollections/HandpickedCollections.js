@@ -1,6 +1,6 @@
 import React from 'react'
 import HandpickedCard from '../HandpickedCard/HandpickedCard'
-import {Typography} from "@mui/material";
+import {Box, Paper, Typography} from "@mui/material";
 import {HandpickedCollectionsStyledBox, HandpickedCollectionsStyledPaper} from "./style";
 import {HandpickedCollectionsData} from "./HandpickedCollectionsMock";
 const HandpickedCollections = () => {
@@ -8,7 +8,7 @@ const HandpickedCollections = () => {
 
     return (
 
-      <HandpickedCollectionsStyledPaper >
+      <Paper sx={HandpickedCollectionsStyledPaper}>
           <Typography
               component={'h2'}
               variant={'h2'}
@@ -16,13 +16,13 @@ const HandpickedCollections = () => {
           >
               Handpicked Collections
           </Typography>
-         <HandpickedCollectionsStyledBox >
+         <Box sx={HandpickedCollectionsStyledBox}>
              {HandpickedCollectionsData.map((item) =>
                  <HandpickedCard key={item.id} collection={item}/>
              )}
 
-         </HandpickedCollectionsStyledBox>
-      </HandpickedCollectionsStyledPaper>
+         </Box>
+      </Paper>
   )
 }
 

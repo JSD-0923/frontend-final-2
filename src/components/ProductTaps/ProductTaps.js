@@ -70,7 +70,7 @@ function a11yProps(index) {
             </Box>
 
             <CustomTabPanel value={value} index={0}>
-                <Typography sx={{color:'TypeLowEmphasis.main'}} component={'p'}>{description}</Typography>
+                <Typography sx={{color:'TypeLowEmphasis.main'}} variant={'body1'} component={'p'}>{description}</Typography>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
                 Item Two

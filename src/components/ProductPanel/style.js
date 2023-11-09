@@ -19,15 +19,6 @@ export const QuantityContainerStyle = {
     },
 }
 
-export const QuantityTypographyStyle = {
-    fontSize: '20px',
-    fontWeight: 600,
-    '@media (min-width: 320px) and (max-width: 768px)': {
-        fontSize: '18px',
-        marginRight: '10px'
-    },
-}
-
 export const QuantityActionBoxStyle = {
     display:'flex',
     justifyContent:'space-around',

@@ -91,13 +91,13 @@ const Header = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu} >
-                  <Typography sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
+                  <Typography variant={'h4'} component={'h2'} sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Typography
-            variant="h5"
+            variant="h3"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -120,7 +120,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block', color: "TypeHighEmphasis.main" }}
               >
-                {page}
+                <Typography variant={'h4'} component={'span'}>{page}</Typography>
               </Button>
             ))}
           </Box>

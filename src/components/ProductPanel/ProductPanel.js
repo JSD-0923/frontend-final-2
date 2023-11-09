@@ -9,11 +9,11 @@ import {
     QuantityActionBoxStyle,
     QuantityActionButtonsStyle,
     QuantityContainerStyle,
-    QuantityTypographyStyle,
     RatingBoxStyle
 } from "./style";
 import theme from "../../MUI Themse/customTheme";
 import StarIcon from "@mui/icons-material/Star";
+import ProductCard from "../ProductCard/ProductCard";
 
 const ProductPanel = (props) => {
 
@@ -25,9 +25,13 @@ const ProductPanel = (props) => {
     return (
         <Paper elevation={0} sx={{ margin: '1rem', display: 'flex', flexDirection: 'column'}}>
 
-            {/* Both products title and highlight will be replaced by ProductCard Component*/}
-            <Typography sx={{margin: '1rem'}} component={'h1'} variant={'titleMedium'}>{product.title}</Typography>
-            <Typography sx={{margin: '1rem'}} variant={'bodyRegular'}>{product.highlight}</Typography>
+            <ProductCard
+                title={product.title}
+                description={product.highlight}
+                variant={{title: 'h2', body:'h3'}}
+                addToFavourite={false}
+                width={500}
+            />
 
 
             <Rating sx={RatingBoxStyle} name="half-rating-read" defaultValue={2.5} precision={0.5} value={product.rating} readOnly emptyIcon={<StarIcon sx={{ color: 'lightText.main' }} fontSize="inherit" />}/>
@@ -38,7 +42,7 @@ const ProductPanel = (props) => {
             <Divider sx={{marginTop: '1rem', marginBottom: '1rem'}}/>
 
             <Container sx={QuantityContainerStyle}>
-                <Typography sx={QuantityTypographyStyle} component={'h2'}>Quantity:</Typography>
+                <Typography variant={'h3'} component={'h2'}>Quantity:</Typography>
                 <QuantityCounter
                     quantity={quantity}
                     setQuantity={setQuantity}

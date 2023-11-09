@@ -25,7 +25,7 @@ export default function Footer() {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography variant={'titleMedium'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
+                        <Typography variant={'h2'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{backgroundColor: 'primary.main'}}>
                         <FooterContainer />

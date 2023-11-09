@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardMedia, Grid} from "@mui/material";
+import {Card, CardMedia, Grid, Typography} from "@mui/material";
 import {ReactComponent as ArrowIcon} from "../../assests/icons/arrow.svg";
 import {
     BottomCard,
@@ -17,7 +17,14 @@ const FilteredSection = () => {
 
   return (
 
-      <Grid container spacing={2} >
+      <Grid container spacing={2} sx={{marginTop: '1rem'}}>
+          <Typography
+              component={'h2'}
+              variant={'h2'}
+              sx={{marginLeft: '1rem'}}
+          >
+              Makeup & Skincare
+          </Typography>
           <Grid item xs={12}  sx={{marginBottom: 2}}>
               <Card sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}>
                   <CardMedia
