@@ -8,7 +8,7 @@ const Layout = () => {
 
     return (
         <div>
-            <Container sx={{ maxWidth: '1400px' }}>
+            <Container disableGutters sx={{ maxWidth: '1400px' }}>
             <Header/>
             <Outlet />
             <Footer/>

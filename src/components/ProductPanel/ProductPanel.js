@@ -31,7 +31,9 @@ const ProductPanel = (props) => {
 
 
             <Rating sx={RatingBoxStyle} name="half-rating-read" defaultValue={2.5} precision={0.5} value={product.rating} readOnly emptyIcon={<StarIcon sx={{ color: 'lightText.main' }} fontSize="inherit" />}/>
-            <Price discountRate={product.discountRate} originalPrice={product.price}  />
+            <Box sx={{marginLeft: '1rem'}}>
+                <Price variant={{price: 'h1', Off: 'h3'}} discountRate={product.discountRate} originalPrice={product.price}  />
+            </Box>
 
             <Divider sx={{marginTop: '1rem', marginBottom: '1rem'}}/>
 

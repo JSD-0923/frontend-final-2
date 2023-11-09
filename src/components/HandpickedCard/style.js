@@ -22,8 +22,8 @@ export const HandPickedCard = styled(Card)(() => ({
     },
 
     '@media (min-width: 1024px)': {
-        width: '230px',
-        height: '230px'
+        width: '240px',
+        height: '240px'
     },
 
 }));
