@@ -2,17 +2,9 @@ import React from 'react'
 import './CategoryPage.css'
 import CategoryCards from '../../components/CategoryCards/CategoryCards'
 import imghero from '../../assetsnoura/images/hero.png'
-import { Typography,Pagination, Paper, Box, Grid, Container, IconButton } from '@mui/material'
+import { Typography,Stack, Pagination, Paper, Box, Grid, Container, IconButton } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { styled } from '@mui/system';
-import usePagination from '@mui/material/usePagination';
-
-const List = styled('ul')({
-  listStyle: 'none',
-  padding: '5px',
-  margin: '5px',
-  display: 'flex',
-});
 
 const StyledTitle = styled(Typography)(({ theme }) => ({
   fontSize: '34px',
@@ -26,9 +18,7 @@ const StyledTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const CategorayPage = () => {
-  const { items } = usePagination({
-    count: 10,
-  });
+
   return (
 
     <Container maxWidth='xl' >
@@ -60,38 +50,30 @@ const CategorayPage = () => {
         Handbags
       </StyledTitle>
       <CategoryCards />
-      {/* <nav>
-        <List >
-          {items.map(({ page, type, selected, ...item }, index) => {
-            let children = null;
 
-            if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-              children = '…';
-            } else if (type === 'page') {
-              children = (
-                <button
-                  type="button"
-                  style={{
-                    fontWeight: selected ? 'bold' : undefined,
-                  }}
-                  {...item}
-                >
-                  {page}
-                </button>
-              );
-            } else {
-              children = (
-                <button type="button" {...item}>
-                  {type}
-                </button>
-              );
-            }
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
 
-            return <li key={index}>{children}</li>;
-          })}
-        </List>
-      </nav> */}
-      <Pagination count={10} variant="outlined" shape="rounded" />
+      >
+        <Stack spacing={2}>
+        <Pagination
+          count={10}
+          variant="outlined"
+          shape="rounded"
+          defaultPage={1}
+          space='0'
+          sx={{
+            '& .Mui-selected': {
+              backgroundColor: 'primary.main',
+              color: 'bright.main'
+            },
+
+          }}
+        />
+        </Stack>
+      </Box>
     </Container>
   )
 }

@@ -61,12 +61,21 @@ const FooterContainer = () => {
         }
     ];
 
+    const FooterToolbarStyle = {
+        '@media (min-width: 320px) and (max-width: 599px)': {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        '@media (min-width: 600px)': {
+            margin: '2rem'
+        },
+    }
     return (
-        <Toolbar sx={{margin: 4}}>
+        <Toolbar sx={FooterToolbarStyle}>
             <Grid container>
                 <Grid item xs={12} md={5}>
-                    <Grid container>
-                        <Grid item xs={6} sm={6}>
+                    <Box  sx={{width: '100%', display: 'flex', gap:'1rem'}}>
+                        <Box  >
                             <Typography sx={{ color: 'primary.contrastText'}} variant={'bodyMedium'} component={'h2'}>Shop by Category</Typography>
                             <List >
                                 {ShopByCategoryListItems.map((category) => (
@@ -87,8 +96,8 @@ const FooterContainer = () => {
                                     </ListItemButton>
                                 ))}
                             </List>
-                        </Grid>
-                        <Grid item xs={6} sm={6}>
+                        </Box>
+                        <Box  >
                             <Typography sx={{ color: 'primary.contrastText'}}
                                         variant={'bodyMedium'}
                                         component={'h2'}
@@ -114,10 +123,8 @@ const FooterContainer = () => {
                                     </ListItemButton>
                                 ))}
                             </List>
-                        </Grid>
-
-
-                    </Grid>
+                        </Box>
+                    </Box>
                 </Grid>
                 <Grid item xs={12} md={7}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: alignItemsValue }}  >

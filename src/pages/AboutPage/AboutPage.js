@@ -1,87 +1,10 @@
-
 import './AboutPage.css'
-import imgabout from '../../assests/images/about.png'
-import imgdescription1 from '../../assests/images/rectangle.png'
-import imgdescription2 from '../../assests/images/Rectangle 532.png'
-import imgdescription3 from '../../assests/images/Rectangle 533.png'
-import { Container, Box, Typography, Grid } from '@mui/material'
-
 const AboutPage = () => {
 
     return (
-        <>
-            <img src={imgabout} width={'100%'} />
-            <Container maxWidth='xl'>
-                <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginTop: '20px',
-                    align: 'center'
-
-                }} >
-                    <Typography
-                        sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                        component={'h1'} varient={'h1'}>About</Typography>
-                    <Typography component={'p'}
-                        sx={{ width: '53%', fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main', textAlign: 'center' }}
-                    >Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing.  Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. </Typography>
-
-                </Box>
-                <Grid container spacing={4} sx={{ marginTop: '15px' }}>
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Box >
-                            <Typography
-                                sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
-                            <Typography component={'p'}
-                                sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main', }}
-                            >Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing.  Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. </Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <img src={imgdescription1} alt="Description" style={{ width: '100%', height: 'auto' }} />
-                    </Grid>
-                </Grid>
-
-                {/* desc2 */}
-                <Grid container spacing={4} sx={{ marginTop: '15px' }}>
-                    <Grid item xs={12} md={6} >
-                        <img src={imgdescription2} alt="Description" style={{ width: '100%', height: 'auto' }} />
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Box>
-                            <Typography
-                                sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
-                            <Typography component={'p'}
-                                sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main' }}
-                            >Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing.  Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. </Typography>
-                        </Box>
-                    </Grid>
-
-                </Grid>
-
-                {/* desc3 */}
-                <Grid container spacing={4} sx={{ marginTop: '15px' }}>
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Box>
-                            <Typography
-                                sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
-                            <Typography component={'p'}
-                                sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main' }}
-                            >Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing.  Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing. </Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <img src={imgdescription3} alt="Description" style={{ width: '100%', height: 'auto' }} />
-                    </Grid>
-                </Grid>
-            </Container>
-        </>
+        <h1>This is About Page</h1>
     )
 }
+
 
 export default AboutPage

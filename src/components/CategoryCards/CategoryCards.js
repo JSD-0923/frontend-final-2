@@ -1,17 +1,8 @@
 import React from 'react'
 import ProductCard from '../ProductCard/ProductCard'
 import { useState, useEffect } from 'react'
-// import prodct from '../product'
 import { Typography, Paper, Box, Grid, Container, IconButton } from '@mui/material'
 const CategoryCards = () => {
-  // const [image,setImage] = useState(null);
-  // const loadImage = async()=>{
-  //   try{
-  //    let categoryImage = await import (`../../assets/images/base.png`)
-  //   }
-  // }
-
-  
   const product = [
     {
       productName: "Grande",
@@ -54,7 +45,7 @@ const CategoryCards = () => {
       productName: "Boujee",
       productDescription: "Black Bag",
       productPrice: "$56.49",
-    },{
+    }, {
       productName: "Grande",
       productDescription: "Blossom Pouch",
       productPrice: "$39.49",
@@ -73,7 +64,7 @@ const CategoryCards = () => {
       productName: "Boujee",
       productDescription: "Black Bag",
       productPrice: "$56.49",
-    },{
+    }, {
       productName: "Grande",
       productDescription: "Blossom Pouch",
       productPrice: "$39.49",
@@ -95,7 +86,7 @@ const CategoryCards = () => {
       productDescription: "Black Bag",
       productPrice: "$56.49",
       rating: 4,
-    },{
+    }, {
       productName: "Grande",
       productDescription: "Blossom Pouch",
       productPrice: "$39.49",
@@ -120,26 +111,28 @@ const CategoryCards = () => {
       productDescription: "Black Bag",
       productPrice: "$56.49",
       rating: 3,
-        },
+    },
 
   ]
 
   return (
 
-    // <Container maxWidth='xl'>
-    // hon
-      <Paper sx={{boxShadow:'none'}}>
-        
+    <Paper sx={{ boxShadow: 'none' }}>
       <Grid container spacing={3}>
         {product.map((productItem, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <ProductCard productDetails={productItem} />
+          <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
+            <ProductCard
+              title={productItem.productName}
+              description={productItem.productDescription}
+              image={require(`../../assets/images/pink-bag.png`)}
+              rating={productItem.rating}
+              width={285}
+            />
           </Grid>
         ))}
       </Grid>
-      </Paper>
-    //  nehaiet hon
-    // </Container>
+    </Paper>
+
   )
 }
 

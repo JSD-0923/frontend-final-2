@@ -1,85 +1,99 @@
 import React from 'react'
 import ProductCard from '../ProductCard/ProductCard'
-import { Typography, Paper, Box, Grid, Container, IconButton } from '@mui/material'
+import { Typography, Paper, Box } from '@mui/material'
 import { Button } from '@mui/material'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const newArrivalProducts = [
   {
-    image: '../../assets/images/pink-bag.png',
+    image: require('../../assets/images/pink-bag.png'),
     productName: "Grande",
     productDescription: "Blossom Pouch",
     productPrice: 39.49,
+    discountRate: 0,
+    rating: 3,
+    numberOfRatings: 30
   },
   {
-    image: '../../assets/images/pink-bag.png',
+    image: require('../../assets/images/pink-bag.png'),
     productName: "Coach",
     productDescription: "Leather Coach Bag",
     productPrice: 54.69,
+    discountRate: .3
   },
   {
-    image: '../../assets/images/pink-bag.png',
+    image: require('../../assets/images/pink-bag.png'),
     productName: "Remus",
     productDescription: "Brown Strap Bag",
     productPrice: 57,
+    rating: 4,
+    numberOfRatings: 78,
+    discountRate: .4
   },
   {
-    image: '../../assets/images/pink-bag.png',
+    image: require('../../assets/images/pink-bag.png'),
     productName: "Boujee",
     productDescription: "Black Bag",
     productPrice: 56.49,
+    discountRate: 0
+  },
+  {
+    image: require('../../assets/images/pink-bag.png'),
+    productName: "Boujee",
+    productDescription: "Black Bag",
+    productPrice: 56.49,
+    discountRate: .35
+  },
+  {
+    image: require('../../assets/images/pink-bag.png'),
+    productName: "Boujee",
+    productDescription: "Black Bag",
+    productPrice: 56.49,
+    discountRate: 0
   },
 
 ]
-const NewArrivalHeaderStyled = {
-  fontSize: '30px',
-  fontWeight: '400',
-  pt: '30px',
-  pb: '10px',
-  color: 'dark.main',
 
-  '@media (min-width: 320px) and (max-width: 425px)': {
-    fontSize: '25px',
-    paddingTop: '-5px',
-    paddingButtom: '0px',
-
-  },
-}
 const NewArrival = () => {
 
   return (
-    <Container maxWidth='xl'>
+    <Box sx={{ marginBottom: '1rem', marginTop: '1rem'}}>
       <Paper
-        sx={{
-          boxShadow: 'none'
-        }}>
-        <Box
-          sx={{
+          elevation={0}
+
+        >
+        <Box sx={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Typography variant='h3' component='div'
-            sx={NewArrivalHeaderStyled}>
-            New Arrival
+          <Typography
+              component={'h2'}
+              variant={'h2'}
+              sx={{marginLeft: '1rem'}}
+          >
+            New Arrivals
           </Typography>
-
-          <Button color="secondary" endIcon={<ArrowForwardIosIcon />}
-            sx={{
-              mt: '40px',
-              mb: '20px',
-              color: 'darkTeal.main'
-            }}>View All</Button>
+          <Button style={{textTransform: 'none', alignSelf: 'flex-end'}}>View all ></Button>
         </Box>
-        <Grid container spacing={3}>
+        <Box sx={{display: 'flex', overflowX: 'scroll'  }}>
           {newArrivalProducts.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <ProductCard productDetails={product} />
-            </Grid>
+              <Box key={index} sx={{margin:'1rem'}}>
+                <ProductCard
+                    image={product.image}
+                    item={product}
+                    title={product.productName}
+                    description={product.productDescription}
+                    rating={product.rating}
+                    price={product.productPrice}
+                    discountRate={product.discountRate}
+                    numberOfRatings={product.numberOfRatings}
+                    width={260}
+                />
+              </Box>
           ))}
-        </Grid>
+        </Box>
       </Paper>
-    </Container>
+    </Box>
   )
 }
 

@@ -8,13 +8,12 @@ const Layout = () => {
 
     return (
         <div>
-
+            <Container style={{maxWidth:'1400px'}}>
             <Header/>
-            {/* <Container style={{ maxWidth: '1400px' }}> */}
-            <Outlet />
-            {/* </Container> */}
-            {/* <Footer/> */}
 
+            <Outlet />
+            <Footer/>
+            </Container>
         </div>
     )
 }
