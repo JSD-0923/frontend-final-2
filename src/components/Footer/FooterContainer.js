@@ -76,7 +76,7 @@ const FooterContainer = () => {
                 <Grid item xs={12} md={5}>
                     <Box  sx={{width: '100%', display: 'flex', gap:'1rem'}}>
                         <Box  >
-                            <Typography sx={{ color: 'primary.contrastText'}} variant={'bodyMedium'} component={'h2'}>Shop by Category</Typography>
+                            <Typography sx={{ color: 'primary.contrastText'}} variant={'body1'} component={'h2'}>Shop by Category</Typography>
                             <List >
                                 {ShopByCategoryListItems.map((category) => (
                                     <ListItemButton
@@ -88,7 +88,7 @@ const FooterContainer = () => {
                                             primary={
                                                 <Typography
                                                     sx={{color:"lightText.main", fontWeight: 500}}
-                                                    variant={'bodyRegular'}
+                                                    variant={'body1'}
                                                     component={'h2'}
                                                 >
                                                     {category.text}
@@ -99,7 +99,7 @@ const FooterContainer = () => {
                         </Box>
                         <Box  >
                             <Typography sx={{ color: 'primary.contrastText'}}
-                                        variant={'bodyMedium'}
+                                        variant={'body1'}
                                         component={'h2'}
                             >
                                 Shop by Category
@@ -115,7 +115,7 @@ const FooterContainer = () => {
                                             primary={
                                                 <Typography
                                                     sx={{color:"lightText.main", fontWeight: 500}}
-                                                    variant={'bodyRegular'}
+                                                    variant={'body1'}
                                                     component={'h2'}
                                                 >
                                                     {product.text}
@@ -146,10 +146,10 @@ const FooterContainer = () => {
                         </Box>
 
                         <Box display="flex" alignItems="center" marginTop={3}>
-                            <LocationIcon/>  <Typography variant="titleMedium" component={'h2'} color={'primary.contrastText'}>United States</Typography>
+                            <LocationIcon/>  <Typography variant={'h4'} component={'h2'} color={'primary.contrastText'}>United States</Typography>
                         </Box>
 
-                        <Typography variant="titleMedium" component={'h2'} color={'lightText.main'} marginTop={2}>
+                        <Typography variant={'h4'} component={'span'} color={'lightText.main'} marginTop={2}>
                             © 2021 | Cora Leviene All Rights Reserved
                         </Typography>
                     </Box>

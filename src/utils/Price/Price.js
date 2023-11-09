@@ -20,7 +20,7 @@ const Price = (props) => {
                 <>
                     <Typography
                         variant={variant.price}
-                        sx={{marginRight: '1rem'}}
+
                         component={'span'}
                     >${originalPrice*discountRate}
                     </Typography>
@@ -31,7 +31,6 @@ const Price = (props) => {
                             fontWeight: 600,
                             textDecoration: "line-through",
                             color: 'lightText.main',
-                            marginRight: '1rem'
                         }}
                         component={'span'}
                     >${originalPrice}

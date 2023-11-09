@@ -24,7 +24,7 @@ const ShopByBrands = () => {
                 {isSmallScreen && <Button style={{textTransform: 'none', alignSelf: 'flex-end'}}>View all ></Button>}
             </Box>
 
-            <Paper elevation={0}>
+            <Paper elevation={0} sx={{marginTop: '1rem'}}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                     {BrandMockData.map(brand => {
                         return (

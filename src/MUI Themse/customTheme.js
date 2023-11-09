@@ -78,8 +78,12 @@ import {createTheme} from "@mui/material";
         },
     },
     typography: {
-        fontFamily: 'Inter, sans-serif',
+
         h1: {
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '40px',
+            fontWeight: 700,
+            lineHeight: 1.3,
             '@media (min-width: 320px)': {
                 fontSize: '22px',
             },
@@ -89,18 +93,14 @@ import {createTheme} from "@mui/material";
             '@media (min-width: 1024px)': {
                 fontSize: '40px'
             },
-            '@media (min-width: 1440px)': {
-                fontSize: '52px'
-            },
-            fontSize: '52px',
-            fontWeight: 700,
-            fontFamily: 'Inter',
+
 
         },
         h2: {
             fontSize: '34px',
             fontWeight: 600,
             fontFamily: 'Inter',
+            lineHeight: 1.3,
             '@media (min-width: 320px)': {
                 fontSize: '14px',
             },
@@ -122,12 +122,11 @@ import {createTheme} from "@mui/material";
             fontSize: '20px',
             fontWeight: 600,
             fontFamily: 'Inter',
+            lineHeight: 1.3,
             '@media (min-width: 320px)': {
                 fontSize: '18px',
             },
-            '@media (min-width: 375px)': {
 
-            },
             '@media (min-width: 425px)': {
                 fontSize: '20px',
 
@@ -142,60 +141,102 @@ import {createTheme} from "@mui/material";
                 fontSize: '20px',
             },
         },
-        titleMedium: {
+        h4: {
             fontSize: '14px',
             fontWeight: 500,
             fontFamily: 'Inter',
-            lineHeight: '18px'
+            lineHeight: 1.3,
+            '@media (min-width: 320px)': {
+                fontSize: '12px',
+            },
+
+            '@media (min-width: 1024px)': {
+                fontSize: '14px',
+            },
         },
-        titleRegular: {
+        h5: {
             fontSize: '14px',
             fontWeight: 600,
             fontFamily: 'Inter',
-            lineHeight: '16px'
+            lineHeight: 1.3,
+            '@media (min-width: 320px)': {
+                fontSize: '12px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '14px',
+            },
+        },
+        h6: {
+            fontSize: '14px',
+            fontWeight: 400,
+            fontFamily: 'Inter',
+            lineHeight: 1.3,
+            '@media (min-width: 320px)': {
+                fontSize: '12px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '14px',
+            }
+
         },
         body1: {
             fontSize: '16px',
-            fontWeight: 600,
+            fontWeight: 500,
             fontFamily: 'Inter',
+            lineHeight: 1.25,
             '@media (min-width: 320px)': {
                 fontSize: '14px',
             },
-
             '@media (min-width: 768px)': {
+                fontSize: '14px',
+            },
+
+            '@media (min-width: 1024px)': {
                 fontSize: '16px',
             },
 
         },
-        bodyRegular: {
+        body2: {
             fontSize: '16px',
             fontWeight: 400,
             fontFamily: 'Inter',
-            lineHeight: '20px'
+            lineHeight: 1.25,
+            '@media (min-width: 320px)': {
+                fontSize: '12px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '14px',
+            },
+
+            '@media (min-width: 1024px)': {
+                fontSize: '16px',
+            },
+
         },
-        labelLarge: {
-            fontSize: '14px',
-            fontWeight: 400,
-            fontFamily: 'Inter',
-            lineHeight: '20px'
-        },
-        labelMedium: {
-            fontSize: '12px',
-            fontWeight: 400,
-            fontFamily: 'Inter',
-            lineHeight: '16px'
-        },
-        labelSmall: {
-            fontSize: '12px',
-            fontWeight: 600,
-            fontFamily: 'Inter',
-            lineHeight: '16px'
-        },
-        link: {
+
+        subtitle1: {
             fontSize: '12px',
             fontWeight: 500,
+            lineHeight: 1.2,
             fontFamily: 'Inter',
-            lineHeight: '18px'
+            '@media (min-width: 320px)': {
+                fontSize: '10px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '12px',
+            }
+        },
+        subtitle2: {
+            fontSize: '12px',
+            fontWeight: 600,
+            lineHeight: 1.2,
+            fontFamily: 'Inter',
+            '@media (min-width: 320px)': {
+                fontSize: '10px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '12px',
+            }
         },
     },
 

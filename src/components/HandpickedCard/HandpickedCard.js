@@ -1,6 +1,6 @@
 import React from 'react'
-import {CardMedia} from "@mui/material";
-import {HandPickedBox, HandPickedCard, HandPickedTypographyH2} from "./style";
+import {Box, Card, CardMedia} from "@mui/material";
+import {HandPickedBox, HandPickedCardStyle, HandPickedTypographyH2} from "./style";
 
 const HandpickedCard = (props) => {
 
@@ -13,18 +13,18 @@ const HandpickedCard = (props) => {
 
   return (
     <div>
-            <HandPickedCard>
+            <Card sx={HandPickedCardStyle}>
                 <CardMedia
                     sx={{ height: '100%', width: 'cover' }}
                     component="img"
                     image={require(`../../${collection.image}`)}
                 />
-                <HandPickedBox>
+                <Box sx={HandPickedBox}>
                     <HandPickedTypographyH2 component={"h2"}  >
                         {collection.title}
                     </HandPickedTypographyH2>
-                </HandPickedBox>
-            </HandPickedCard>
+                </Box>
+            </Card>
     </div>
   )
 }
