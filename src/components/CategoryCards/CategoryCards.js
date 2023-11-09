@@ -127,6 +127,7 @@ const CategoryCards = () => {
   return (
 
     // <Container maxWidth='xl'>
+    // hon
       <Paper sx={{boxShadow:'none'}}>
         
       <Grid container spacing={3}>
@@ -137,7 +138,7 @@ const CategoryCards = () => {
         ))}
       </Grid>
       </Paper>
-     
+    //  nehaiet hon
     // </Container>
   )
 }

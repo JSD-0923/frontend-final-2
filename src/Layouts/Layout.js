@@ -10,10 +10,10 @@ const Layout = () => {
         <div>
 
             <Header/>
-            <Container style={{ maxWidth: '1400px' }}>
+            {/* <Container style={{ maxWidth: '1400px' }}> */}
             <Outlet />
-            </Container>
-            <Footer/>
+            {/* </Container> */}
+            {/* <Footer/> */}
 
         </div>
     )

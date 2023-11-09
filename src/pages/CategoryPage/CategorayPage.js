@@ -2,7 +2,7 @@ import React from 'react'
 import './CategoryPage.css'
 import CategoryCards from '../../components/CategoryCards/CategoryCards'
 import imghero from '../../assetsnoura/images/hero.png'
-import { Typography, Paper, Box, Grid, Container, IconButton } from '@mui/material'
+import { Typography,Pagination, Paper, Box, Grid, Container, IconButton } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { styled } from '@mui/system';
 import usePagination from '@mui/material/usePagination';
@@ -60,7 +60,7 @@ const CategorayPage = () => {
         Handbags
       </StyledTitle>
       <CategoryCards />
-      <nav>
+      {/* <nav>
         <List >
           {items.map(({ page, type, selected, ...item }, index) => {
             let children = null;
@@ -90,7 +90,8 @@ const CategorayPage = () => {
             return <li key={index}>{children}</li>;
           })}
         </List>
-      </nav>
+      </nav> */}
+      <Pagination count={10} variant="outlined" shape="rounded" />
     </Container>
   )
 }
