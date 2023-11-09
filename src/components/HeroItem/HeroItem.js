@@ -56,7 +56,7 @@ const HeroItem = ({ item }) => {
                     {item.title}
                 </StyledTitle>
 
-                <Typography sx={SubTitleStyle} variant={'h5'}>
+                <Typography sx={SubTitleStyle} variant={'h3'}>
                     {item.subtitle}
                 </Typography>
 

@@ -1,6 +1,6 @@
 import {Box, Button, Typography} from "@mui/material";
-import {ReactComponent as PlusIcon} from "../../assesst-anas/small-plus.svg";
-import {ReactComponent as MinusIcon} from "../../assesst-anas/small-minus.svg";
+import {ReactComponent as PlusIcon} from "../../assets/icons/small-plus.svg";
+import {ReactComponent as MinusIcon} from "../../assets/icons/small-minus.svg";
 import {buttonStyle, containerStyle, IconButtonStyle} from "./style";
 
 const QuantityCounter = (props) => {
