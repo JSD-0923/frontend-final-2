@@ -126,7 +126,7 @@ const CategoryCards = () => {
         {product.map((productItem, index) => (
           <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
             <ProductCard
-                image={require('../../assetsnoura/images/pink-bag.png')}
+                image={require('../../assets/images/pink-bag1.png')}
                 title={productItem.productName}
                 description={productItem.productDescription}
                 variant={{title: 'body1', body:'h6'}}

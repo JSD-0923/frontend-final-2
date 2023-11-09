@@ -1,7 +1,7 @@
 import React from 'react'
 import './CategoryPage.css'
 import CategoryCards from '../../components/CategoryCards/CategoryCards'
-import imghero from '../../assetsnoura/images/hero.png'
+import imghero from '../../assets/images/black-friday.png'
 import { Typography,Stack, Pagination, Box, Container } from '@mui/material'
 import { styled } from '@mui/system';
 

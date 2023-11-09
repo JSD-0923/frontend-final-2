@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card, CardMedia, Grid, Typography} from "@mui/material";
-import {ReactComponent as ArrowIcon} from "../../assests/icons/arrow.svg";
+import {ReactComponent as ArrowIcon} from "../../assets/icons/arrow.svg";
 import {
     BottomCard,
     DefaultStyleBox,
@@ -29,7 +29,7 @@ const FilteredSection = () => {
               <Card sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}>
                   <CardMedia
                       component="img"
-                      image={require('../../assests/images/filtterdSecton-1st-image.jpg')}
+                      image={require('../../assets/images/filtterdSecton-1st-image.jpg')}
                       sx={{ height: '100%', width: 'cover' }}
                   />
                       <LifeStyleBox>
@@ -47,7 +47,7 @@ const FilteredSection = () => {
                   <CardMedia
                       sx={{ height: '100%', width: 'cover' }}
                       component="img"
-                      image={require('../../assests/images/Group 139.png')}
+                      image={require('../../assets/images/Group 139.png')}
                   />
                   <DefaultStyleBox>
                       <DefaultTypographyH2 component={"h2"} sx={{color: '#A53F64'}} dir="rtl">
@@ -64,7 +64,7 @@ const FilteredSection = () => {
                   <CardMedia
                       sx={{ height: '100%', width: 'cover' }}
                       component="img"
-                      image={require('../../assests/images/skincare 1.jpg')}
+                      image={require('../../assets/images/skincare 1.jpg')}
                   />
                   <DefaultStyleBox>
                       <DefaultTypographyH2 component={"h2"} sx={{color: 'primary.main'}} dir="rtl">

@@ -1,9 +1,9 @@
 
 import './AboutPage.css'
-import imgabout from '../../assests/images/about.png'
-import imgdescription1 from '../../assests/images/rectangle.png'
-import imgdescription2 from '../../assests/images/Rectangle 532.png'
-import imgdescription3 from '../../assests/images/Rectangle 533.png'
+import imgabout from '../../assets/images/about.png'
+import imgdescription1 from '../../assets/images/rectangle.png'
+import imgdescription2 from '../../assets/images/Rectangle 532.png'
+import imgdescription3 from '../../assets/images/Rectangle 533.png'
 import { Container, Box, Typography, Grid } from '@mui/material'
 
 const AboutPage = () => {

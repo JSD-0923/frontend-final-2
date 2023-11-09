@@ -8,7 +8,7 @@ export const heroItems = [
     },
     {
         category: "watches",
-        image: require('../assets/images/Morgan-Caddell.jpeg'),
+        image: hero,
         title: "Carry your Funk",
         subtitle: "Trendy watches collection for your party animal",
     },
