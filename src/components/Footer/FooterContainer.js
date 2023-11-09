@@ -7,7 +7,7 @@ import {ReactComponent as InstagramIcon} from '../../assets/icons/insta-logo.svg
 import {ReactComponent as TwitterIcon} from '../../assets/icons/twitter-logo.svg'
 import {ReactComponent as YoutubeIcon} from '../../assets/icons/youtube-logo.svg'
 import {ReactComponent as LocationIcon} from '../../assets/icons/location.svg'
-import theme from "../../MUI Themse/customTheme";
+import theme from "../../themes/customTheme";
 
 
 const FooterContainer = () => {

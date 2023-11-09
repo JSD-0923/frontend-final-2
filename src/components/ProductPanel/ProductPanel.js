@@ -11,7 +11,7 @@ import {
     QuantityContainerStyle,
     RatingBoxStyle
 } from "./style";
-import theme from "../../MUI Themse/customTheme";
+import theme from "../../themes/customTheme";
 import StarIcon from "@mui/icons-material/Star";
 import ProductCard from "../ProductCard/ProductCard";
 
