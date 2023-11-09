@@ -18,7 +18,7 @@ export default function Footer() {
 
     return (
         <>
-            {isSmallScreen ?  <AppBar position="relative" sx={{ top: 'auto', bottom: 0 }}>
+            {isSmallScreen ?  <AppBar position="relative" sx={{ top: 'auto', bottom: 0, marginTop: '1rem' }}>
                 <Accordion>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -31,7 +31,7 @@ export default function Footer() {
                         <FooterContainer />
                     </AccordionDetails>
                 </Accordion>
-            </AppBar> : <AppBar position="static" sx={{ top: 'auto', bottom: 0 }}> <FooterContainer /> </AppBar>}
+            </AppBar> : <AppBar position="static" sx={{ top: 'auto', bottom: 0, marginTop: '3rem'  }}> <FooterContainer /> </AppBar>}
         </>
     )
 }

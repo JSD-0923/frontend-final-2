@@ -1,58 +1,49 @@
-import {Box,  styled, Typography} from "@mui/material";
-import {discountTypographyStyle, PriceBoxStyle} from "./style";
+import {Box, Typography} from "@mui/material";
+import {PriceBoxStyle} from "./style";
 
- const PriceTypography = styled(Typography)(() => ({
-    // Mobile Small
-    '@media (min-width: 320px)': {
-       fontSize: '22px',
-        marginLeft: '10px'
-    },
-    '@media (min-width: 768px)': {
-        fontSize: '30px',
-        marginLeft: '14px'
-    },
-    '@media (min-width: 1024px)': {
-        fontSize: '40px'
-    },
-    '@media (min-width: 1440px)': {
-        fontSize: '52px'
-    },
-
-
-}));
 const Price = (props) => {
-    const {originalPrice, discountRate} = props
+    const {originalPrice, discountRate, variant} = props
 
     return (
         <Box sx={PriceBoxStyle}>
             {discountRate === 0 &&
-            <PriceTypography
+            <Typography
+                variant={variant.price}
+                component={'span'}
                 sx={{
                     fontWeight: 700
                 }}
-            >${originalPrice}</PriceTypography>
+            >${originalPrice}</Typography>
             }
             {discountRate > 0 &&
 
                 <>
-                    <PriceTypography
-                        sx={{
-                            fontWeight: 700
-                        }}
+                    <Typography
+                        variant={variant.price}
+                        sx={{marginRight: '1rem'}}
                         component={'span'}
-                    >${originalPrice*discountRate}</PriceTypography>
-                    <PriceTypography
+                    >${originalPrice*discountRate}
+                    </Typography>
+
+                    <Typography
+                        variant={variant.price}
                         sx={{
                             fontWeight: 600,
                             textDecoration: "line-through",
-                            color: 'lightText.main'
+                            color: 'lightText.main',
+                            marginRight: '1rem'
                         }}
                         component={'span'}
-                    >${originalPrice}</PriceTypography>
+                    >${originalPrice}
+                    </Typography>
+
                     <Typography
-                        sx={discountTypographyStyle}
+                        variant={variant.Off}
+                        sx={{color: 'red'}}
                         component={'span'}
-                    >{discountRate*100}%OFF</Typography>
+                    >
+                        {discountRate*100}%OFF
+                    </Typography>
                 </>
             }
         </Box>

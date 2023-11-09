@@ -79,23 +79,68 @@ import {createTheme} from "@mui/material";
     },
     typography: {
         fontFamily: 'Inter, sans-serif',
-        displayLarge: {
-            fontSize: '40px',
+        h1: {
+            '@media (min-width: 320px)': {
+                fontSize: '22px',
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '30px',
+            },
+            '@media (min-width: 1024px)': {
+                fontSize: '40px'
+            },
+            '@media (min-width: 1440px)': {
+                fontSize: '52px'
+            },
+            fontSize: '52px',
             fontWeight: 700,
             fontFamily: 'Inter',
-            lineHeight: '52px'
+
         },
-        displayMedium: {
+        h2: {
             fontSize: '34px',
             fontWeight: 600,
             fontFamily: 'Inter',
-            lineHeight: '44px'
+            '@media (min-width: 320px)': {
+                fontSize: '14px',
+            },
+            '@media (min-width: 375px)': {
+                fontSize: '16px',
+            },
+            '@media (min-width: 425px)': {
+                fontSize: '18px',
+
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '25px',
+            },
+            '@media (min-width: 1024px)': {
+                fontSize: '34px',
+            },
         },
-        displaySmall: {
+        h3: {
             fontSize: '20px',
             fontWeight: 600,
             fontFamily: 'Inter',
-            lineHeight: '26px'
+            '@media (min-width: 320px)': {
+                fontSize: '18px',
+            },
+            '@media (min-width: 375px)': {
+
+            },
+            '@media (min-width: 425px)': {
+                fontSize: '20px',
+
+            },
+            '@media (min-width: 768px)': {
+                fontSize: '20px',
+            },
+            '@media (min-width: 1024px)': {
+                fontSize: '20px',
+            },
+            '@media (min-width: 1400px)': {
+                fontSize: '20px',
+            },
         },
         titleMedium: {
             fontSize: '14px',
@@ -109,11 +154,18 @@ import {createTheme} from "@mui/material";
             fontFamily: 'Inter',
             lineHeight: '16px'
         },
-        bodyMedium: {
+        body1: {
             fontSize: '16px',
             fontWeight: 600,
             fontFamily: 'Inter',
-            lineHeight: '20px'
+            '@media (min-width: 320px)': {
+                fontSize: '14px',
+            },
+
+            '@media (min-width: 768px)': {
+                fontSize: '16px',
+            },
+
         },
         bodyRegular: {
             fontSize: '16px',
