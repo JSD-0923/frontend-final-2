@@ -8,7 +8,7 @@ import {
     Typography, useMediaQuery
 } from "@mui/material";
 // import { theme } from '../../MUI Themes/customTheme';
-import  theme  from '../../MUI Themse/customTheme'
+import  theme  from '../../themes/customTheme'
 import FooterContainer from "./FooterContainer";
 
 
