@@ -10,6 +10,7 @@ import UserProfilePage from "../pages/UserProfilePage";
 import MyOrdersPage from "../pages/MyOrdersPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
+import SignInPage from "../pages/SignIn";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ export const router = createBrowserRouter([
                 path: "/about",
                 element: <AboutPage />,
             },
+            {
+                path: "/sign-in",
+                element: <SignInPage />,
+            },
+
 
         ]
     }
