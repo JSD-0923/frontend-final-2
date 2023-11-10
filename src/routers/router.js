@@ -12,6 +12,10 @@ import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
+import SignInPage from "../pages/SignIn";
+import SignUpPage from "../pages/SignUpPage";
+
+
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -58,9 +62,21 @@ export const router = createBrowserRouter([
                 element: <AboutPage />,
             },
             {
+
                 path: "/*",
                 element: <NotFoundPage />,
             },
+
+
+                path: "/sign-up",
+                element: <SignUpPage />,
+            },
+   {
+
+                path: "/sign-in",
+                element: <SignInPage />,,
+            
+
 
         ]
     }
