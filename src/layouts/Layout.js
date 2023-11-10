@@ -9,10 +9,11 @@ const Layout = () => {
     return (
         <div>
             
-            <Header/>
-
-            <Outlet />
-            <Footer/>
+           <Container disableGutters>
+               <Header/>
+               <Outlet />
+               <Footer/>
+           </Container>
             
         </div>
     )
