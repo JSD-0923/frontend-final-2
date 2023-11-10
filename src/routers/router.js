@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import LandingPage from "../pages/LandingPage/LandingPage";
+import LandingPage from "../pages/LandingPage";
 import Layout from "../layouts/Layout";
-import CategorayPage from "../pages/CategoryPage/CategorayPage";
-import ProductPage from "../pages/ProductPage/ProductPage";
-import MyCartPage from "../pages/MyCartPage/MyCartPage";
-import CheckoutPagePayment from "../pages/CheckoutPagePayment/CheckoutPagePayment";
-import CheckoutPageInformation from "../pages/CheckoutPageInformation/CheckoutPageInformation";
-import UserProfilePage from "../pages/UserProfilePage/UserProfilePage";
-import MyOrdersPage from "../pages/MyOrdersPage/MyOrdersPage";
-import OrderDetailsPage from "../pages/OrderDetailsPage/OrderDetailsPage";
-import AboutPage from "../pages/AboutPage/AboutPage";
+import CategoriesPage from "../pages/CategoriesPage";
+import ProductPage from "../pages/ProductPage";
+import MyCartPage from "../pages/MyCartPage";
+import CheckoutPagePayment from "../pages/CheckoutPagePayment";
+import CheckoutPageInformation from "../pages/CheckoutPageInformation";
+import UserProfilePage from "../pages/UserProfilePage";
+import MyOrdersPage from "../pages/MyOrdersPage";
+import OrderDetailsPage from "../pages/OrderDetailsPage";
+import AboutPage from "../pages/AboutPage";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/categories",
-                element: <CategorayPage />,
+                element: <CategoriesPage />,
             },
             {
                 path: "/product",
