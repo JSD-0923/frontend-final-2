@@ -10,6 +10,7 @@ import UserProfilePage from "../pages/UserProfilePage";
 import MyOrdersPage from "../pages/MyOrdersPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
+import SignUpPage from "../pages/SignUpPage";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path: "/about",
                 element: <AboutPage />,
+            },
+            {
+                path: "/sign-up",
+                element: <SignUpPage />,
             },
 
         ]
