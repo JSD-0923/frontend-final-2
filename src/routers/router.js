@@ -12,7 +12,7 @@ import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
-import SignInPage from "../pages/SignIn";
+import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 
 
