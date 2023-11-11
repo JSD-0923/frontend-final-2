@@ -1,19 +1,12 @@
 import React from 'react'
 import CategoryCards from '../components/CategoriesPageComponents/CategoryCards/CategoryCards'
 import imghero from '../assets/images/black-friday.png'
+
 import { Typography, Stack, Pagination, Box, Container, Button } from '@mui/material'
 import { styled } from '@mui/system';
 
-const StyledTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '34px',
-  color: theme.palette.primary.main,
-  marginBottom: '30px',
 
-  [theme.breakpoints.down('md')]: {
-    fontSize: '20px',
-    marginBottom: '10px',
-  },
-}));
+
 
 const CategoriesPage = () => {
 
@@ -22,7 +15,10 @@ const CategoriesPage = () => {
     <Container maxWidth='xl' >
       <img alt={'pic'} src={imghero} width='100%' />
 
-      <StyledTitle variant="body1" component={'h1'} >
+
+
+      <StyledTitle variant="h2" component={'h1'} >
+
         Handbags
       </StyledTitle>
       <CategoryCards />
