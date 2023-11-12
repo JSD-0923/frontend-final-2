@@ -35,7 +35,10 @@ const MyCartPage = () => {
                     <ProductCartList cartProducts={cartProducts}/>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <OrderCheckoutSummary cartProducts={cartProducts}/>
+                    <OrderCheckoutSummary
+                        headTitle={"Order Summary"}
+                        cartProducts={cartProducts}
+                    />
                 </Grid>
             </Grid>
 
