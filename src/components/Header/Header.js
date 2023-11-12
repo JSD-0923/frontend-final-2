@@ -16,6 +16,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { SearchBox } from '../SearchBox/SearchBox';
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import {ReactComponent as CoralLogo} from "../../assets/icons/coral-logo.svg";
+import {useNavigate} from "react-router-dom";
 
 
 const pages = ['Handbags', 'Watches', 'Skincare', 'Jewellery', 'Apparels'];
@@ -23,6 +25,8 @@ const pages = ['Handbags', 'Watches', 'Skincare', 'Jewellery', 'Apparels'];
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,21 +47,15 @@ const Header = () => {
     <AppBar position="static" sx={{ backgroundColor: '#ffffff', boxShadow: 'none' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              color: 'primary.main',
-              textDecoration: 'none',
-            }}
+          <IconButton
+          onClick={() => navigate('/')}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+          }}
           >
-            CORA'L
-          </Typography>
+            <CoralLogo />
+          </IconButton>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -91,28 +89,32 @@ const Header = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu} >
-                  <Typography sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
+                  <Typography variant={'h4'} component={'h2'} sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
+            <IconButton
+            onClick={() => navigate('/')}
+            >
+              <Typography
+                  variant="h3"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 2,
+                    display: { xs: 'flex', md: 'none' },
+                    flexGrow: 10,
+                    fontFamily: 'monospace',
+                    fontWeight: 400,
+                    color: '#17494D',
+                    textDecoration: 'none',
+                  }}
+              >
+                Home
+              </Typography>
+            </IconButton>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 10,
-              fontFamily: 'monospace',
-              fontWeight: 400,
-              color: '#17494D',
-              textDecoration: 'none',
-            }}
-          >
-            Home
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -120,7 +122,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block', color: "TypeHighEmphasis.main" }}
               >
-                {page}
+                <Typography variant={'h4'} component={'span'}>{page}</Typography>
               </Button>
             ))}
           </Box>
@@ -134,9 +136,10 @@ const Header = () => {
               <FavoriteBorderIcon />
             </IconButton>
 
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
+            <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
               <PersonOutlineIcon />
             </IconButton>
+
 
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
               <WorkOutlineIcon />

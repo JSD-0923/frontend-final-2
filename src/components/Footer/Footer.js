@@ -7,7 +7,8 @@ import {
     AccordionSummary,
     Typography, useMediaQuery
 } from "@mui/material";
-import theme from "../../MUI Themse/customTheme";
+// import { theme } from '../../MUI Themes/customTheme';
+import  theme  from '../../themes/customTheme'
 import FooterContainer from "./FooterContainer";
 
 
@@ -17,20 +18,20 @@ export default function Footer() {
 
     return (
         <>
-            {isSmallScreen ?  <AppBar sx={{ top: 'auto', bottom: 0 }}>
+            {isSmallScreen ?  <AppBar position="relative" sx={{ top: 'auto', bottom: 0, marginTop: '1rem' }}>
                 <Accordion>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography variant={'titleMedium'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
+                        <Typography variant={'h2'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{backgroundColor: 'primary.main'}}>
                         <FooterContainer />
                     </AccordionDetails>
                 </Accordion>
-            </AppBar> : <AppBar sx={{ top: 'auto', bottom: 0 }}> <FooterContainer /> </AppBar>}
+            </AppBar> : <AppBar position="static" sx={{ top: 'auto', bottom: 0, marginTop: '3rem'  }}> <FooterContainer /> </AppBar>}
         </>
     )
 }

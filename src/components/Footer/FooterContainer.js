@@ -7,7 +7,7 @@ import {ReactComponent as InstagramIcon} from '../../assets/icons/insta-logo.svg
 import {ReactComponent as TwitterIcon} from '../../assets/icons/twitter-logo.svg'
 import {ReactComponent as YoutubeIcon} from '../../assets/icons/youtube-logo.svg'
 import {ReactComponent as LocationIcon} from '../../assets/icons/location.svg'
-import theme from "../../MUI Themse/customTheme";
+import theme from "../../themes/customTheme";
 
 
 const FooterContainer = () => {
@@ -61,13 +61,22 @@ const FooterContainer = () => {
         }
     ];
 
+    const FooterToolbarStyle = {
+        '@media (min-width: 320px) and (max-width: 599px)': {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        '@media (min-width: 600px)': {
+            margin: '2rem'
+        },
+    }
     return (
-        <Toolbar sx={{margin: 4}}>
+        <Toolbar sx={FooterToolbarStyle}>
             <Grid container>
                 <Grid item xs={12} md={5}>
-                    <Grid container>
-                        <Grid item xs={6} sm={6}>
-                            <Typography sx={{ color: 'primary.contrastText'}} variant={'bodyMedium'} component={'h2'}>Shop by Category</Typography>
+                    <Box  sx={{width: '100%', display: 'flex', gap:'1rem'}}>
+                        <Box  >
+                            <Typography sx={{ color: 'primary.contrastText'}} variant={'body1'} component={'h2'}>Shop by Category</Typography>
                             <List >
                                 {ShopByCategoryListItems.map((category) => (
                                     <ListItemButton
@@ -79,7 +88,7 @@ const FooterContainer = () => {
                                             primary={
                                                 <Typography
                                                     sx={{color:"lightText.main", fontWeight: 500}}
-                                                    variant={'bodyRegular'}
+                                                    variant={'body1'}
                                                     component={'h2'}
                                                 >
                                                     {category.text}
@@ -87,10 +96,10 @@ const FooterContainer = () => {
                                     </ListItemButton>
                                 ))}
                             </List>
-                        </Grid>
-                        <Grid item xs={6} sm={6}>
+                        </Box>
+                        <Box  >
                             <Typography sx={{ color: 'primary.contrastText'}}
-                                        variant={'bodyMedium'}
+                                        variant={'body1'}
                                         component={'h2'}
                             >
                                 Shop by Category
@@ -106,7 +115,7 @@ const FooterContainer = () => {
                                             primary={
                                                 <Typography
                                                     sx={{color:"lightText.main", fontWeight: 500}}
-                                                    variant={'bodyRegular'}
+                                                    variant={'body1'}
                                                     component={'h2'}
                                                 >
                                                     {product.text}
@@ -114,10 +123,8 @@ const FooterContainer = () => {
                                     </ListItemButton>
                                 ))}
                             </List>
-                        </Grid>
-
-
-                    </Grid>
+                        </Box>
+                    </Box>
                 </Grid>
                 <Grid item xs={12} md={7}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: alignItemsValue }}  >
@@ -139,10 +146,10 @@ const FooterContainer = () => {
                         </Box>
 
                         <Box display="flex" alignItems="center" marginTop={3}>
-                            <LocationIcon/>  <Typography variant="titleMedium" component={'h2'} color={'primary.contrastText'}>United States</Typography>
+                            <LocationIcon/>  <Typography variant={'h4'} component={'h2'} color={'primary.contrastText'}>United States</Typography>
                         </Box>
 
-                        <Typography variant="titleMedium" component={'h2'} color={'lightText.main'} marginTop={2}>
+                        <Typography variant={'h4'} component={'span'} color={'lightText.main'} marginTop={2}>
                             © 2021 | Cora Leviene All Rights Reserved
                         </Typography>
                     </Box>
