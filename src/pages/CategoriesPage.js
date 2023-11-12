@@ -2,8 +2,8 @@ import React from 'react'
 import CategoryCards from '../components/CategoriesPageComponents/CategoryCards/CategoryCards'
 import imghero from '../assets/images/black-friday.png'
 
-import { Typography, Stack, Pagination, Box, Container, Button } from '@mui/material'
-import { styled } from '@mui/system';
+import {  Stack, Pagination, Box, Container, Button } from '@mui/material'
+import {StyledTitle} from "../themes/StyledPageTitle";
 
 
 
@@ -18,7 +18,6 @@ const CategoriesPage = () => {
 
 
       <StyledTitle variant="h2" component={'h1'} >
-
         Handbags
       </StyledTitle>
       <CategoryCards />

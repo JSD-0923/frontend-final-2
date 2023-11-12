@@ -11,14 +11,14 @@ import {
 import ProductCartCard from "./ProductCartCard/ProductCartCard";
 
 const ProductCartList = (props) => {
-    const { cartProducts } = props;
+    const { cartProducts, showTable=true } = props;
 
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
 
     return (
         <Paper elevation={0}>
             <Table aria-label="cart items list">
-                {!isSmallScreen &&
+                {!isSmallScreen && showTable &&
                     <TableHead sx={{ borderBottom: '1px solid #0000001F' }}>
                         <TableRow sx={{ color: 'red' }}>
                             <TableCell>Product Name</TableCell>
@@ -41,7 +41,7 @@ const ProductCartList = (props) => {
 
                                 </TableCell>
 
-                                {!isSmallScreen &&
+                                {!isSmallScreen && showTable &&
                                 <>
                                     <TableCell align="center" sx={{ margin: 0, verticalAlign: 'top' }}>
                                         ${product.discountRate > 0 ? product.price * product.discountRate : product.price}
@@ -58,16 +58,18 @@ const ProductCartList = (props) => {
 
                             </TableRow>
 
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell colSpan={4} align="right" sx={{ padding: 0 }}>
-                                    <Button
-                                        sx={{ color: 'error.main', borderBottom: '1px solid', paddingBottom: '2px', borderRadius: 0, right:'2rem', bottom: ['initial', 'initial', '4rem'], }}
-                                    onClick={()=> console.log(product.title)}
-                                    >
-                                        Remove
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
+                            {showTable &&
+                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell colSpan={4} align="right" sx={{ padding: 0 }}>
+                                        <Button
+                                            sx={{ color: 'error.main', borderBottom: '1px solid', paddingBottom: '2px', borderRadius: 0, right:'2rem', bottom: ['initial', 'initial', '4rem'], }}
+                                            onClick={()=> console.log(product.title)}
+                                        >
+                                            Remove
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            }
                         </React.Fragment>
                     ))}
                 </TableBody>
