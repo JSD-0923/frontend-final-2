@@ -267,6 +267,24 @@ theme = createTheme(theme, {
                 },
             }
 
+        },
+        MuiTable: {
+            styleOverrides : {
+                root: {
+                    "& .MuiTableCell-head": {
+                        color: theme.palette.TypeLowEmphasis.main,
+                    }
+                },
+            }
+
+        },
+        MuiTableCell: {
+            styleOverrides : {
+                root: {
+                    borderBottom: "none",
+                }
+            }
+
         }
     },
 });
