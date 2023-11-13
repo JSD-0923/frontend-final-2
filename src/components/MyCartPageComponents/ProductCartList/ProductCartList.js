@@ -31,7 +31,7 @@ const ProductCartList = (props) => {
 
                 <TableBody>
                     {cartProducts.map((product) => (
-                        <React.Fragment key={product.title}>
+                        <React.Fragment key={product.id}>
 
                             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row" sx={{ padding: 0 }}>
@@ -44,13 +44,13 @@ const ProductCartList = (props) => {
                                 {!isSmallScreen && showTable &&
                                 <>
                                     <TableCell align="center" sx={{ margin: 0, verticalAlign: 'top' }}>
-                                        ${product.discountRate > 0 ? product.price * product.discountRate : product.price}
+                                        ${product.discountedPrice > 0 ? product.discountedPrice.toFixed(2) : product.price.toFixed(2)}
                                     </TableCell>
                                     <TableCell align="center" sx={{margin: 0, verticalAlign: 'top' }}>
-                                        {product.qty}
+                                        {product.quantity}
                                     </TableCell>
                                     <TableCell align="center" sx={{ margin: 0, verticalAlign: 'top' }}>
-                                        ${product.discountRate > 0 ? product.price * product.discountRate * product.qty : product.price * product.qty}
+                                        ${product.totalPrice.toFixed(2)}
                                     </TableCell>
 
                                 </>
@@ -63,7 +63,7 @@ const ProductCartList = (props) => {
                                     <TableCell colSpan={4} align="right" sx={{ padding: 0 }}>
                                         <Button
                                             sx={{ color: 'error.main', borderBottom: '1px solid', paddingBottom: '2px', borderRadius: 0, right:'2rem', bottom: ['initial', 'initial', '4rem'], }}
-                                            onClick={()=> console.log(product.title)}
+                                            onClick={()=> console.log(product.id)}
                                         >
                                             Remove
                                         </Button>
