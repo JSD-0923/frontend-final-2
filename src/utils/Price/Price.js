@@ -4,6 +4,9 @@ import {PriceBoxStyle} from "./style";
 const Price = (props) => {
     const {originalPrice, discountRate, variant} = props
 
+    const _originalPrice = Math.round(originalPrice*100)/100
+    const _discountRate = discountRate/100;
+    const discountedPrice = Math.round(_originalPrice*_discountRate*100)/100
     return (
         <Box sx={PriceBoxStyle}>
             {discountRate === 0 &&
@@ -13,7 +16,7 @@ const Price = (props) => {
                 sx={{
                     fontWeight: 700
                 }}
-            >${originalPrice}</Typography>
+            >${_originalPrice}</Typography>
             }
             {discountRate > 0 &&
 
@@ -22,7 +25,7 @@ const Price = (props) => {
                         variant={variant.price}
 
                         component={'span'}
-                    >${originalPrice*discountRate}
+                    >${discountedPrice}
                     </Typography>
 
                     <Typography
@@ -33,7 +36,7 @@ const Price = (props) => {
                             color: 'lightText.main',
                         }}
                         component={'span'}
-                    >${originalPrice}
+                    >${_originalPrice}
                     </Typography>
 
                     <Typography
@@ -41,7 +44,7 @@ const Price = (props) => {
                         sx={{color: 'red'}}
                         component={'span'}
                     >
-                        {discountRate*100}%OFF
+                        {discountRate}%OFF
                     </Typography>
                 </>
             }

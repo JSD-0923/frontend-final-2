@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import ReviewCard from "./ReviewCard/ReviewCard";
 import { Grid, Typography} from "@mui/material";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 
 const CustomTabPanel = (props) => {
     const { children, value, index, ...other } = props;
@@ -41,7 +42,7 @@ function a11yProps(index) {
 
  const ProductTaps = (props) => {
 
-    const {description, reviews} = props
+    const {description} = props
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -73,11 +74,11 @@ function a11yProps(index) {
                 <Typography sx={{color:'TypeLowEmphasis.main'}} variant={'body1'} component={'p'}>{description}</Typography>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                Item Two
+                <RelatedProducts/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
                <Grid container spacing={1}>
-                   <ReviewCard  reviews={reviews}/>
+                   <ReviewCard  />
                </Grid>
             </CustomTabPanel>
         </Box>
