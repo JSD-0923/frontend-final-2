@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const apiAxios = axios.create({
     baseURL: "https://backend-final-2-gosr.onrender.com"
 });
