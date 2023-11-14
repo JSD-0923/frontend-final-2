@@ -18,7 +18,6 @@ const CategoriesPage = () => {
 
 
       <StyledTitle variant="h2" component={'h1'} >
-
         Handbags
       </StyledTitle>
       <CategoryCards />

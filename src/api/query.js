@@ -12,7 +12,7 @@ const fetchBrands = async () => {
 const useBrands = () => {
   return useQuery({
     queryKey: ['brands', 'list'],
-    queryFn: async () => await fetchBrands().then(res => res.data),
+    queryFn:  () =>  fetchBrands().then(res => res.data),
     staleTime: Infinity
   })
 }
@@ -31,6 +31,23 @@ const useHandBicked = () => {
     staleTime: Infinity
   })
 }
+
+
+// const fetchProducts= async () => {
+//   return await apiAxios.get(`/products?${filter}
+//   `).then(res => res.data)
+// }
+// const useProducts = (filter) => {
+//   return useQuery({
+//     queryKey: ['products', 'list',filter],
+//     queryFn:  () =>  fetchProducts(),
+//     staleTime: Infinity
+//   })
+// }
+
+
+
+// useProducts
 
 export { useHandBicked, useBrands };
 
