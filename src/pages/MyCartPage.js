@@ -29,7 +29,7 @@ const MyCartPage = () => {
         )
     }
 
-    if (cartProducts.cartItems.length === 0) {
+    if (!cartProducts) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
                     <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Your Cart is empty !!</Typography>

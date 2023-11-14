@@ -1,7 +1,7 @@
 import {useMutation, useQuery} from 'react-query';
 import {apiAxios} from "./axsios3";
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUyLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoiemFpbi5uYXRvdXJAaG90bWFpbC5jb20iLCJqdGkiOiJlYjBiYmYwMy03NzQ1LTRkNGUtYmFlNC1mMzgxNTM4NzI0NTkiLCJpYXQiOjE2OTk4NzI4MzIsImV4cCI6MTY5OTk1OTIzMiwiaXNzIjoiYmFja2VuZC1maW5hbC0yIn0.eYeJX73Fk5cNbuPM3lYEK4CtM-GGaakbuCRrdy-SQwA"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUxLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoiemFpbi5uYXRvdXJAaG90bWFpbC5jb20iLCJqdGkiOiIwZmU4NTEwMC1mNDY5LTQ5NGQtYjUwOS1lMmMxYjljMGY0YjIiLCJpYXQiOjE2OTk5MTg3NTEsImV4cCI6MTcwMDAwNTE1MSwiaXNzIjoiYmFja2VuZC1maW5hbC0yIn0.xmuyE4A6TWJBehZJjB2iaL3gphZ_d-Wxr-2YeI-rfXU"
 
 const fetchProduct = async(id)=>{
     return await apiAxios.get(`/products/${id}`)
@@ -35,7 +35,7 @@ const fetchCart = async () => {
         });
         return response.data;
     } catch (error) {
-        throw error;
+        console.error(error)
     }
 }
 
