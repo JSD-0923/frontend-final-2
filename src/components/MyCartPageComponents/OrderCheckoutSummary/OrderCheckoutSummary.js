@@ -4,7 +4,7 @@ import {Box, Button, Divider, Paper, Typography} from "@mui/material";
 
 const OrderCheckoutSummary = (props) => {
 
-    const {showButtons=true, headTitle} = props
+    const {cartProducts ,showButtons=true, headTitle} = props
 
     // const subTotal = cartProducts.reduce((sum, product) => sum + product.price, 0);
 
@@ -18,11 +18,11 @@ const OrderCheckoutSummary = (props) => {
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop:'12px', marginBottom:'12px'}}>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Sub Total</Typography>
-                    <Typography>$119.69</Typography>
+                    <Typography>${cartProducts.totalOrderPriceAfterDiscount.toFixed(2)}</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Discount</Typography>
-                    <Typography>-$13.40</Typography>
+                    <Typography>-${(cartProducts.totalOrderPriceBeforeDiscount-cartProducts.totalOrderPriceAfterDiscount).toFixed(2)}</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Delivery Fee</Typography>
@@ -30,7 +30,7 @@ const OrderCheckoutSummary = (props) => {
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{fontWeight: 600}} variant={'h4'} component={'h2'}>Grand Total</Typography>
-                    <Typography>$106.29</Typography>
+                    <Typography>${(cartProducts.totalOrderPriceAfterDiscount+12).toFixed(2)}</Typography>
                 </Box>
             </Box>
 

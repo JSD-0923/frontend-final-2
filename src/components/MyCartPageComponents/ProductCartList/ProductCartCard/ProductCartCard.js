@@ -19,15 +19,15 @@ const ProductCartCard = (props) => {
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-around' }}>
                     <Typography component="h2" variant="body1">
-                        {product.title}
+                        {product.name}
                     </Typography>
                     <Typography noWrap sx={{color: 'TypeLowEmphasis.main'}} component="h2" variant="body1">
                         {product.highlight.split(' ').slice(0, 2).join(' ')}
                     </Typography>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} component="h2" variant="body1">
-                        Qty- {product.qty}
+                        Qty- {product.quantity}
                     </Typography>
-                {isSmallScreen && <Price discountRate={product.discountRate} originalPrice={product.price}  variant={{price: 'h3', Off: 'h4'}}  />}
+                {isSmallScreen && <Price discountedPrice={product.discountedPrice} discountRate={product.discount/100} originalPrice={product.price}  variant={{price: 'h3', Off: 'h4'}}  />}
             </Box>
 
         </Card>

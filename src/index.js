@@ -5,14 +5,18 @@ import App from './App';
 import {responsiveFontSizes, ThemeProvider} from "@mui/material";
 import theme from "./themes/customTheme";
 import {AuthProvider} from "./hooks/useAuth";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 let responsiveTheme = responsiveFontSizes(theme);
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <ThemeProvider theme={responsiveTheme}>
+    <QueryClientProvider client={queryClient}>
         <AuthProvider>
-        <App />
+        <ThemeProvider theme={responsiveTheme}>
+            <App />
+        </ThemeProvider>
         </AuthProvider>
-    </ThemeProvider>
+    </QueryClientProvider>
 );
 
