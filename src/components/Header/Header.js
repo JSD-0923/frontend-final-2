@@ -16,11 +16,26 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { SearchBox } from '../SearchBox/SearchBox';
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '80px',
+  right: '10px',
+  width: 400,
+  bgcolor: 'background.paper',
+  p: 4,
+};
 
 
 const pages = ['Handbags', 'Watches', 'Skincare', 'Jewellery', 'Apparels'];
 
 const Header = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -137,10 +152,34 @@ const Header = () => {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
               <PersonOutlineIcon />
             </IconButton>
+            {/* <IconButton onClick={handleOpen} sx={{ p: 0, color: 'primary.main', }}>
+              <WorkOutlineIcon />
+            </IconButton> */}
 
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
+{/* <Button onClick={handleOpen}>Open modal</Button> */}
+<IconButton onClick={handleOpen} sx={{ p: 0, color: 'primary.main', }}>
               <WorkOutlineIcon />
             </IconButton>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </Typography>
+        </Box>
+      </Modal>
+
+
+
+
+            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
+              <WorkOutlineIcon />
+            </IconButton> */}
 
 
           </Box>
