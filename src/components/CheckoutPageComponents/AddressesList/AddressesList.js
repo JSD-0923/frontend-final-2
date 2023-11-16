@@ -5,16 +5,29 @@ import {Accordion, AccordionDetails, AccordionSummary, Button, Typography} from 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddAddress from "../AddAddress/AddAddress";
+import {useAddAddress, useAddresses} from "../../../apis3/query3";
 
 const AddressesList = (props) => {
 
-    const {addresses, onSelect, selectedCard} = props
+    const { onSelect, selectedCard} = props
 
     const [show, setShow] = useState(false)
+    const [addressFormData, setAddressFormData] = useState({})
 
-    const handleSubmit = () => {
-        setShow(false);
+    const {data:addresses} = useAddresses()
+
+    const addToAddressMutation = useAddAddress(addressFormData);
+    const handleSubmit = async (_data) => {
+        try {
+            setShow(false);
+            setAddressFormData(_data);
+            await addToAddressMutation.mutateAsync();
+        } catch (error) {
+            // Handle validation errors here
+            console.error('Validation Error:', error.response.data);
+        }
     };
+
 
     return (
 
@@ -28,8 +41,9 @@ const AddressesList = (props) => {
             <Typography variant={'h3'} component={'h2'} color={'TypeLowEmphasis.main'}>Addresses list:</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{margin: '1rem'}}>
+            {!addresses && <Typography>No addresses yet, please add one at least!</Typography>}
             <Grid container spacing={2}>
-                {addresses.map((address) => (
+                {addresses?.addresses.map((address) => (
                     <UserAddress
                         key={address.id}
                         address={address}

@@ -29,7 +29,6 @@ async function signIn(email, password, setError, navigate) {
             const authToken = response.data.token;
             saveTokenToLocalStorage(authToken);
 
-
             navigate('/');
 
         } else if (response.status === 401) {
@@ -41,7 +40,10 @@ async function signIn(email, password, setError, navigate) {
         setError('Email or Password is wrong');
     }
 }
+const token = localStorage.getItem('authToken');
 
+// Log the value of the token to the console
+console.log(token);
 const SignInPage = () => {
     const [error, setError] = React.useState('');
     const navigate = useNavigate();
