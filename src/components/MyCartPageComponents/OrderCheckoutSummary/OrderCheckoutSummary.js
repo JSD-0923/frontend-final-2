@@ -1,12 +1,10 @@
 
 import './OrderCheckoutSummary.css'
-import {Box, Button, Divider, Paper, Typography} from "@mui/material";
+import {Box, Divider, Paper, Typography} from "@mui/material";
 
 const OrderCheckoutSummary = (props) => {
 
-    const {cartProducts ,showButtons=true, headTitle} = props
-
-    // const subTotal = cartProducts.reduce((sum, product) => sum + product.price, 0);
+    const {cartProducts , headTitle} = props
 
     return (
         <Paper elevation={0} sx={{margin: '1rem', paddingY: '1rem'}}>
@@ -33,13 +31,6 @@ const OrderCheckoutSummary = (props) => {
                     <Typography>${(cartProducts.totalOrderPriceAfterDiscount+12).toFixed(2)}</Typography>
                 </Box>
             </Box>
-
-            {showButtons &&
-                <Box sx={{display: 'flex', gap:'15px', width:'100%', justifyContent: 'center'}}>
-                    <Button sx={{width: '50%', maxWidth: '180px'}} variant="contained"><Typography variant={'h4'}>Place Order</Typography></Button>
-                    <Button sx={{width: '50%', maxWidth: '180px'}} variant="outlined"><Typography variant={'h4'}>Continue Shopping</Typography></Button>
-                </Box>
-            }
 
         </Paper>
     )

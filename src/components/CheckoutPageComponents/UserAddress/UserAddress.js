@@ -23,7 +23,7 @@ const UserAddress = (props) => {
     };
 
     return (
-        <CardActionArea sx={{ width: '280px', }} onClick={handleCardClick}>
+        <CardActionArea sx={{ width: '300px', }} onClick={handleCardClick}>
             <Card sx={{ ...commonCardStyles, position: 'relative' }}>
                 <Radio
                     checked={isSelected}
@@ -49,17 +49,22 @@ const UserAddress = (props) => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="body1">
-                                    <span style={{ fontWeight: 'bold' }}>Email:</span>  {address.email}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant="body1">
                                     <span style={{ fontWeight: 'bold' }}>Mobile:</span> {address.mobileNumber}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <Typography variant="body1">
-                                    <span style={{ fontWeight: 'bold' }}>Address:</span> {address.location}
+                                    <span style={{ fontWeight: 'bold' }}>City:</span> {address.city}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography variant="body1">
+                                    <span style={{ fontWeight: 'bold' }}>State:</span> {address.state}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography variant="body1">
+                                    <span style={{ fontWeight: 'bold' }}>Pin:</span> {address.pin}
                                 </Typography>
                             </Grid>
                         </Grid>

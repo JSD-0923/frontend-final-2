@@ -3,11 +3,14 @@ import ProductCartList from "../components/MyCartPageComponents/ProductCartList/
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
 import {StyledTitle} from "../themes/StyledPageTitle";
 import React from "react";
-import {Box, CircularProgress, Grid, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, Grid, Typography} from "@mui/material";
 import {useCart} from "../apis3/query3";
+import {useNavigate} from "react-router-dom";
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
+
+    const navigate = useNavigate();
 
     if (isLoading) {
         return (
@@ -38,6 +41,8 @@ const MyCartPage = () => {
         )
     }
 
+    console.log('cart page rendered')
+
     return (
        <>
            {cartProducts &&
@@ -54,6 +59,10 @@ const MyCartPage = () => {
                                headTitle={"Order Summary"}
                                cartProducts={cartProducts}
                            />
+                           <Box sx={{display: 'flex', gap:'15px', width:'100%', justifyContent: 'center'}}>
+                               <Button sx={{width: '50%', maxWidth: '180px'}} variant="contained"><Typography variant={'h4'} onClick={()=>{navigate('/checkout')}}>Next</Typography></Button>
+                               <Button sx={{width: '50%', maxWidth: '180px'}} variant="outlined"><Typography variant={'h4'}>Continue Shopping</Typography></Button>
+                           </Box>
                        </Grid>
                    </Grid>
 
