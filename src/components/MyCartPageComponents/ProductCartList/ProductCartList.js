@@ -9,11 +9,18 @@ import {
     TableRow, useMediaQuery,
 } from "@mui/material";
 import ProductCartCard from "./ProductCartCard/ProductCartCard";
+import {useRemoveFromCart} from "../../../apis3/query4";
 
 const ProductCartList = (props) => {
     const { cartProducts, showTable=true } = props;
 
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
+
+    const { removeProductFromCart } = useRemoveFromCart();
+
+    const handelRemoveProduct = (productId) => {
+        removeProductFromCart(productId);
+    }
 
     return (
         <Paper elevation={0}>
@@ -63,7 +70,7 @@ const ProductCartList = (props) => {
                                     <TableCell colSpan={4} align="right" sx={{ padding: 0 }}>
                                         <Button
                                             sx={{ color: 'error.main', borderBottom: '1px solid', paddingBottom: '2px', borderRadius: 0, right:'2rem', bottom: ['initial', 'initial', '4rem'], }}
-                                            onClick={()=> console.log(product.id)}
+                                            onClick={() => handelRemoveProduct(product.id)}
                                         >
                                             Remove
                                         </Button>
