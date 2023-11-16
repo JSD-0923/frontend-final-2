@@ -9,7 +9,7 @@ import {
     TableRow, useMediaQuery,
 } from "@mui/material";
 import ProductCartCard from "./ProductCartCard/ProductCartCard";
-import {useRemoveFromCart} from "../../../apis3/query3";
+import {useRemoveFromCart} from "../../../apis3/query4";
 
 const ProductCartList = (props) => {
     const { cartProducts, showTable=true } = props;

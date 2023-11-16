@@ -4,7 +4,7 @@ import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderChecko
 import {StyledTitle} from "../themes/StyledPageTitle";
 import React from "react";
 import {Box, CircularProgress, Grid, Typography} from "@mui/material";
-import {useCart} from "../apis3/query3";
+import {useCart} from "../apis3/query4";
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
