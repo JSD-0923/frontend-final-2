@@ -3,10 +3,10 @@ import HandpickedCard from './HandpickedCard/HandpickedCard'
 import { Box, Paper, Typography } from "@mui/material";
 import { HandpickedCollectionsStyledBox, HandpickedCollectionsStyledPaper } from "./style";
 import { HandpickedCollectionsData } from "./HandpickedCollectionsMock";
-import { useHandBicked } from '../../../api/query'
+import { useLandingProducts } from '../../../api/query'
 const HandpickedCollections = () => {
 
-    const { data: Handpicked, isLoading, isError } = useHandBicked();
+    const { data: Handpicked, isLoading, isError } = useLandingProducts('categories');
     let filteredHandpicked = []
     if (Handpicked) {
         filteredHandpicked = Handpicked.filter(item => {

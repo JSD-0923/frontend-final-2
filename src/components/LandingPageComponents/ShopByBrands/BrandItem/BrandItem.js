@@ -1,18 +1,19 @@
 import React from 'react'
 import {CardMedia} from "@mui/material";
 import {BrandCard} from "./style";
+import { useNavigate } from 'react-router-dom';
 
-const BrandItem = (props) => {
+const BrandItem = ({brand}) => {
 
-    const {brand} = props;
-
+    const navigate = useNavigate();
     if (!brand) {
         return <></>
     }
+    
   return (
     <div>
         <BrandCard>
-            <CardMedia
+            <CardMedia onClick={() => navigate(`/products?brands=${brand.id}`)}
                 component="img"
                 image={brand.image}
                 style={{ width: '50%', height: 'auto' }}

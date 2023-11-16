@@ -3,11 +3,11 @@ import BrandItem from './BrandItem/BrandItem';
 import { Box, Button, Paper, Typography, useMediaQuery } from "@mui/material";
 import { BrandMockData } from "./brandMockData";
 import theme from "../../../themes/customTheme";
-import { useBrands } from '../../../api/query'
+import { useLandingProducts } from '../../../api/query'
 
 const ShopByBrands = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const { data: brands, isLoading, isError } = useBrands();
+    const { data: brands, isLoading, isError } = useLandingProducts('brands');
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Box sx={{

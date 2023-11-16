@@ -4,52 +4,38 @@ import React from 'react'
 
 /**
  * 
- * list brands
+ * list products
  */
-const fetchBrands = async () => {
-  return await apiAxios.get(`/brands`)
+const fetchLandingProducts = async (filter) => {
+  return await apiAxios.get(`/${filter}`)
 }
-const useBrands = () => {
+const useLandingProducts = (filter) => {
   return useQuery({
-    queryKey: ['brands', 'list'],
-    queryFn:  () =>  fetchBrands().then(res => res.data),
-    staleTime: Infinity
-  })
-}
-
-/**
- * 
- * list HandBicked
- */
-const fetchHandBicked = async () => {
-  return await apiAxios.get(`/categories`)
-}
-const useHandBicked = () => {
-  return useQuery({
-    queryKey: ['HandBicked', 'list'],
-    queryFn: async () => await fetchHandBicked().then(res => res.data),
+    queryKey: ['landingProducts', 'list',filter],
+    queryFn:  () =>  fetchLandingProducts(filter).then(res => res.data),
     staleTime: Infinity
   })
 }
 
 
-// const fetchProducts= async () => {
-//   return await apiAxios.get(`/products?${filter}
-//   `).then(res => res.data)
-// }
-// const useProducts = (filter) => {
-//   return useQuery({
-//     queryKey: ['products', 'list',filter],
-//     queryFn:  () =>  fetchProducts(),
-//     staleTime: Infinity
-//   })
-// }
+const fetchProducts= async (filter) => {
+  console.log(filter);
+  return await apiAxios.get(`/products/filter${filter}
+  `).then(res => res.data)
+}
+const useProducts = (filter) => {
+  return useQuery({
+    queryKey: ['products', 'list',filter],
+    queryFn:  () =>  fetchProducts(filter),
+    staleTime: Infinity
+  })
+}
 
 
 
 // useProducts
 
-export { useHandBicked, useBrands };
+export { useProducts , useLandingProducts  };
 
 
 

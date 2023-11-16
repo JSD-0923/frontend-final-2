@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
-import Layout from "../Layouts/Layout";
+import Layout from "../layouts/Layout";
 import CategoriesPage from "../pages/CategoriesPage";
 import ProductPage from "../pages/ProductPage";
 import MyCartPage from "../pages/MyCartPage";
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
                 element: <LandingPage />,
             },
             {
-                path: "/categories",
+                path: "/products",
                 element: <CategoriesPage />,
             },
             {
