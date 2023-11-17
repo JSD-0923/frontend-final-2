@@ -4,6 +4,21 @@ import {useMutation, useQuery, useQueryClient} from "react-query";
 
 let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImp0aSI6IjE5ODlmYTZhLTE0OGItNDJkOS04MzRkLTY4ZDY1ZjMzODk4NiIsImlhdCI6MTcwMDE2NDE4OCwiZXhwIjoxNzAwMzM2OTg4LCJpc3MiOiJiYWNrZW5kLWZpbmFsLTIifQ.77t5N80OEzGMDSGcFgBvshoYtIhU_1Oux4HW9IKSrY8"
 
+//fetch products
+const fetchProducts= async (filter) => {
+    console.log(filter);
+    return await apiAxios.get(`/products/filter${filter}
+    `).then(res => res.data)
+  }
+  export const useProducts = (filter) => {
+    return useQuery({
+      queryKey: ['products', 'list',filter],
+      queryFn:  () =>  fetchProducts(filter),
+      staleTime: Infinity
+    })
+  }
+
+  //
 
 // fetch one product
 export const useProduct=(id)=>{
