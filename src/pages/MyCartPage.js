@@ -4,11 +4,10 @@ import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderChecko
 import {StyledTitle} from "../themes/StyledPageTitle";
 import React from "react";
 import {Box, CircularProgress, Grid, Typography} from "@mui/material";
-import {useCart} from "../apis3/query4";
+import {useCart} from "../hooks/useAppAPIs";
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
-
     if (isLoading) {
         return (
             <div style={{  }}>
@@ -29,7 +28,7 @@ const MyCartPage = () => {
         )
     }
 
-    if (!cartProducts) {
+    if (cartProducts.length === 0) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
                     <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Your Cart is empty !!</Typography>

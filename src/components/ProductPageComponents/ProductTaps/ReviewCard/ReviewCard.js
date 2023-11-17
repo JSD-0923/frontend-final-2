@@ -5,7 +5,7 @@ import {Avatar, Grid, LinearProgress, Rating} from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import {MainReviewCardStyle, userInfoCardStyle} from "./style";
 import Box from "@mui/material/Box";
-import {useReviews} from "../../../../Api2/query2";
+import {useReviews} from "../../../../hooks/useAppAPIs";
 import {useParams} from "react-router-dom";
 
  const ReviewCard = () => {
@@ -13,7 +13,7 @@ import {useParams} from "react-router-dom";
      const {id} = useParams()
 
      const {data:reviews, isLoading, isError} = useReviews(id)
-
+     console.log(reviews)
      if (isLoading) {
          return (
              <Box sx={{ width: '100%' }}>
@@ -21,7 +21,7 @@ import {useParams} from "react-router-dom";
              </Box>
          )
      }
-     if (isError) {
+     if (!reviews || isError || reviews.length ===0) {
          return (<Typography variant={'h3'} component={'h2'}>No Reviews yet !!</Typography>)
      }
     return (

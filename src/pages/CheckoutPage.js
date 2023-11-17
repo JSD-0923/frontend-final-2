@@ -5,10 +5,10 @@ import Grid from "@mui/material/Grid";
 import ProductCartList from "../components/MyCartPageComponents/ProductCartList/ProductCartList";
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
 import {StyledTitle} from "../themes/StyledPageTitle";
-import {useCart, usePutOrder} from "../apis3/query3";
 import PaymentsList from "../components/CheckoutPageComponents/Payments/PaymentsList";
 import {useNavigate} from "react-router-dom";
 import AddressesList from "../components/CheckoutPageComponents/AddressesList/AddressesList";
+import {useCart, usePutOrder} from "../hooks/useAppAPIs";
 
 
 
@@ -30,8 +30,9 @@ const CheckoutPage = () => {
     // const currentPaymentMethod = paymentsMethods.find((item) => item.id === paymentSelectedCard);
 
     const { placeOrder } = usePutOrder();
-    const handelPlacingOrder = async () => {
-        console.log('clicked')
+
+    const handlePlacingOrder = async () => {
+
         try {
             // Call the placeOrder function from the usePutOrder hook
             await placeOrder();
@@ -64,7 +65,7 @@ const CheckoutPage = () => {
         )
     }
 
-    if (!cartProducts) {
+    if (cartProducts.length === 0) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
                 <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Your Cart is empty !!</Typography>
@@ -73,7 +74,7 @@ const CheckoutPage = () => {
         )
     }
 
-
+    console.log(cartProducts)
     return (
         <>
             {
@@ -97,7 +98,7 @@ const CheckoutPage = () => {
                                 />
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                                     <Button sx={{ textDecoration: 'underline' }} onClick={()=> navigate('/my-cart')}>Back to Cart</Button>
-                                    <Button variant="contained" color="primary" onClick={handelPlacingOrder}>
+                                    <Button variant="contained" color="primary" onClick={handlePlacingOrder}>
                                         Place Order
                                     </Button>
                                 </Box>

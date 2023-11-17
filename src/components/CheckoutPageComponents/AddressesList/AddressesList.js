@@ -5,28 +5,29 @@ import {Accordion, AccordionDetails, AccordionSummary, Button, Typography} from 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddAddress from "../AddAddress/AddAddress";
-import {useAddAddress, useAddresses} from "../../../apis3/query3";
+import {useAddAddress, useAddresses} from "../../../hooks/useAppAPIs";
+
 
 const AddressesList = (props) => {
 
     const { onSelect, selectedCard} = props
 
     const [show, setShow] = useState(false)
-    const [addressFormData, setAddressFormData] = useState({})
 
     const {data:addresses} = useAddresses()
 
-    const addToAddressMutation = useAddAddress(addressFormData);
-    const handleSubmit = async (_data) => {
+    const addToAddressMutation = useAddAddress();
+    const handleSubmit = async (addressFormData) => {
         try {
+            console.log('_data', addressFormData);
+            await addToAddressMutation.mutateAsync(addressFormData);
             setShow(false);
-            setAddressFormData(_data);
-            await addToAddressMutation.mutateAsync();
         } catch (error) {
-            // Handle validation errors here
+
             console.error('Validation Error:', error.response.data);
         }
     };
+
 
 
     return (
