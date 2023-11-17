@@ -3,7 +3,7 @@ import ProductCard from '../../../utils/ProductCard/ProductCard'
 import {Typography, Paper, Box, Grid, Rating, useMediaQuery} from '@mui/material'
 import Price from "../../../utils/Price/Price";
 const CategoryCards = ({products}) => {
-
+  
   const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
 console.log(products);
   return (
@@ -36,7 +36,7 @@ console.log(products);
                 </Box>
             }
             <Box sx={{marginLeft: '1rem'}}>
-              <Price discountRate={.45} originalPrice={productItem.productPrice}  variant={{price: 'body1', Off: 'h6'}}  />
+              <Price discountRate={productItem.discount} originalPrice={productItem.price}  variant={{price: 'body1', Off: 'h6'}}  />
             </Box>
           </Grid>
         ))}

@@ -3,14 +3,14 @@ import ProductCard from '../../../utils/ProductCard/ProductCard'
 import { Typography, Paper, Box, Rating, useMediaQuery } from '@mui/material'
 import { Button } from '@mui/material'
 import Price from "../../../utils/Price/Price";
-import { useProducts } from '../../../api/query';
+import { useProducts } from '../../../hooks/useAppAPIs';
 import { useNavigate } from 'react-router-dom';
 
 
 const NewArrival = () => {
   const navigate = useNavigate();
   const { data: NewArrival, isLoading, isError } = useProducts('?categoryId=1');
-
+console.log(NewArrival)
   const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
   const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
 
@@ -58,7 +58,7 @@ const NewArrival = () => {
                 }
               </Box>
               <Box sx={{ marginLeft: '1rem' }}>
-                <Price discountRate={product.discountRate} originalPrice={product.productPrice} variant={{ price: 'body1', Off: 'body1' }} />
+                <Price discountRate={product.discount} originalPrice={product.price} variant={{ price: 'body1', Off: 'body1' }} />
               </Box>
 
             </Box>

@@ -4,7 +4,7 @@ import imghero from '../assets/images/black-friday.png'
 import { StyledTitle } from "../themes/StyledPageTitle";
 import { Typography, Pagination, Box, Container, Button } from '@mui/material'
 import { useLocation } from 'react-router-dom';
-import { useProducts } from '../api/query';
+import { useProducts } from '../hooks/useAppAPIs';
 
 const CategoriesPage = () => {
   const location = useLocation();
