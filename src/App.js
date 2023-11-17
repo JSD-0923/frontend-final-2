@@ -1,15 +1,15 @@
 
 import './App.css';
-import {router} from "./routers/router";
-import {RouterProvider} from "react-router-dom";
+import { router } from "./routers/router";
+import { RouterProvider } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from 'react-query'
 import React from "react";
 
-function App() {
+const queryClient = new QueryClient()
 
+function App() {
   return (
-    <div>
-        <RouterProvider router={router} />
-    </div>
+    <QueryClientProvider client={queryClient}><RouterProvider router={router} /></QueryClientProvider>
   );
 }
 

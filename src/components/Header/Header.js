@@ -18,15 +18,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import {ReactComponent as CoralLogo} from "../../assets/icons/coral-logo.svg";
 import {useNavigate} from "react-router-dom";
+import { useLandingProducts } from '../../api/query'
 
-
-const pages = ['Handbags', 'Watches', 'Skincare', 'Jewellery', 'Apparels'];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { data: categories, isLoading, isError } = useLandingProducts('categories');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -87,9 +87,9 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu} >
-                  <Typography variant={'h4'} component={'h2'} sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
+              {categories && categories.slice(0, 5).map((page) => (
+                <MenuItem key={page.id} onClick={handleCloseNavMenu} >
+                  <Typography variant={'h4'} component={'h2'} sx={{ color: 'TypeHighEmphasis' }} textAlign="center" onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -116,13 +116,13 @@ const Header = () => {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {categories && categories.slice(0, 5).map((page) => (
               <Button
-                key={page}
+                key={page.id}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block', color: "TypeHighEmphasis.main" }}
               >
-                <Typography variant={'h4'} component={'span'}>{page}</Typography>
+                <Typography variant={'h4'} component={'span'}onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
               </Button>
             ))}
           </Box>
