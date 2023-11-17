@@ -14,7 +14,7 @@ import {
 import theme from "../../../themes/customTheme";
 import StarIcon from "@mui/icons-material/Star";
 import ProductCard from "../../../utils/ProductCard/ProductCard";
-import {useAddToCart} from "../../../Api2/query2";
+import {useAddToCart} from "../../../hooks/useAppAPIs";
 import AlertStack from "../../../utils/AlertStack/AlertStack";
 import {defaultUser} from "../../../custumHooks/useAuth";
 
@@ -30,7 +30,7 @@ const ProductPanel = (props) => {
 
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const addToCartMutation = useAddToCart(product.id, 2);
+    const addToCartMutation = useAddToCart(product.id, quantity);
 
     const handleAddToCart = async () => {
         if (!user) {
@@ -39,7 +39,8 @@ const ProductPanel = (props) => {
         }
 
         try {
-            await addToCartMutation.mutateAsync();
+            const response = await addToCartMutation.mutateAsync();
+
             setSuccessAlertVisible(true);
         } catch (error) {
             setErrorAlertVisible(true);
@@ -51,7 +52,6 @@ const ProductPanel = (props) => {
         setErrorAlertVisible(false);
         setWarningAlertVisible(false);
     };
-
 
     return (
         <Paper elevation={0} sx={{ margin: '1rem', display: 'flex', flexDirection: 'column'}}>

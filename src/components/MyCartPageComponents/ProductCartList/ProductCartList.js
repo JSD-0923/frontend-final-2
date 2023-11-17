@@ -9,18 +9,24 @@ import {
     TableRow, useMediaQuery,
 } from "@mui/material";
 import ProductCartCard from "./ProductCartCard/ProductCartCard";
-import {useRemoveFromCart} from "../../../apis3/query4";
+import { useRemoveFromCart} from "../../../hooks/useAppAPIs";
 
 const ProductCartList = (props) => {
     const { cartProducts, showTable=true } = props;
 
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
 
-    const { removeProductFromCart } = useRemoveFromCart();
+    const RemoveFromCartMutation = useRemoveFromCart();
 
-    const handelRemoveProduct = (productId) => {
-        removeProductFromCart(productId);
-    }
+    const handelRemoveProduct = async (productId) => {
+        try {
+            const response = await RemoveFromCartMutation.mutateAsync(productId);
+            // console.log(response)
+            // setSuccessAlertVisible(true);
+        } catch (error) {
+            // setErrorAlertVisible(true);
+        }
+    };
 
     return (
         <Paper elevation={0}>

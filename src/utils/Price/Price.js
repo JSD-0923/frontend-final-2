@@ -22,7 +22,7 @@ const Price = (props) => {
                         variant={variant.price}
 
                         component={'span'}
-                    >${discountedPrice? discountedPrice.toFixed(2) : originalPrice*discountRate}
+                    >${discountedPrice? discountedPrice.toFixed(2) : (originalPrice*(discountRate/100)).toFixed(2)}
                     </Typography>
 
                     <Typography
@@ -41,7 +41,7 @@ const Price = (props) => {
                         sx={{color: 'red'}}
                         component={'span'}
                     >
-                        {(discountRate*100).toFixed(0)}%OFF
+                        {discountRate}%OFF
                     </Typography>
                 </>
             }

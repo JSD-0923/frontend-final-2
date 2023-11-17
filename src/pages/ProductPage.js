@@ -4,11 +4,10 @@ import {Box, Grid, Typography} from "@mui/material";
 import ProductPanel from "../components/ProductPageComponents/ProductPanel/ProductPanel";
 import {Container} from "@mui/system";
 import ProductTaps from "../components/ProductPageComponents/ProductTaps/ProductTaps";
-import {useProduct} from "../Api2/query2";
+import {useProduct} from "../hooks/useAppAPIs";
 import {useParams} from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 const ProductPage = () => {
-
 
 
     const { id } = useParams();
