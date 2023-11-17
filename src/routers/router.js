@@ -4,8 +4,7 @@ import Layout from "../layouts/Layout";
 import CategoriesPage from "../pages/CategoriesPage";
 import ProductPage from "../pages/ProductPage";
 import MyCartPage from "../pages/MyCartPage";
-import CheckoutPagePayment from "../pages/CheckoutPagePayment";
-import CheckoutPageInformation from "../pages/CheckoutPageInformation";
+import CheckoutPage from "../pages/CheckoutPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import MyOrdersPage from "../pages/MyOrdersPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
@@ -30,7 +29,7 @@ export const router = createBrowserRouter([
                 element: <CategoriesPage />,
             },
             {
-                path: "/product",
+                path: "/products/:id",
                 element: <ProductPage />,
             },
             {
@@ -38,13 +37,10 @@ export const router = createBrowserRouter([
                 element: <MyCartPage />,
             },
             {
-                path: "/checkout-information",
-                element: <CheckoutPageInformation />,
+                path: "/checkout",
+                element: <CheckoutPage />,
             },
-            {
-                path: "/checkout-payment",
-                element: <CheckoutPagePayment />,
-            },
+
             {
                 path: "/user-profile",
                 element: <UserProfilePage />,

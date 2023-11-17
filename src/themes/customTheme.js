@@ -285,7 +285,16 @@ theme = createTheme(theme, {
                 }
             }
 
-        }
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#F1F1F1',
+                    "& fieldset": { borderColor: '#F1F1F1' },
+                    "& .MuiFormHelperText-root" : { color: theme.palette.error.main, backgroundColor: 'white', width: '100%', padding:0, margin: 0 },
+                },
+            },
+        },
     },
 });
 

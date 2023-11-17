@@ -1,27 +1,26 @@
 
 import './OrderCheckoutSummary.css'
-import {Box, Button, Divider, Paper, Typography} from "@mui/material";
+import {Box, Divider, Paper, Typography} from "@mui/material";
 
-const OrderCheckoutSummary = () => {
+const OrderCheckoutSummary = (props) => {
 
-
-    // const subTotal = cartProducts.reduce((sum, product) => sum + product.price, 0);
+    const {cartProducts , headTitle} = props
 
     return (
         <Paper elevation={0} sx={{margin: '1rem', paddingY: '1rem'}}>
             <Typography variant={'h3'} component={'h2'} sx={{ marginBottom: '10px'}}>
-                Order Summary
+                {headTitle}
             </Typography>
             <Divider />
 
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop:'12px', marginBottom:'12px'}}>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Sub Total</Typography>
-                    <Typography>$119.69</Typography>
+                    <Typography>${cartProducts.totalOrderPriceAfterDiscount.toFixed(2)}</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Discount</Typography>
-                    <Typography>-$13.40</Typography>
+                    <Typography>-${(cartProducts.totalOrderPriceBeforeDiscount-cartProducts.totalOrderPriceAfterDiscount).toFixed(2)}</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{color: 'TypeLowEmphasis.main'}} variant={'h4'} component={'h2'}>Delivery Fee</Typography>
@@ -29,13 +28,8 @@ const OrderCheckoutSummary = () => {
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography sx={{fontWeight: 600}} variant={'h4'} component={'h2'}>Grand Total</Typography>
-                    <Typography>$106.29</Typography>
+                    <Typography>${(cartProducts.totalOrderPriceAfterDiscount+12).toFixed(2)}</Typography>
                 </Box>
-            </Box>
-
-            <Box sx={{display: 'flex', gap:'15px', width:'100%', justifyContent: 'center'}}>
-                <Button sx={{width: '50%', maxWidth: '180px'}} variant="contained"><Typography variant={'h4'}>Place Order</Typography></Button>
-                <Button sx={{width: '50%', maxWidth: '180px'}} variant="outlined"><Typography variant={'h4'}>Continue Shopping</Typography></Button>
             </Box>
 
         </Paper>

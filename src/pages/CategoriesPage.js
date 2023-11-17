@@ -5,6 +5,7 @@ import { StyledTitle } from "../themes/StyledPageTitle";
 import { Typography, Pagination, Box, Container, Button } from '@mui/material'
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../api/query';
+
 const CategoriesPage = () => {
   const location = useLocation();
   const queryString = location.search;

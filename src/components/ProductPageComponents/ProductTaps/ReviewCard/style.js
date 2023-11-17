@@ -31,7 +31,7 @@ export const userInfoCardStyle = {
     backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'centre',
-    width: '75px',
+    width: '95px',
     height: '75px',
     margin: '1rem',
     borderRadius: '8px',

@@ -8,12 +8,14 @@ const Layout = () => {
 
     return (
         <div>
-            
-           {/* <Container disableGutters> */}
-               <Header/>
-               <Outlet />
-               <Footer/>
-           {/* </Container> */}
+
+            <Header/>
+            <main>
+           <Container disableGutters>
+                   <Outlet />
+           </Container>
+            </main>
+            <Footer/>
             
         </div>
     )

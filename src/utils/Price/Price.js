@@ -2,7 +2,7 @@ import {Box, Typography} from "@mui/material";
 import {PriceBoxStyle} from "./style";
 
 const Price = (props) => {
-    const {originalPrice, discountRate, variant} = props
+    const {originalPrice, discountRate, variant, discountedPrice} = props
 
     return (
         <Box sx={PriceBoxStyle}>
@@ -13,7 +13,7 @@ const Price = (props) => {
                 sx={{
                     fontWeight: 700
                 }}
-            >${originalPrice}</Typography>
+            >${originalPrice.toFixed(2)}</Typography>
             }
             {discountRate > 0 &&
 
@@ -22,7 +22,7 @@ const Price = (props) => {
                         variant={variant.price}
 
                         component={'span'}
-                    >${originalPrice*discountRate}
+                    >${discountedPrice? discountedPrice.toFixed(2) : (originalPrice*(discountRate/100)).toFixed(2)}
                     </Typography>
 
                     <Typography
@@ -33,7 +33,7 @@ const Price = (props) => {
                             color: 'lightText.main',
                         }}
                         component={'span'}
-                    >${originalPrice}
+                    >${originalPrice.toFixed(2)}
                     </Typography>
 
                     <Typography
@@ -41,7 +41,7 @@ const Price = (props) => {
                         sx={{color: 'red'}}
                         component={'span'}
                     >
-                        {discountRate*100}%OFF
+                        {discountRate}%OFF
                     </Typography>
                 </>
             }
