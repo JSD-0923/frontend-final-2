@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const OrderCheckoutSummary = (props) => {
 
-    const {cartProducts , headTitle, showButtons} = props
+    const {cartProducts , headTitle, showButtons=false} = props
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 425px)');
     const navigate = useNavigate()
     return (
