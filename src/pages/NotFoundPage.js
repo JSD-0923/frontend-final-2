@@ -10,7 +10,7 @@ const NotFoundPage = () => {
     return(
         <Container sx={{display:'flex', flexDirection: 'column',gap: '1rem', alignItems: 'center', marginTop: '2rem'}}>
             <NotFoundIcon
-                style={{ width: '50%', height: 'auto' }} // Set the width to 50% and height to auto
+                style={{ width: '50%', height: 'auto' }}
             />
             <Typography variant={'h2'} component={'h2'} color={'primary.main'}>
                 Page Not Found :(

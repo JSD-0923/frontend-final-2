@@ -19,7 +19,7 @@ const AlertStack = (props) => {
     }, [successVisible, errorVisible, warningVisible, onCloseAlert]);
 
     return (
-        <Stack sx={{  maxWidth: '500px', display: 'flex', alignSelf: 'flex-end', position: 'absolute', paddingX: '3rem' }} spacing={2}>
+        <Stack style={{ position: 'fixed', top: 120, right: 20, zIndex: 9999 }} spacing={2}>
             {successVisible && (
                 <Alert
                     severity="success"
