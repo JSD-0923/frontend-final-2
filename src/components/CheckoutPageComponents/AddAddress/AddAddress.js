@@ -6,7 +6,6 @@ import {Grid, InputLabel} from "@mui/material";
 import {useForm} from "react-hook-form";
 
 const AddAddress = (props) => {
-
     const {onSubmit} = props
 
     const { register, handleSubmit, formState: { errors } } = useForm();

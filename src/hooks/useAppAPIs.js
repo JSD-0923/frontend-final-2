@@ -2,7 +2,7 @@ import {apiAxios} from "../Api2/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImp0aSI6IjE5ODlmYTZhLTE0OGItNDJkOS04MzRkLTY4ZDY1ZjMzODk4NiIsImlhdCI6MTcwMDE2NDE4OCwiZXhwIjoxNzAwMzM2OTg4LCJpc3MiOiJiYWNrZW5kLWZpbmFsLTIifQ.77t5N80OEzGMDSGcFgBvshoYtIhU_1Oux4HW9IKSrY8"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImp0aSI6IjNmNmZlZDc1LTQyZmEtNDRkMS1hMTUwLTAzOWIwZDJhMWYyNyIsImlhdCI6MTcwMDM0MDg0MiwiZXhwIjoxNzAwNTEzNjQyLCJpc3MiOiJiYWNrZW5kLWZpbmFsLTIifQ.lQX2icz3ZTw3KBc_PkePvJjmURfpK25UTJBl_UPBLwQ"
 
 //fetch products
 const fetchProducts= async (filter) => {
@@ -223,29 +223,25 @@ export const useAddAddress = () => {
 export const usePutOrder = () => {
     const queryClient = useQueryClient();
 
-    const { mutateAsync, isLoading } = useMutation(
-        () => apiAxios.put('/orders/place-order', null, {
-            headers: {
-                Authorization: `Bearer ${token}`,  // Make sure to define 'token' or pass it as an argument
-            },
-        }),
-        {
-            onSuccess: () => queryClient.invalidateQueries(['cart', 'get']),
-        }
-    );
-
-    const placeOrder = async () => {
-        try {
-            return await mutateAsync();
-        } catch (error) {
-            console.error('Error placing order:', error);
-            throw error;
-        }
-    };
-
-    return { placeOrder, isLoading };
+    return useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiAxios.put('/orders/place-order', null, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+            console.log('Order placed successfully');
+        },
+    });
 };
-
 
 
 
