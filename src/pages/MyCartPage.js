@@ -3,8 +3,9 @@ import ProductCartList from "../components/MyCartPageComponents/ProductCartList/
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
 import {StyledTitle} from "../themes/StyledPageTitle";
 import React from "react";
-import {Box, CircularProgress, Grid, Typography} from "@mui/material";
+import {Box, Breadcrumbs, CircularProgress, Grid, Typography} from "@mui/material";
 import {useCart} from "../hooks/useAppAPIs";
+import EmptyCart from "../components/EmptyCart/EmptyCart";
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
@@ -30,32 +31,34 @@ const MyCartPage = () => {
 
     if (cartProducts.length === 0) {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
-                    <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Your Cart is empty !!</Typography>
-                    <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Add some products to it :)</Typography>
-            </Box>
+            <EmptyCart />
         )
     }
 
     return (
        <>
            {cartProducts &&
-               <div>
+               <div style={{ width: '90%'}} >
                    <StyledTitle variant="h2" component={'h1'} >
                        My Cart
                    </StyledTitle>
-                   <Grid container spacing={3}>
-                       <Grid item xs={12} md={8}>
+                   <Breadcrumbs separator="›" aria-label="breadcrumb" sx={{marginBottom: '12px', marginTop: '30px'}}>
+                       <Typography variant={'body1'} color="text.primary">Label</Typography>
+                       <Typography variant={'body1'} color="text.primary">Label</Typography>
+                       <Typography variant={'body1'} color="text.primary">Label</Typography>
+                   </Breadcrumbs>
+                   <Grid container spacing={3} style={{ justifyContent: 'space-between' }}>
+                       <Grid item xs={12} md={7} lg={6}>
                            <ProductCartList cartProducts={cartProducts.cartItems}/>
                        </Grid>
-                       <Grid item xs={12} md={4}>
+                       <Grid item xs={12} md={5} lg={5}>
                            <OrderCheckoutSummary
                                headTitle={"Order Summary"}
                                cartProducts={cartProducts}
+                               showButtons={true}
                            />
                        </Grid>
                    </Grid>
-
 
                </div>
            }

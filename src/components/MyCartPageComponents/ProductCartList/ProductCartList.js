@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Button,
     Paper,
@@ -10,26 +10,45 @@ import {
 } from "@mui/material";
 import ProductCartCard from "./ProductCartCard/ProductCartCard";
 import { useRemoveFromCart} from "../../../hooks/useAppAPIs";
+import AlertStack from "../../../utils/AlertStack/AlertStack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ProductCartList = (props) => {
     const { cartProducts, showTable=true } = props;
 
+    const [successAlertVisible, setSuccessAlertVisible] = useState(false);
+    const [errorAlertVisible, setErrorAlertVisible] = useState(false);
+    const [warningAlertVisible, setWarningAlertVisible] = useState(false);
+    const [message, setMessage] = useState('')
+    const [loadingButtonId, setLoadingButtonId] = useState(null);
+
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
 
     const RemoveFromCartMutation = useRemoveFromCart();
-
     const handelRemoveProduct = async (productId) => {
         try {
+            setLoadingButtonId(productId);
             const response = await RemoveFromCartMutation.mutateAsync(productId);
-            // console.log(response)
-            // setSuccessAlertVisible(true);
+
+            setMessage(response.message)
+            setSuccessAlertVisible(true);
+
         } catch (error) {
-            // setErrorAlertVisible(true);
+
+            setMessage(error.message)
+            setErrorAlertVisible(true);
         }
+    };
+
+    const handleCloseAlert = () => {
+        setSuccessAlertVisible(false);
+        setErrorAlertVisible(false);
+        setWarningAlertVisible(false);
     };
 
     return (
         <Paper elevation={0}>
+
             <Table aria-label="cart items list">
                 {!isSmallScreen && showTable &&
                     <TableHead sx={{ borderBottom: '1px solid #0000001F' }}>
@@ -76,6 +95,13 @@ const ProductCartList = (props) => {
                                     <TableCell colSpan={4} align="right" sx={{ padding: 0 }}>
                                         <Button
                                             sx={{ color: 'error.main', borderBottom: '1px solid', paddingBottom: '2px', borderRadius: 0, right:'2rem', bottom: ['initial', 'initial', '4rem'], }}
+                                            startIcon={
+                                                loadingButtonId === product.id ? (
+                                                    <CircularProgress size={'20px'} sx={{ color: 'error.main' }} />
+                                                ) : (
+                                                    ''
+                                                )
+                                            }
                                             onClick={() => handelRemoveProduct(product.id)}
                                         >
                                             Remove
@@ -87,6 +113,13 @@ const ProductCartList = (props) => {
                     ))}
                 </TableBody>
             </Table>
+            <AlertStack
+                warningVisible={warningAlertVisible}
+                successVisible={successAlertVisible}
+                errorVisible={errorAlertVisible}
+                onCloseAlert={handleCloseAlert}
+                message={message}
+            />
         </Paper>
     );
 };
