@@ -1,8 +1,7 @@
 import React from 'react'
 import ProductImageGallery from '../components/ProductPageComponents/ProductImageGallery/ProductImageGallery'
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Grid, Paper, Typography} from "@mui/material";
 import ProductPanel from "../components/ProductPageComponents/ProductPanel/ProductPanel";
-import {Container} from "@mui/system";
 import ProductTaps from "../components/ProductPageComponents/ProductTaps/ProductTaps";
 import {useProduct} from "../hooks/useAppAPIs";
 import {useParams} from "react-router-dom";
@@ -36,13 +35,18 @@ const ProductPage = () => {
     return (
         <>
             {product &&
-                <Container sx={{maxWidth: '1400px'}} >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={6} lg={6} xl={6}><ProductImageGallery productImages ={product.image}/></Grid>
-                        <Grid item xs={12} md={6} lg={6} xl={6}><ProductPanel product={product}/></Grid>
+                <Paper elevation={0} sx={{marginTop: '1rem'}} >
+                    <Breadcrumbs separator="›" aria-label="breadcrumb" sx={{marginBottom: '12px', marginTop: '30px'}}>
+                        <Typography variant={'body1'} color="text.primary">Label</Typography>
+                        <Typography variant={'body1'} color="text.primary">Label</Typography>
+                        <Typography variant={'body1'} color="text.primary">Label</Typography>
+                    </Breadcrumbs>
+                    <Grid container spacing={5}>
+                        <Grid item xs={12} md={6} lg={6}><ProductImageGallery productImage ={product.image}/></Grid>
+                        <Grid item xs={12} md={6} lg={6}><ProductPanel product={product}/></Grid>
                         <Grid item xs={12}> <ProductTaps description={product.description}  reviews={product.reviewCount}/></Grid>
                     </Grid>
-                </Container>
+                </Paper>
             }
         </>
     )

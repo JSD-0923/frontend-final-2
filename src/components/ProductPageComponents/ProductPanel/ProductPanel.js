@@ -2,9 +2,7 @@ import React, { useState} from 'react'
 import {Box, Button, Divider, Paper, Rating, Typography, useMediaQuery} from "@mui/material";
 import Price from "../../../utils/Price/Price";
 import QuantityCounter from "../../../utils/QuantityCounter/QuantityCounter";
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import {Container} from "@mui/system";
 import {
     QuantityActionBoxStyle,
     QuantityActionButtonsStyle,
@@ -14,9 +12,11 @@ import {
 import theme from "../../../themes/customTheme";
 import StarIcon from "@mui/icons-material/Star";
 import ProductCard from "../../../utils/ProductCard/ProductCard";
-import {useAddToCart} from "../../../hooks/useAppAPIs";
+import {useAddToCart, useAddToWishlist} from "../../../hooks/useAppAPIs";
 import AlertStack from "../../../utils/AlertStack/AlertStack";
 import {defaultUser} from "../../../custumHooks/useAuth";
+import {ReactComponent as ShoppingCartIcon} from "../../../assets/icons/cart.svg";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ProductPanel = (props) => {
 
@@ -25,27 +25,53 @@ const ProductPanel = (props) => {
     const [successAlertVisible, setSuccessAlertVisible] = useState(false);
     const [errorAlertVisible, setErrorAlertVisible] = useState(false);
     const [warningAlertVisible, setWarningAlertVisible] = useState(false);
+    const [message, setMessage] = useState('')
 
     const user = defaultUser;
 
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const addToCartMutation = useAddToCart(product.id, quantity);
+    const isAddToCartLoading = addToCartMutation.isLoading;
 
     const handleAddToCart = async () => {
         if (!user) {
+            setMessage('Please Login')
             setWarningAlertVisible(true);
             return;
         }
 
         try {
+
             const response = await addToCartMutation.mutateAsync();
+            setMessage(response.message)
 
             setSuccessAlertVisible(true);
         } catch (error) {
+            setMessage(error.message)
             setErrorAlertVisible(true);
         }
     };
+
+    const addToWishlistMutation = useAddToWishlist(product.id);
+    const isAddToWishlistMutation= addToWishlistMutation.isLoading;
+    const handleAddToWishlist = async () => {
+        if (!user) {
+            setMessage('Please Login')
+            setWarningAlertVisible(true);
+            return;
+        }
+
+        try {
+
+            const response = await addToWishlistMutation.mutateAsync();
+            setMessage(response.message)
+            setSuccessAlertVisible(true);
+        } catch (error) {
+            setMessage(error.message)
+            setErrorAlertVisible(true);
+        }
+    }
 
     const handleCloseAlert = () => {
         setSuccessAlertVisible(false);
@@ -54,7 +80,7 @@ const ProductPanel = (props) => {
     };
 
     return (
-        <Paper elevation={0} sx={{ margin: '1rem', display: 'flex', flexDirection: 'column'}}>
+        <Paper elevation={0} sx={{  display: 'flex', flexDirection: 'column', marginTop: '-1rem', marginRight: '2rem'}}>
 
             <ProductCard
                 title={product.name}
@@ -65,7 +91,7 @@ const ProductPanel = (props) => {
             />
 
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: '-1rem' }}>
                 <Rating
                     sx={RatingBoxStyle}
                     name="half-rating-read"
@@ -80,13 +106,13 @@ const ProductPanel = (props) => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        color: 'primary.main',
+                        color: 'lightText.main',
                         marginLeft: '10px',
                     }}
                     variant={'h6'}
                     component={'span'}
                 >
-                    {product.reviewCount ? `${product.reviewCount} Ratings` : 'No rating'}
+                    {product.reviewCount ? `(${product.reviewCount}) Ratings` : 'No rating'}
                 </Typography>
             </div>
 
@@ -96,30 +122,37 @@ const ProductPanel = (props) => {
 
             <Divider sx={{marginTop: '1rem', marginBottom: '1rem'}}/>
 
-            <Container sx={QuantityContainerStyle}>
+            <Paper elevation={0} sx={QuantityContainerStyle}>
                 <Typography variant={'h3'} component={'h2'}>Quantity:</Typography>
                 <QuantityCounter
                     quantity={quantity}
                     setQuantity={setQuantity}
                     productQuantity={product.quantity}
                 />
-            </Container>
+            </Paper>
             <Box sx={QuantityActionBoxStyle}>
-                <Button variant="contained"
+                <Button
+                    variant="contained"
                         sx={QuantityActionButtonsStyle}
-                        startIcon={<ShoppingCartCheckoutIcon/>}
+                        startIcon={isAddToCartLoading ? <CircularProgress size={'20px'} sx={{color: 'white'}}/> :<ShoppingCartIcon/>}
                         onClick={handleAddToCart}
-                >{isSmallScreen ? '': 'Add to cart'}</Button>
-                <Button variant="outlined" sx={QuantityActionButtonsStyle} startIcon={<FavoriteBorderIcon/>}>{isSmallScreen ? '': 'Add to wishlist'}</Button>
+                >{isSmallScreen ? '': 'Add to cart'}
+                </Button>
+                <Button
+                    variant="outlined"
+                    sx={{ ...QuantityActionButtonsStyle, width: '240px' }}
+                    startIcon={isAddToWishlistMutation ? <CircularProgress size={'20px'} sx={{color: 'primary.main'}}/> :<FavoriteBorderIcon/>}
+                    onClick={handleAddToWishlist}
+                >
+                    {isSmallScreen ? '' : 'Add to wishlist'}
+                </Button>
             </Box>
             <AlertStack
                 warningVisible={warningAlertVisible}
                 successVisible={successAlertVisible}
                 errorVisible={errorAlertVisible}
                 onCloseAlert={handleCloseAlert}
-                successMessage="Product added to cart successfully!"
-                errorMessage="Failed to add product to cart. Please try again."
-                warningMessage="Please log in to add the product to your cart."
+                message={message}
             />
         </Paper>
     )

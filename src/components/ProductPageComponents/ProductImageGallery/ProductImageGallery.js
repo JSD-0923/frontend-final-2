@@ -1,27 +1,24 @@
 import React from 'react'
+import './ProductImageGallery.css'
 import ImageGallery from "react-image-gallery";
+import {useMediaQuery} from "@mui/material";
+import theme from "../../../themes/customTheme";
 
-const ProductImageGallery = () => {
+const ProductImageGallery = (props) => {
 
-   const images = [
-        {
-            original: ('https://media.wired.com/photos/6495f3af2cc57777ec67f0ed/1:1/w_1800,h_1800,c_limit/bellroy-tokyo-work-bag-source-bellroy-Gear.jpg'),
-            thumbnail: 'https://media.wired.com/photos/6495f3af2cc57777ec67f0ed/1:1/w_1800,h_1800,c_limit/bellroy-tokyo-work-bag-source-bellroy-Gear.jpg',
+    const {productImage} = props
 
-        },
-        {
-            original: require('../../../assets/images/product-image.png'),
-            thumbnail: require('../../../assets/images/product-image.png'),
-        },
-        {
-            original: require('../../../assets/images/product-image.png'),
-            thumbnail: require('../../../assets/images/product-image.png'),
-        },
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    ]
+    const productImages = Array.from({ length: 4 }, () => ({
+        original: productImage,
+        thumbnail: productImage,
+
+    }));
+
     return (
-        <div style={{display: 'flex', justifyContent:'center'}}>
-            <ImageGallery items={images} />
+        <div className="gallery-container" style={{display: 'flex', justifyContent:'center'}}>
+            <ImageGallery showThumbnails={!isSmallScreen}  showFullscreenButton={false} showPlayButton={false} autoPlay={false} items={productImages} />
         </div>
     );
 }
