@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const NewArrival = () => {
   const navigate = useNavigate();
-  const { data: NewArrival, isLoading, isError } = useProducts('?categoryId=1');
-console.log(NewArrival)
+  const { data: NewArrival, isLoading, isError } = useProducts('?createdWithin=2023-11-13');
+  console.log(NewArrival)
   const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
   const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
 
@@ -32,7 +32,7 @@ console.log(NewArrival)
           >
             New Arrivals
           </Typography>
-          <Button style={{ textTransform: 'none', alignSelf: 'flex-end' }} onClick={() => navigate(`/products?createdAfter=2023-11-13`)}>View all </Button>
+          <Button style={{ textTransform: 'none', alignSelf: 'flex-end' }} onClick={() => navigate(`/products?createdWithin=2023-11-13`)}>View all </Button>
         </Box>
         <Box sx={{ display: 'flex', overflowX: 'scroll' }}>
           {NewArrival?.products.map((product, index) => (
@@ -40,8 +40,8 @@ console.log(NewArrival)
               <ProductCard
                 image={product.image}
                 item={product}
-                title={product.productName}
-                description={product.productDescription}
+                title={product.name}
+                description={product.highlight}
                 variant={{ title: 'h5', body: 'body2' }}
                 width={260}
               />
@@ -50,15 +50,15 @@ console.log(NewArrival)
                   product.rating && !isSmallScreen && !isMediumScreen &&
                   <Rating name="half-rating-read" value={product.rating} precision={0.5} readOnly />
                 }
-                {
+                {/* {
                   !isSmallScreen &&
                   <Typography sx={{ color: 'primary.main', marginLeft: '1rem' }} variant={'h6'} component={'p'}>
                     {product.numberOfRatings ? `${product.numberOfRatings} Ratting` : 'No rating yet'}
                   </Typography>
-                }
+                } */}
               </Box>
               <Box sx={{ marginLeft: '1rem' }}>
-                <Price discountRate={product.discount} originalPrice={product.price} variant={{ price: 'body1', Off: 'body1' }} />
+                <Price  variant={{ price: 'body1', Off: 'body1' }} />${product.price}
               </Box>
 
             </Box>
