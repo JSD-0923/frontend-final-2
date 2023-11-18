@@ -17,7 +17,7 @@ const ProductCard = (props) => {
     }
 
     return (
-    <Card sx={{ width: _width, boxShadow: "none" }}>
+    <Card sx={{ width: _width, boxShadow: "none", margin: 0 }}>
         {image &&
             <CardMedia
                 component="img"

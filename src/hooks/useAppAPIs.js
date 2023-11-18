@@ -6,7 +6,7 @@ let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZW
 
 //fetch products
 const fetchProducts= async (filter) => {
-    console.log(filter);
+
     return await apiAxios.get(`/products/filter${filter}
     `).then(res => res.data)
   }
@@ -80,6 +80,33 @@ export const useRemoveFromCart = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['cart', 'get']);
+        },
+    });
+};
+
+// Add Product to Whishlist
+
+export const useAddToWishlist = (productId) => {
+
+    return useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiAxios.post(
+                    '/wishlists',
+                    { productId },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                    }
+                );
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            console.log('added successfully');
         },
     });
 };
