@@ -9,8 +9,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const NewArrival = () => {
   const navigate = useNavigate();
-  const { data: NewArrival, isLoading, isError } = useProducts('?createdWithin=2023-11-13');
-  console.log(NewArrival)
+  const { data: NewArrival } = useProducts('?createdWithin=2023-11-13');
+
   const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
   const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
   const NewArrivalHeaderStyled = {

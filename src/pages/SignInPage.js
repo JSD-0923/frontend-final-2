@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-import {useSignInUser} from "../hooks/useAppAPIs";
+import {useSignInUser, useUser} from "../hooks/useAppAPIs";
 
 
 const SignInPage = () => {
@@ -23,22 +23,24 @@ const SignInPage = () => {
     const userMutation = useSignInUser();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const { refetchUser } = useUser();
 
     const onSubmit = async (data) => {
         try {
             const response = await userMutation.mutateAsync(data);
-            console.log(response)
 
             const token = response.token;
-
             localStorage.setItem('token', token);
-            console.log('Sign-in successful!');
-            navigate('/');
-        } catch (error) {
 
-            setErrorMsg(error.message)
+            setTimeout(async () => {
+                await refetchUser();
+                navigate('/');
+            }, 1000);
+        } catch (error) {
+            setErrorMsg(error.message);
         }
     };
+
 
     return (
         <Container component="main" maxWidth="xs">
