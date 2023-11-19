@@ -1,6 +1,6 @@
 
 import './App.css';
-import { router } from "./routers/router";
+import { router } from "./Routers/router";
 import { RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from 'react-query'
 import React from "react";
