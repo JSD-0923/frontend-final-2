@@ -1,39 +1,41 @@
-import React from 'react';
+import React,{useState} from 'react';
+
 import { InputBase, IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import {useSearch} from '../../hooks/useSearch'
+import { useSearch } from '../../hooks/useSearch'
+
 // import CategoriesPage from '../../pages/CategoriesPage'
-import { useEffect } from 'react';
-export const SearchBox = ({userInput,userInputChange}) => {
+// import { useEffect } from 'react';
+export const SearchBox = () => {
+    const [userInput,setUserInput]=useState('')
     const { handleProductsPage } = useSearch(userInput);
-    const handleKey=(event)=>{
-       
-        if(event.key === 'Enter')
-        {
+    const handleKey = (event) => {
+
+        if (event.key === 'Enter') {
             handleProductsPage();
         }
     }
-    
-
-    return (
+const handleUserInput=(event)=>{
+    setUserInput(event.target.value)
+}
+return (
         <>
             <InputBase
                 value={userInput}
-                onChange={userInputChange}
+                onChange={handleUserInput}
                 onKeyPress={handleKey}
-                
                 startAdornment={
                     <InputAdornment
                         position="start"
                     >
-                        <IconButton sx={{color:'TypeHighEmphasis.main'}}  onClick={() => handleProductsPage()}>
+                        <IconButton sx={{ color: 'TypeHighEmphasis.main' }} onClick={handleProductsPage}>
                             <SearchIcon />
                         </IconButton>
                     </InputAdornment>
                 }
                 placeholder="Search for products or brands ..."
                 inputProps={{ 'aria-label': 'enter text' }}
-                sx={{width: '100%'}}
+                sx={{ width: '100%' }}
             />
         </>
     );

@@ -12,22 +12,7 @@ const CategoriesPage = () => {
   const queryString = location.search;
   console.log(queryString)
 
-  // const search = new URLSearchParams(queryString);
-  // let userSearchValue = value;
-  // let category = search.get('categoryId') || '';
-  // let brand = search.get('brandId') || '';
-//   const handleProductsPage = () => {
-        
-//     console.log('hi')
-//     const search = new URLSearchParams(queryString);
-//     console.log(queryString)
-
-//     let userSearchValue = value;
-//     const searchResult = userSearchValue;
-//     console.log(searchResult)
-//     navigate(`/products?${searchResult}`);
-// }
-// return { handleProductsPage }
+  
 
 
 
