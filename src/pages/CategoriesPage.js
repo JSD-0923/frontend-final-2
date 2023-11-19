@@ -5,11 +5,34 @@ import { StyledTitle } from "../themes/StyledPageTitle";
 import { Typography, Pagination, Box, Container, Button } from '@mui/material'
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../hooks/useAppAPIs';
+ import {  useNavigate } from 'react-router-dom';
 
 const CategoriesPage = () => {
   const location = useLocation();
   const queryString = location.search;
   console.log(queryString)
+
+  // const search = new URLSearchParams(queryString);
+  // let userSearchValue = value;
+  // let category = search.get('categoryId') || '';
+  // let brand = search.get('brandId') || '';
+//   const handleProductsPage = () => {
+        
+//     console.log('hi')
+//     const search = new URLSearchParams(queryString);
+//     console.log(queryString)
+
+//     let userSearchValue = value;
+//     const searchResult = userSearchValue;
+//     console.log(searchResult)
+//     navigate(`/products?${searchResult}`);
+// }
+// return { handleProductsPage }
+
+
+
+
+
   const { error ,data: products, isLoading, isError } = useProducts(queryString);
   if(isLoading)
   {
