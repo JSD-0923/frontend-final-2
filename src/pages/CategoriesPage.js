@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
-import CategoryCards from '../components/CategoriesPageComponents/CategoryCards/CategoryCards'
+import React from 'react'
+import ProductsList from '../components/ProductsList/ProductsList'
 import imghero from '../assets/images/black-friday.png'
 import { StyledTitle } from "../themes/StyledPageTitle";
-import { Typography, Pagination, Box, Container, Button } from '@mui/material'
+import { Pagination, Box, Container, Button, CircularProgress} from '@mui/material'
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../hooks/useAppAPIs';
- import {  useNavigate } from 'react-router-dom';
 
 const CategoriesPage = () => {
   const location = useLocation();
   const queryString = location.search;
   console.log(queryString)
-const { error ,data: products, isLoading, isError } = useProducts(queryString);
+const { error ,data: products, isLoading } = useProducts(queryString);
   if(isLoading)
   {
-    return <h1>isLoading</h1>
+      return (
+          <div >
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
+                  <CircularProgress />
+              </Box>
+          </div>
+      )
   }
   if(error)
   {
@@ -28,7 +33,7 @@ const { error ,data: products, isLoading, isError } = useProducts(queryString);
       <StyledTitle variant="h2" component={'h1'} >
         Handbags
       </StyledTitle>
-      <CategoryCards products={products}/>
+      <ProductsList products={products.products}/>
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
         <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
           <Pagination count={10} shape="rounded" color="primary" hidePrevButton hideNextButton
