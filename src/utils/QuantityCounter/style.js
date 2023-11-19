@@ -2,27 +2,23 @@
 
 export const containerStyle = {
     display: 'flex',
-    alignItems: 'center',
+    height: '30px',
     justifyContent: 'center',
+    alignItems: 'center',
     border: '1px solid #1B4B66',
-    height: 'auto',
-    borderRadius: '10px',
+    borderRadius: '4px',
 
 };
 
 export const buttonStyle = {
-    cursor: 'pointer',
-    padding: '0',
-    margin: '0',
+
+    minHeight: 0,
+    minWidth: 0,
     '@media (min-width: 320px) and (max-width: 425px)': {
         height: '14px',
     },
 };
 
 export const IconButtonStyle = {
-    width: 'auto',
-    height: "3rem",
-    '@media (min-width: 320px) and (max-width: 425px)': {
-        height: '2px',
-    },
+
 };

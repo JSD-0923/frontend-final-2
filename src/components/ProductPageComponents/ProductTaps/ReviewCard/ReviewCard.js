@@ -13,7 +13,7 @@ import {useParams} from "react-router-dom";
      const {id} = useParams()
 
      const {data:reviews, isLoading, isError} = useReviews(id)
-     console.log(reviews)
+
      if (isLoading) {
          return (
              <Box sx={{ width: '100%' }}>
@@ -22,7 +22,7 @@ import {useParams} from "react-router-dom";
          )
      }
      if (!reviews || isError || reviews.length ===0) {
-         return (<Typography variant={'h3'} component={'h2'}>No Reviews yet !!</Typography>)
+         return (<Typography sx={{color: 'primary.main'}} variant={'h3'} component={'h2'}>No Reviews yet !!</Typography>)
      }
     return (
        <>
