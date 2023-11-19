@@ -1,9 +1,11 @@
 import React from 'react'
-import {Card, Box, Typography, CardMedia, CardContent, useMediaQuery} from "@mui/material";
+import {Card, Box, Typography, CardMedia, CardContent, useMediaQuery, IconButton} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {ReactComponent as FilledFavoriteIcon} from "../../assets/icons/Fill-favo-icon.svg";
+
 const ProductCard = (props) => {
 
-    const { image, title, description, width, variant, addToFavourite=true} = props
+    const { image, title, description, width, variant, addToFavourite=true, onClick, fill=false} = props
 
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
     const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
@@ -38,7 +40,11 @@ const ProductCard = (props) => {
                     {title}
                 </Typography>
             }
-            {addToFavourite && <FavoriteBorderIcon fontSize={'small'} />}
+            {addToFavourite &&
+                <IconButton>
+                    {fill ? <FilledFavoriteIcon onClick={onClick}/> : <FavoriteBorderIcon fontSize={'small'} onClick={onClick}/>}
+                </IconButton>
+            }
 
         </Box>
           {description &&

@@ -308,6 +308,53 @@ export const useUser = () => {
 };
 
 
+// fetch wishlists products
 
+export const useWishlist = () => {
+    return useQuery({
+        queryKey: ['wishlist', 'get'],
+        queryFn: async () => {
+            try {
+                const response = await apiAxios.get('/wishlists', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
 
+                return response.data;
+            } catch (error) {
+                console.error(error);
+                throw error;
+            }
+        },
+        staleTime: Infinity
+    });
+}
+
+// movie product to wishlist
+
+export const useMoveToWishlist = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: async (productId) => {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            try {
+                const response = await apiAxios.post('/orders/move-to-wishlist', { productId }, config);
+                return response.data;
+            } catch (error) {
+                console.error('Error removing product from cart:', error);
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+        },
+    });
+};
 
