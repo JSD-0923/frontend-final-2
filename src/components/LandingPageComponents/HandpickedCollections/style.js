@@ -6,6 +6,7 @@ export const HandpickedCollectionsStyledPaper = {
     flexDirection: 'column',
     justifyContent: 'center',
     marginBottom: '1rem',
+    width:'100%'
 }
 
 export const HandpickedCollectionsStyledBox = {
