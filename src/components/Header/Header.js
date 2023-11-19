@@ -16,28 +16,17 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { SearchBox } from '../SearchBox/SearchBox';
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import Modal from '@mui/material/Modal';
+import {ReactComponent as CoralLogo} from "../../assets/icons/coral-logo.svg";
+import {useNavigate} from "react-router-dom";
+import { useLandingProducts } from '../../api/query'
 
-const style = {
-  position: 'absolute',
-  top: '80px',
-  right: '10px',
-  width: 400,
-  bgcolor: 'background.paper',
-  p: 4,
-};
-
-
-const pages = ['Handbags', 'Watches', 'Skincare', 'Jewellery', 'Apparels'];
 
 const Header = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { data: categories, isLoading, isError } = useLandingProducts('categories');
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -58,21 +47,15 @@ const Header = () => {
     <AppBar position="static" sx={{ backgroundColor: '#ffffff', boxShadow: 'none' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              color: 'primary.main',
-              textDecoration: 'none',
-            }}
+          <IconButton
+          onClick={() => navigate('/')}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+          }}
           >
-            CORA'L
-          </Typography>
+            <CoralLogo />
+          </IconButton>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -104,38 +87,42 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu} >
-                  <Typography sx={{ color: 'TypeHighEmphasis' }} textAlign="center">{page}</Typography>
+              {categories && categories.slice(0, 5).map((page) => (
+                <MenuItem key={page.id} onClick={handleCloseNavMenu} >
+                  <Typography variant={'h4'} component={'h2'} sx={{ color: 'TypeHighEmphasis' }} textAlign="center" onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
+            <IconButton
+            onClick={() => navigate('/')}
+            >
+              <Typography
+                  variant="h3"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 2,
+                    display: { xs: 'flex', md: 'none' },
+                    flexGrow: 10,
+                    fontFamily: 'monospace',
+                    fontWeight: 400,
+                    color: '#17494D',
+                    textDecoration: 'none',
+                  }}
+              >
+                Home
+              </Typography>
+            </IconButton>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 10,
-              fontFamily: 'monospace',
-              fontWeight: 400,
-              color: '#17494D',
-              textDecoration: 'none',
-            }}
-          >
-            Home
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {categories && categories.slice(0, 5).map((page) => (
               <Button
-                key={page}
+                key={page.id}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block', color: "TypeHighEmphasis.main" }}
               >
-                {page}
+                <Typography variant={'h4'} component={'span'}onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
               </Button>
             ))}
           </Box>
@@ -149,37 +136,14 @@ const Header = () => {
               <FavoriteBorderIcon />
             </IconButton>
 
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
+            <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
               <PersonOutlineIcon />
             </IconButton>
-            {/* <IconButton onClick={handleOpen} sx={{ p: 0, color: 'primary.main', }}>
-              <WorkOutlineIcon />
-            </IconButton> */}
 
-{/* <Button onClick={handleOpen}>Open modal</Button> */}
-<IconButton onClick={handleOpen} sx={{ p: 0, color: 'primary.main', }}>
+
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
               <WorkOutlineIcon />
             </IconButton>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          </Typography>
-        </Box>
-      </Modal>
-
-
-
-
-            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
-              <WorkOutlineIcon />
-            </IconButton> */}
 
 
           </Box>
