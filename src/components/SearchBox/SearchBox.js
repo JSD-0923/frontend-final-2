@@ -1,13 +1,10 @@
-import React,{useState} from 'react';
-
+import React, { useState } from 'react';
 import { InputBase, IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearch } from '../../hooks/useSearch'
 
-// import CategoriesPage from '../../pages/CategoriesPage'
-// import { useEffect } from 'react';
 export const SearchBox = () => {
-    const [userInput,setUserInput]=useState('')
+    const [userInput, setUserInput] = useState('')
     const { handleProductsPage } = useSearch(userInput);
     const handleKey = (event) => {
 
@@ -15,10 +12,10 @@ export const SearchBox = () => {
             handleProductsPage();
         }
     }
-const handleUserInput=(event)=>{
-    setUserInput(event.target.value)
-}
-return (
+    const handleUserInput = (event) => {
+        setUserInput(event.target.value)
+    }
+    return (
         <>
             <InputBase
                 value={userInput}
