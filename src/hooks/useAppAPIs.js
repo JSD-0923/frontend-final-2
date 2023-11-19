@@ -278,19 +278,36 @@ export const useSignUp = () => {
 };
 
 export const useUser = () => {
+    const user_token = getToken();
 
-    const user_token = getToken()
     const getUserInfo = async () => {
+        if (!user_token) {
+            return null; // No need to fetch user data if there's no token
+        }
 
         const headers = {
             Authorization: `Bearer ${user_token}`,
         };
 
-        const response = await apiAxios.get('/users/me', { headers });
+        try {
+            const response = await apiAxios.get('/users/me', { headers });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                return null;
+            }
 
-        return response.data;
+            console.error('Error fetching user data:', error);
+            throw error;
+        }
     };
 
-    return useQuery('user', getUserInfo);
+    const { data: userData, isLoading, isError, refetch: refetchUser } = useQuery('user', getUserInfo);
+
+    return { userData, isLoading, isError, refetchUser };
 };
+
+
+
+
 
