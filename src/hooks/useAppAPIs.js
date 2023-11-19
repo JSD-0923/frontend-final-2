@@ -1,11 +1,12 @@
 import {apiAxios} from "../Api2/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
+import {getToken} from "../utils/getToken";
 
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImp0aSI6IjNmNmZlZDc1LTQyZmEtNDRkMS1hMTUwLTAzOWIwZDJhMWYyNyIsImlhdCI6MTcwMDM0MDg0MiwiZXhwIjoxNzAwNTEzNjQyLCJpc3MiOiJiYWNrZW5kLWZpbmFsLTIifQ.lQX2icz3ZTw3KBc_PkePvJjmURfpK25UTJBl_UPBLwQ"
+const token = getToken();
 
 //fetch products
-const fetchProducts= async (filter) => {
+const fetchProducts = async (filter) => {
 
     return await apiAxios.get(`/products/filter${filter}
     `).then(res => res.data)
@@ -18,10 +19,9 @@ const fetchProducts= async (filter) => {
     })
   }
 
-  //
 
 // fetch one product
-export const useProduct=(id)=>{
+export const useProduct = (id) => {
     return useQuery({
         queryKey:['product','get', id],
         queryFn:async()=> await apiAxios.get(`/products/${id}`).then(res=>res.data),
@@ -32,7 +32,7 @@ export const useProduct=(id)=>{
 // Add Product to Cart
 
 export const useAddToCart = (productId, quantity) => {
-
+// const token = getToken()
     return useMutation({
         mutationFn: async () => {
             try {
@@ -244,4 +244,53 @@ export const usePutOrder = () => {
 };
 
 
+// Fetch user
+
+const signIn = async (credentials) => {
+    try {
+        const response = await apiAxios.post('/users/login', credentials);
+        return response.data;
+    } catch (error) {
+        throw new Error('Invalid credentials');
+    }
+};
+
+export const useSignInUser = () => {
+    return useMutation(signIn);
+};
+
+const signUp = async (userData) => {
+    const defaultUserData = {
+        ...userData,
+        mobileNumber: "0000000000",
+        birthDate: "2000-01-01"
+    };
+    try {
+        const response = await apiAxios.post('/users/signup', defaultUserData);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+export const useSignUp = () => {
+    return useMutation(signUp);
+};
+
+export const useUser = () => {
+
+    const user_token = getToken()
+    const getUserInfo = async () => {
+
+        const headers = {
+            Authorization: `Bearer ${user_token}`,
+        };
+
+        const response = await apiAxios.get('/users/me', { headers });
+
+        return response.data;
+    };
+
+    return useQuery('user', getUserInfo);
+};
 

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import axios from 'axios';
+import React, { useState} from 'react';
+import { useForm } from 'react-hook-form';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,53 +13,30 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
+import {useSignInUser} from "../hooks/useAppAPIs";
 
-function saveTokenToLocalStorage(token) {
-    localStorage.setItem('authToken', token);
-}
 
-async function signIn(email, password, setError, navigate) {
-    try {
-        const response = await axios.post('https://backend-final-2-gosr.onrender.com/users/login', {
-            email,
-            password,
-        });
-
-        if (response.status === 200) {
-            const authToken = response.data.token;
-            saveTokenToLocalStorage(authToken);
-
-            navigate('/');
-
-        } else if (response.status === 401) {
-            setError('Email or Password is wrong');
-        } else {
-            setError('Authentication failed');
-        }
-    } catch (error) {
-        setError('Email or Password is wrong');
-    }
-}
-const token = localStorage.getItem('authToken');
-
-// Log the value of the token to the console
-console.log(token);
 const SignInPage = () => {
-    const [error, setError] = React.useState('');
+
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
+    const userMutation = useSignInUser();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
 
-        const email = data.get('email');
-        const password = data.get('password');
+    const onSubmit = async (data) => {
+        try {
+            const response = await userMutation.mutateAsync(data);
+            console.log(response)
 
-        if (email && password) {
-            setError('');
-            signIn(email, password, setError, navigate);
-        } else {
-            setError('Email and password are required');
+            const token = response.token;
+
+            localStorage.setItem('token', token);
+            console.log('Sign-in successful!');
+            navigate('/');
+        } catch (error) {
+
+            setErrorMsg(error.message)
         }
     };
 
@@ -80,12 +57,13 @@ const SignInPage = () => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    {error && (
-                        <Typography variant="body2" color="error" align="center" sx={{ mt: 2 }}>
-                            {error}
-                        </Typography>
-                    )}
+
+                {errorMsg.length>1 &&
+                    <Typography color={'error.main'} component="h1" variant="h5">
+                {errorMsg}
+                    </Typography>
+                }
+                <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
                         required
@@ -95,7 +73,17 @@ const SignInPage = () => {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        {...register('email', {
+                            required: 'Email is required',
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                message: 'Invalid email address',
+                            },
+                        })}
+                        error={!!errors.email}
+                        helperText={errors.email && errors.email.message}
                     />
+
                     <TextField
                         margin="normal"
                         required
@@ -105,6 +93,9 @@ const SignInPage = () => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        {...register('password', { required: 'Password is required' })}
+                        error={!!errors.password}
+                        helperText={errors.password && errors.password.message}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -125,7 +116,7 @@ const SignInPage = () => {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="/" variant="body2">
+                            <Link href="/sign-up" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

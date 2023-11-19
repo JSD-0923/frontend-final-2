@@ -12,9 +12,8 @@ import {
 import theme from "../../../themes/customTheme";
 import StarIcon from "@mui/icons-material/Star";
 import ProductCard from "../../../utils/ProductCard/ProductCard";
-import {useAddToCart, useAddToWishlist} from "../../../hooks/useAppAPIs";
+import {useAddToCart, useAddToWishlist, useUser} from "../../../hooks/useAppAPIs";
 import AlertStack from "../../../utils/AlertStack/AlertStack";
-import {defaultUser} from "../../../custumHooks/useAuth";
 import {ReactComponent as ShoppingCartIcon} from "../../../assets/icons/cart.svg";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -27,7 +26,7 @@ const ProductPanel = (props) => {
     const [warningAlertVisible, setWarningAlertVisible] = useState(false);
     const [message, setMessage] = useState('')
 
-    const user = defaultUser;
+    const { data: user} = useUser();
 
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -36,7 +35,7 @@ const ProductPanel = (props) => {
 
     const handleAddToCart = async () => {
         if (!user) {
-            setMessage('Please Login')
+            setMessage('Please Sign In First')
             setWarningAlertVisible(true);
             return;
         }
@@ -57,7 +56,7 @@ const ProductPanel = (props) => {
     const isAddToWishlistMutation= addToWishlistMutation.isLoading;
     const handleAddToWishlist = async () => {
         if (!user) {
-            setMessage('Please Login')
+            setMessage('Please Sign In First')
             setWarningAlertVisible(true);
             return;
         }

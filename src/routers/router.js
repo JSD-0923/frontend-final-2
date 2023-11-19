@@ -13,6 +13,8 @@ import NotFoundPage from "../pages/NotFoundPage";
 
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
+import AuthRoute from "../components/AuthRoute/AuthRoute";
+import {AuthRouteLoader, SignInLoader} from "../utils/loaders";
 
 
 export const router = createBrowserRouter([
@@ -20,6 +22,32 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Layout />,
         children: [
+            {
+                element: <AuthRoute />,
+                loader: AuthRouteLoader,
+                children: [
+                    {
+                        path: "/my-cart",
+                        element: <MyCartPage />,
+                    },
+                    {
+                        path: "/checkout",
+                        element: <CheckoutPage />,
+                    },
+                    {
+                        path: "/user-profile",
+                        element: <UserProfilePage />,
+                    },
+                    {
+                        path: "/my-orders",
+                        element: <MyOrdersPage />,
+                    },
+                    {
+                        path: "/my-orders/:id",
+                        element: <OrderDetailsPage />,
+                    },
+                ]
+            },
             {
                 path: "/",
                 element: <LandingPage />,
@@ -33,32 +61,12 @@ export const router = createBrowserRouter([
                 element: <ProductPage />,
             },
             {
-                path: "/my-cart",
-                element: <MyCartPage />,
-            },
-            {
-                path: "/checkout",
-                element: <CheckoutPage />,
-            },
-
-            {
-                path: "/user-profile",
-                element: <UserProfilePage />,
-            },
-            {
-                path: "/my-orders",
-                element: <MyOrdersPage />,
-            },
-            {
-                path: "/my-orders/:id",
-                element: <OrderDetailsPage />,
-            },
-            {
                 path: "/about",
                 element: <AboutPage />,
             },
             {
                 path: "/sign-in",
+                loader: SignInLoader,
                 element: <SignInPage />,
             },
             {
