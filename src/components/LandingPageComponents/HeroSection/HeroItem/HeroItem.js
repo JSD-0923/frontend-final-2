@@ -2,6 +2,7 @@ import React from 'react'
 import { Paper, Button, Box, Typography } from '@mui/material'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const SubTitleStyle = {
     paddingBottom: '30px',
@@ -24,6 +25,7 @@ const SubTitleStyle = {
     },
 }
 const HeroItem = ({ item }) => {
+    const navigate = useNavigate();
     const StyledTitle = styled(Typography)(({ theme }) => ({
         padding: '20px',
         fontWeight: 'bold',
@@ -61,7 +63,7 @@ const HeroItem = ({ item }) => {
                 </Typography>
 
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: '22px' }}>
-                    <Button variant="contained">
+                    <Button variant="contained"  onClick={() =>navigate(`/products?categoryId=${item.id}`)}>
                         <ArrowRightAltIcon />
                         see more
                     </Button>
