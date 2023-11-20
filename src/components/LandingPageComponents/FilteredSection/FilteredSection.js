@@ -1,6 +1,8 @@
 import React from 'react'
 import {Card, CardMedia, Grid, Typography} from "@mui/material";
 import {ReactComponent as ArrowIcon} from "../../../assets/icons/arrow.svg";
+import {useNavigate } from 'react-router-dom';
+
 import {
     BottomCard,
     DefaultStyleBox,
@@ -13,7 +15,15 @@ import {
 
 
 const FilteredSection = () => {
+    const navigate = useNavigate()
 
+    const handleAccessoriesCardClick = () => {
+        navigate("/products?categoryId=4");
+    };
+
+    const handleSkincareCardClick = () => {
+        navigate("/products?categoryId=3");
+    };
 console.log('hihi')
   return (
 
@@ -26,24 +36,24 @@ console.log('hihi')
               Makeup & Skincare
           </Typography>
           <Grid item xs={12}  sx={{marginBottom: 2}}>
-              <Card sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}  onClick={() => console.log('hi')}>
-                  <CardMedia
+              <Card onClick={handleAccessoriesCardClick } sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}  >
+                  <CardMedia 
                       component="img"
                       image={require('../../../assets/images/filtterdSecton-1st-image.jpg')}
                       sx={{ height: '100%', width: 'cover' }}
                   />
-                      <LifeStyleBox>
+                      <LifeStyleBox >
                           <LIFESTYLETypographyH2 component={'h2'}>
                               LIFESTYLE
                           </LIFESTYLETypographyH2>
-                          <LIFESTYLETypographyP component={'p'}>
+                          <LIFESTYLETypographyP component={'p'} >
                               Makeup Accessories from Top Brands
                           </LIFESTYLETypographyP>
                       </LifeStyleBox>
               </Card>
           </Grid>
           <Grid item xs={6}>
-              <BottomCard>
+              <BottomCard onClick={handleSkincareCardClick }>
                   <CardMedia
                       sx={{ height: '100%', width: 'cover' }}
                       component="img"
@@ -60,7 +70,7 @@ console.log('hihi')
               </BottomCard>
           </Grid>
           <Grid item xs={6}>
-              <BottomCard>
+              <BottomCard onClick={handleSkincareCardClick }> 
                   <CardMedia
                       sx={{ height: '100%', width: 'cover' }}
                       component="img"
