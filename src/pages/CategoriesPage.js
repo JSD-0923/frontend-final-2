@@ -36,7 +36,7 @@ const { error ,data: products, isLoading } = useProducts(queryString);
       <ProductsList products={products.products}/>
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
         <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
-          <Pagination count={10} shape="rounded" color="primary" hidePrevButton hideNextButton
+          <Pagination count={products.pagination.totalPages} shape="rounded" color="primary" hidePrevButton hideNextButton
           />
         </Box>
         <Button variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
