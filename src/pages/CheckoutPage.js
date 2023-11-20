@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import Box from "@mui/material/Box";
-import {Breadcrumbs, Button, CircularProgress, Divider, Typography, useMediaQuery} from "@mui/material";
+import {Button, CircularProgress, Divider, Typography, useMediaQuery} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ProductCartList from "../components/MyCartPageComponents/ProductCartList/ProductCartList";
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
@@ -12,8 +12,7 @@ import {useCart, usePutOrder} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
 import AlertStack from "../utils/AlertStack/AlertStack";
 import {Container} from "@mui/system";
-import Link from "@mui/material/Link";
-import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 
 
@@ -66,6 +65,13 @@ const CheckoutPage = () => {
         setWarningAlertVisible(false);
     };
 
+    const links = [
+        {
+            name: 'Home',
+            path: `/`
+        },
+    ]
+
     if (isLoading) {
         return (
             <div style={{  }}>
@@ -89,10 +95,7 @@ const CheckoutPage = () => {
     if (cartProducts.length === 0) {
         return (
             <>
-                <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
-                    <Link href={'/'}  underline="none" variant="body1" >Home</Link>
-                    <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
-                </Breadcrumbs>
+                <CustomBreadcrumbs links={links} label={'Checkout'}/>
                 <EmptyCart />
             </>
         )
@@ -106,7 +109,7 @@ const CheckoutPage = () => {
                     <StyledTitle variant="h2" component={'h1'} >
                         Checkout
                     </StyledTitle>
-
+                    <CustomBreadcrumbs links={links} label={'Checkout'}/>
                     <Grid container spacing={{ xs: 2, md: 8, lg: 10}}>
                         <Grid item xs={12} sm={6} md={8}>
                             <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}} elevation={0}>

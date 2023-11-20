@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react';
 import ProductsList from '../components/ProductsList/ProductsList';
 import imghero from '../assets/images/black-friday.png';
 import { StyledTitle } from "../themes/StyledPageTitle";
-import { Pagination, Box, Container, Button, CircularProgress } from '@mui/material';
+
+import {Pagination, Box, Container, Button, CircularProgress} from '@mui/material'
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../hooks/useAppAPIs';
+import {getQueryValue} from "../utils/getQueryValue";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import createPages from "../utils/createPages";
+
 const CategoriesPage = () => {
   const [page, setPage] = React.useState(1);
   const [pageContent, setPageContent] = useState(null);
@@ -35,6 +39,9 @@ const CategoriesPage = () => {
   if (error) {
     return <h1>{error}</h1>;
   }
+
+  return (
+
   if (!products || !pageContent || !pages) {
     return null;
   }
@@ -44,15 +51,26 @@ const CategoriesPage = () => {
   };
 
 
+
   const handleNext=()=>{
     setPage(page+1)
     setPageContent(pages[page])
   }
+  
+   const links = [
+      {
+          name: 'Home',
+          path: '/'
+      }
+  ]
+   
   return (
     <Container maxWidth='xl'>
       <img alt={'pic'} src={imghero} width='100%' />
-      <StyledTitle variant="h2" component={'h1'}>
-        Handbags
+
+       <CustomBreadcrumbs links={links} label={title}/>
+      <StyledTitle variant="h2" component={'h1'} >
+          {title}
 
       </StyledTitle>
       <ProductsList products={pageContent} />

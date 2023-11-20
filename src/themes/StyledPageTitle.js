@@ -1,8 +1,7 @@
 import {styled} from "@mui/system";
 import {Typography} from "@mui/material";
 
-
-export const StyledTitle = styled(Typography)(({ theme }) => ({
+export const StyledTitle = styled(Typography)(({ theme ,  sx}) => ({
     fontSize: '34px',
     color: theme.palette.primary.main,
     marginBottom: '20px',
@@ -13,4 +12,5 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
         marginBottom: '10px',
         marginTop: '10px',
     },
+    ...(sx || {}),
 }));
