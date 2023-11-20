@@ -4,12 +4,13 @@ import { Box, Button, Paper, Typography, useMediaQuery } from "@mui/material";
 import { BrandMockData } from "./brandMockData";
 import theme from "../../../themes/customTheme";
 import { useLandingProducts } from '../../../api/query'
+import { forwardRef } from 'react';
 
 const ShopByBrands = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const { data: brands, isLoading, isError } = useLandingProducts('brands');
     return (
-        <div style={{ display: 'flex', flexDirection: 'column',width:'100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -38,4 +39,4 @@ const ShopByBrands = () => {
     );
 }
 
-export default ShopByBrands;
+export default forwardRef(ShopByBrands);
