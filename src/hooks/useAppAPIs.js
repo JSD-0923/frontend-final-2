@@ -194,7 +194,7 @@ export const useAddAddress = () => {
 
     return useMutation(async (data) => {
         try {
-            console.log('Request Payload:', data);
+
             const response = await apiAxios.post(
                 '/user-addresses',
                 { ...data },

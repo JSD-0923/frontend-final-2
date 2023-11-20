@@ -3,7 +3,7 @@ import NewArrival from '../components/LandingPageComponents/NewArrival/NewArriva
 import HandpickedCollections from '../components/LandingPageComponents/HandpickedCollections/HandpickedCollections'
 import ShopByBrands from '../components/LandingPageComponents/ShopByBrands/ShopByBrands'
 import FilteredSection from '../components/LandingPageComponents/FilteredSection/FilteredSection'
-const LandingPage = () => {
+const HomePage = () => {
 
     return (
         <>
@@ -15,4 +15,4 @@ const LandingPage = () => {
         </>
     )
 }
-export default LandingPage
+export default HomePage
