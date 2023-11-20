@@ -23,7 +23,7 @@ const ProductCard = (props) => {
         {image &&
             <CardMedia
                 component="img"
-                sx={{ height: 'auto', width: '100%', borderRadius: '8px' }}
+                sx={{ height: '200px',objectFit:'cover', width: '100%', borderRadius: '8px' }}
                 image={image}
             />
         }
