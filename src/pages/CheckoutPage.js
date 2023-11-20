@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import Box from "@mui/material/Box";
-import {Button, CircularProgress, Divider, Typography, useMediaQuery} from "@mui/material";
+import {Breadcrumbs, Button, CircularProgress, Divider, Typography, useMediaQuery} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ProductCartList from "../components/MyCartPageComponents/ProductCartList/ProductCartList";
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
@@ -12,6 +12,8 @@ import {useCart, usePutOrder} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
 import AlertStack from "../utils/AlertStack/AlertStack";
 import {Container} from "@mui/system";
+import Link from "@mui/material/Link";
+import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
 
 
 
@@ -86,7 +88,13 @@ const CheckoutPage = () => {
 
     if (cartProducts.length === 0) {
         return (
-           <EmptyCart />
+            <>
+                <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
+                    <Link href={'/'}  underline="none" variant="body1" >Home</Link>
+                    <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
+                </Breadcrumbs>
+                <EmptyCart />
+            </>
         )
     }
 

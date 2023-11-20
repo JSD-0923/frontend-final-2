@@ -6,6 +6,9 @@ import React from "react";
 import {Box, Breadcrumbs, CircularProgress, Grid, Typography} from "@mui/material";
 import {useCart} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
+import Link from "@mui/material/Link";
+import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
+
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
@@ -31,7 +34,13 @@ const MyCartPage = () => {
 
     if (cartProducts.length === 0) {
         return (
-            <EmptyCart />
+           <>
+               <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
+                   <Link href={'/'}  underline="none" variant="body1" >Home</Link>
+                   <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
+               </Breadcrumbs>
+               <EmptyCart />
+           </>
         )
     }
 
@@ -42,10 +51,9 @@ const MyCartPage = () => {
                    <StyledTitle variant="h2" component={'h1'} >
                        My Cart
                    </StyledTitle>
-                   <Breadcrumbs separator="›" aria-label="breadcrumb" sx={{marginBottom: '12px', marginTop: '30px'}}>
-                       <Typography variant={'body1'} color="text.primary">Label</Typography>
-                       <Typography variant={'body1'} color="text.primary">Label</Typography>
-                       <Typography variant={'body1'} color="text.primary">Label</Typography>
+                   <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
+                       <Link href={'/'}  underline="none" variant="body1" >Home</Link>
+                       <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
                    </Breadcrumbs>
                    <Grid container spacing={3} style={{ justifyContent: 'space-between' }}>
                        <Grid item xs={12} md={7} lg={6}>
