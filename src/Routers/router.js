@@ -10,11 +10,11 @@ import MyOrdersPage from "../pages/MyOrdersPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
-
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import AuthRoute from "../components/AuthRoute/AuthRoute";
 import {AuthRouteLoader, SignInLoader} from "../utils/loaders";
+import Wishlist from "../pages/Wishlist";
 
 
 export const router = createBrowserRouter([
@@ -45,6 +45,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/my-orders/:id",
                         element: <OrderDetailsPage />,
+                    },
+                    {
+                        path: "/my-wishlist",
+                        element: <Wishlist />,
                     },
                 ]
             },

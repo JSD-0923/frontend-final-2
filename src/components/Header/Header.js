@@ -10,8 +10,6 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { SearchBox } from '../SearchBox/SearchBox';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,14 +17,24 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import {ReactComponent as CoralLogo} from "../../assets/icons/coral-logo.svg";
 import {useNavigate} from "react-router-dom";
 import { useLandingProducts } from '../../api/query'
+import {ReactComponent as UserIcon} from "../../assets/icons/user-icon.svg";
+import {ReactComponent as FillUserIcon} from "../../assets/icons/profile-fill.svg";
+import {ReactComponent as EmptyCartIcon} from "../../assets/icons/empty-cart.svg";
+import {useLogout, useUser} from "../../hooks/useAppAPIs";
+import {useState} from "react";
 
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { data: categories, isLoading, isError } = useLandingProducts('categories');
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+  const { data: categories } = useLandingProducts('categories');
+
 
   const navigate = useNavigate();
+
+  const {userData, refetchUser} = useUser()
+    const userMutation = useLogout();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,11 +47,30 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  return (
+    const handleLogout = async () => {
+        try {
+             await userMutation.mutateAsync();
+
+            localStorage.removeItem('token');
+
+            setTimeout(async () => {
+                await refetchUser();
+                navigate('/');
+            }, 1000);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
+    return (
     <AppBar position="static" sx={{ backgroundColor: '#ffffff', boxShadow: 'none' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -120,7 +147,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block', color: "TypeHighEmphasis.main" }}
               >
-                <Typography variant={'h4'} component={'span'}onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
+                <Typography variant={'h4'} component={'span'} onClick={()=>navigate(`/products?categoryId=${page.id}`)}>{page.name}</Typography>
               </Button>
             ))}
           </Box>
@@ -130,20 +157,46 @@ const Header = () => {
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, }}>
 
 
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
+            <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
               <FavoriteBorderIcon />
             </IconButton>
 
-            <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
-              <PersonOutlineIcon />
+              {userData ? (
+                  <>
+                      <IconButton
+                          onClick={handleClick}
+                      >
+                          <FillUserIcon />
+                          <Typography sx={{ marginLeft: '5px', marginRight: '5px' }}>Hello {userData.firstName}</Typography>
+                      </IconButton>
+                      <Menu
+                          id="basic-menu"
+                          anchorEl={anchorEl}
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                          MenuListProps={{
+                              'aria-labelledby': 'basic-button',
+                          }}
+                      >
+                          <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
+                          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </Menu>
+
+                  </>
+              ) : (
+                  <>
+                    <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
+                    <UserIcon />
+                    <Typography sx={{ margin: '5px' }}>Hello Guest</Typography>
+                    </IconButton>
+                  </>
+              )}
+
+
+
+            <IconButton onClick={()=>navigate('/my-cart')} sx={{ p: 0, color: 'primary.main', }}>
+              <EmptyCartIcon />
             </IconButton>
-
-
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
-              <WorkOutlineIcon />
-            </IconButton>
-
-
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>

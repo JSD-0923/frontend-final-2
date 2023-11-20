@@ -1,6 +1,7 @@
 import {apiAxios} from "../Api2/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {getToken} from "../utils/getToken";
+import {useNavigate} from "react-router-dom";
 
 
 const token = getToken();
@@ -278,19 +279,114 @@ export const useSignUp = () => {
 };
 
 export const useUser = () => {
+    const user_token = getToken();
 
-    const user_token = getToken()
     const getUserInfo = async () => {
+        if (!user_token) {
+            return null; // No need to fetch user data if there's no token
+        }
 
         const headers = {
             Authorization: `Bearer ${user_token}`,
         };
 
-        const response = await apiAxios.get('/users/me', { headers });
+        try {
+            const response = await apiAxios.get('/users/me', { headers });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                return null;
+            }
 
-        return response.data;
+            console.error('Error fetching user data:', error);
+            throw error;
+        }
     };
 
-    return useQuery('user', getUserInfo);
+    const { data: userData, isLoading, isError, refetch: refetchUser } = useQuery('user', getUserInfo);
+
+    return { userData, isLoading, isError, refetchUser };
 };
+
+
+// fetch wishlists products
+
+export const useWishlist = () => {
+    return useQuery({
+        queryKey: ['wishlist', 'get'],
+        queryFn: async () => {
+            try {
+                const response = await apiAxios.get('/wishlists', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                return response.data;
+            } catch (error) {
+                console.error(error);
+                throw error;
+            }
+        },
+        staleTime: Infinity
+    });
+}
+
+// movie product to wishlist
+
+export const useMoveToWishlist = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: async (productId) => {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            try {
+                const response = await apiAxios.post('/orders/move-to-wishlist', { productId }, config);
+                return response.data;
+            } catch (error) {
+                console.error('Error removing product from cart:', error);
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+        },
+    });
+};
+
+
+// Logout
+export const useLogout = () => {
+    const navigate= useNavigate()
+    return useMutation(
+
+        async () => {
+            const token = getToken();
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            try {
+                const response = await apiAxios.post('/users/logout', null, config);
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        {
+            onSuccess: () => {
+             navigate('/')
+            },
+        }
+    );
+};
+
 

@@ -26,15 +26,14 @@ const ProductPanel = (props) => {
     const [warningAlertVisible, setWarningAlertVisible] = useState(false);
     const [message, setMessage] = useState('')
 
-    const { data: user} = useUser();
-
+    const { userData} = useUser();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const addToCartMutation = useAddToCart(product.id, quantity);
     const isAddToCartLoading = addToCartMutation.isLoading;
 
     const handleAddToCart = async () => {
-        if (!user) {
+        if (!userData) {
             setMessage('Please Sign In First')
             setWarningAlertVisible(true);
             return;
@@ -55,7 +54,7 @@ const ProductPanel = (props) => {
     const addToWishlistMutation = useAddToWishlist(product.id);
     const isAddToWishlistMutation= addToWishlistMutation.isLoading;
     const handleAddToWishlist = async () => {
-        if (!user) {
+        if (!userData) {
             setMessage('Please Sign In First')
             setWarningAlertVisible(true);
             return;
