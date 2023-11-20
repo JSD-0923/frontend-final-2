@@ -3,15 +3,22 @@ import ProductCartList from "../components/MyCartPageComponents/ProductCartList/
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
 import {StyledTitle} from "../themes/StyledPageTitle";
 import React from "react";
-import {Box, Breadcrumbs, CircularProgress, Grid, Typography} from "@mui/material";
+import {Box, CircularProgress, Grid, Typography} from "@mui/material";
 import {useCart} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
-import Link from "@mui/material/Link";
-import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 const MyCartPage = () => {
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
+
+    const links = [
+        {
+            name: 'Home',
+            path: `/`
+        },
+    ]
+
     if (isLoading) {
         return (
             <div style={{  }}>
@@ -35,10 +42,7 @@ const MyCartPage = () => {
     if (cartProducts.length === 0) {
         return (
            <>
-               <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
-                   <Link href={'/'}  underline="none" variant="body1" >Home</Link>
-                   <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
-               </Breadcrumbs>
+               <CustomBreadcrumbs links={links} label={'My Cart'}/>
                <EmptyCart />
            </>
         )
@@ -48,13 +52,10 @@ const MyCartPage = () => {
        <>
            {cartProducts &&
                <div style={{ width: '90%'}} >
-                   <StyledTitle variant="h2" component={'h1'} >
+                   <StyledTitle sx={{ paddingX: '1rem'}} variant="h2" component={'h1'} >
                        My Cart
                    </StyledTitle>
-                   <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
-                       <Link href={'/'}  underline="none" variant="body1" >Home</Link>
-                       <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">My Cart</Link>
-                   </Breadcrumbs>
+                   <CustomBreadcrumbs links={links} label={'My Cart'}/>
                    <Grid container spacing={3} style={{ justifyContent: 'space-between' }}>
                        <Grid item xs={12} md={7} lg={6}>
                            <ProductCartList cartProducts={cartProducts.cartItems}/>

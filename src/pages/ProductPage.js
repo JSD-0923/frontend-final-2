@@ -1,13 +1,12 @@
 import React from 'react'
 import ProductImageGallery from '../components/ProductPageComponents/ProductImageGallery/ProductImageGallery'
-import {Box, Breadcrumbs, Grid, Paper, Typography} from "@mui/material";
+import {Box, Grid, Paper, Typography} from "@mui/material";
 import ProductPanel from "../components/ProductPageComponents/ProductPanel/ProductPanel";
 import ProductTaps from "../components/ProductPageComponents/ProductTaps/ProductTaps";
 import {useProduct} from "../hooks/useAppAPIs";
 import {useParams} from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
-import Link from "@mui/material/Link";
-import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 const ProductPage = () => {
 
@@ -35,13 +34,20 @@ const ProductPage = () => {
             </Box>
         )
     }
+
+    const links = [
+        {
+            name: 'Home',
+            path: `/`
+        },
+        {
+            name: product.category.name,
+            path: `/products?categoryId=${product.category.id}`
+        },
+    ]
     return (
         <>
-            <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
-                <Link href={'/'}  underline="none" variant="text" >Home</Link>
-                <Link  href={`/products?categoryId=${product.category.id}`}  underline="none" variant={'text'}>{product.category.name}</Link>
-                <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">{product.name}</Link>
-            </Breadcrumbs>
+            <CustomBreadcrumbs links={links} label={product.name}/>
             {product &&
                 <>
                     <Paper elevation={0} sx={{marginTop: '1rem'}} >

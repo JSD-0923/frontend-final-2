@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import ProductsList from '../components/ProductsList/ProductsList'
 import imghero from '../assets/images/black-friday.png'
 import { StyledTitle } from "../themes/StyledPageTitle";
-import {Pagination, Box, Container, Button, CircularProgress, Breadcrumbs} from '@mui/material'
+import {Pagination, Box, Container, Button, CircularProgress} from '@mui/material'
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../hooks/useAppAPIs';
 import {getQueryValue} from "../utils/getQueryValue";
-import Link from "@mui/material/Link";
-import {ReactComponent as NavigateNextIcon} from "../assets/icons/next-icon.svg";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+
 
 const CategoriesPage = () => {
 
@@ -36,14 +36,19 @@ const { error ,data: products, isLoading } = useProducts(queryString);
   {
     return <h1>{error}</h1>
   }
+
+  const links = [
+      {
+          name: 'Home',
+          path: '/'
+      }
+  ]
+
   return (
 
     <Container disableGutters maxWidth='xl' >
       <img alt={'pic'} src={imghero} width='100%' />
-        <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
-            <Link href={'/'}  underline="none" variant="body1" >Home</Link>
-            <Link variant={'body1'}  underline="none" color="TypeLowEmphasis.main">{title}</Link>
-        </Breadcrumbs>
+       <CustomBreadcrumbs links={links} label={title}/>
       <StyledTitle variant="h2" component={'h1'} >
           {title}
       </StyledTitle>
