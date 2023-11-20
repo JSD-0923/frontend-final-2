@@ -20,17 +20,21 @@ import { useLandingProducts } from '../../api/query'
 import {ReactComponent as UserIcon} from "../../assets/icons/user-icon.svg";
 import {ReactComponent as FillUserIcon} from "../../assets/icons/profile-fill.svg";
 import {ReactComponent as EmptyCartIcon} from "../../assets/icons/empty-cart.svg";
-import {useUser} from "../../hooks/useAppAPIs";
+import {useLogout, useUser} from "../../hooks/useAppAPIs";
+import {useState} from "react";
 
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
   const { data: categories } = useLandingProducts('categories');
+
 
   const navigate = useNavigate();
 
-  const {userData} = useUser()
+  const {userData, refetchUser} = useUser()
+    const userMutation = useLogout();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,11 +47,30 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  return (
+    const handleLogout = async () => {
+        try {
+             await userMutation.mutateAsync();
+
+            localStorage.removeItem('token');
+
+            setTimeout(async () => {
+                await refetchUser();
+                navigate('/');
+            }, 1000);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
+    return (
     <AppBar position="static" sx={{ backgroundColor: '#ffffff', boxShadow: 'none' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -140,10 +163,25 @@ const Header = () => {
 
               {userData ? (
                   <>
-                    <IconButton onClick={()=> navigate('/user-profile')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
-                    <FillUserIcon />
-                    <Typography sx={{ margin: '5px' }}>Hello {userData.firstName}</Typography>
-                    </IconButton>
+                      <IconButton
+                          onClick={handleClick}
+                      >
+                          <FillUserIcon />
+                          <Typography sx={{ marginLeft: '5px', marginRight: '5px' }}>Hello {userData.firstName}</Typography>
+                      </IconButton>
+                      <Menu
+                          id="basic-menu"
+                          anchorEl={anchorEl}
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                          MenuListProps={{
+                              'aria-labelledby': 'basic-button',
+                          }}
+                      >
+                          <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
+                          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </Menu>
+
                   </>
               ) : (
                   <>
@@ -156,7 +194,7 @@ const Header = () => {
 
 
 
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'primary.main', }}>
+            <IconButton onClick={()=>navigate('/my-cart')} sx={{ p: 0, color: 'primary.main', }}>
               <EmptyCartIcon />
             </IconButton>
           </Box>

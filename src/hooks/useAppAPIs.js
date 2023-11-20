@@ -1,6 +1,7 @@
 import {apiAxios} from "../Api2/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {getToken} from "../utils/getToken";
+import {useNavigate} from "react-router-dom";
 
 
 const token = getToken();
@@ -357,4 +358,35 @@ export const useMoveToWishlist = () => {
         },
     });
 };
+
+
+// Logout
+export const useLogout = () => {
+    const navigate= useNavigate()
+    return useMutation(
+
+        async () => {
+            const token = getToken();
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            try {
+                const response = await apiAxios.post('/users/logout', null, config);
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        {
+            onSuccess: () => {
+             navigate('/')
+            },
+        }
+    );
+};
+
 
