@@ -11,14 +11,7 @@ const CategoriesPage = () => {
   const location = useLocation();
   const queryString = location.search;
   console.log(queryString)
-
-  
-
-
-
-
-
-  const { error ,data: products, isLoading, isError } = useProducts(queryString);
+const { error ,data: products, isLoading, isError } = useProducts(queryString);
   if(isLoading)
   {
     return <h1>isLoading</h1>
