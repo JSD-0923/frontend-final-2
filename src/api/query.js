@@ -1,11 +1,7 @@
 import { useQuery } from 'react-query';
 import { apiAxios } from './axios';
-import React from 'react'
 
-/**
- * 
- * list products
- */
+
 const fetchLandingProducts = async (filter) => {
   return await apiAxios.get(`/${filter}`)
 }
@@ -19,7 +15,7 @@ const useLandingProducts = (filter) => {
 
 
 const fetchProducts= async (filter) => {
-  console.log(filter);
+
   return await apiAxios.get(`/products/filter${filter}
   `).then(res => res.data)
 }
