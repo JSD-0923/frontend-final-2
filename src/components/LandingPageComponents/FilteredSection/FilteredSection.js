@@ -14,7 +14,7 @@ import {
 
 const FilteredSection = () => {
 
-
+console.log('hihi')
   return (
 
       <Grid container spacing={2} sx={{marginTop: '1rem'}}>
@@ -26,7 +26,7 @@ const FilteredSection = () => {
               Makeup & Skincare
           </Typography>
           <Grid item xs={12}  sx={{marginBottom: 2}}>
-              <Card sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}>
+              <Card sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}  onClick={() => console.log('hi')}>
                   <CardMedia
                       component="img"
                       image={require('../../../assets/images/filtterdSecton-1st-image.jpg')}

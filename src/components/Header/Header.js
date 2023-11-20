@@ -55,9 +55,7 @@ const Header = () => {
           >
             <CoralLogo />
           </IconButton>
-
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
 
               aria-label="account of current user"

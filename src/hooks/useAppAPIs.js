@@ -1,12 +1,13 @@
 import {apiAxios} from "../Api2/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
+import {getToken} from "../utils/getToken";
 
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUzLCJuYW1lIjoidW5kZWZpbmVkIHVuZGVmaW5lZCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImp0aSI6IjE5ODlmYTZhLTE0OGItNDJkOS04MzRkLTY4ZDY1ZjMzODk4NiIsImlhdCI6MTcwMDE2NDE4OCwiZXhwIjoxNzAwMzM2OTg4LCJpc3MiOiJiYWNrZW5kLWZpbmFsLTIifQ.77t5N80OEzGMDSGcFgBvshoYtIhU_1Oux4HW9IKSrY8"
+const token = getToken();
 
 //fetch products
-const fetchProducts= async (filter) => {
-    console.log(filter);
+const fetchProducts = async (filter) => {
+
     return await apiAxios.get(`/products/filter${filter}
     `).then(res => res.data)
   }
@@ -18,10 +19,9 @@ const fetchProducts= async (filter) => {
     })
   }
 
-  //
 
 // fetch one product
-export const useProduct=(id)=>{
+export const useProduct = (id) => {
     return useQuery({
         queryKey:['product','get', id],
         queryFn:async()=> await apiAxios.get(`/products/${id}`).then(res=>res.data),
@@ -32,7 +32,7 @@ export const useProduct=(id)=>{
 // Add Product to Cart
 
 export const useAddToCart = (productId, quantity) => {
-
+// const token = getToken()
     return useMutation({
         mutationFn: async () => {
             try {
@@ -80,6 +80,33 @@ export const useRemoveFromCart = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['cart', 'get']);
+        },
+    });
+};
+
+// Add Product to Whishlist
+
+export const useAddToWishlist = (productId) => {
+
+    return useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiAxios.post(
+                    '/wishlists',
+                    { productId },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                    }
+                );
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            console.log('added successfully');
         },
     });
 };
@@ -196,29 +223,74 @@ export const useAddAddress = () => {
 export const usePutOrder = () => {
     const queryClient = useQueryClient();
 
-    const { mutateAsync, isLoading } = useMutation(
-        () => apiAxios.put('/orders/place-order', null, {
-            headers: {
-                Authorization: `Bearer ${token}`,  // Make sure to define 'token' or pass it as an argument
-            },
-        }),
-        {
-            onSuccess: () => queryClient.invalidateQueries(['cart', 'get']),
-        }
-    );
-
-    const placeOrder = async () => {
-        try {
-            return await mutateAsync();
-        } catch (error) {
-            console.error('Error placing order:', error);
-            throw error;
-        }
-    };
-
-    return { placeOrder, isLoading };
+    return useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiAxios.put('/orders/place-order', null, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+            console.log('Order placed successfully');
+        },
+    });
 };
 
 
+// Fetch user
 
+const signIn = async (credentials) => {
+    try {
+        const response = await apiAxios.post('/users/login', credentials);
+        return response.data;
+    } catch (error) {
+        throw new Error('Invalid credentials');
+    }
+};
+
+export const useSignInUser = () => {
+    return useMutation(signIn);
+};
+
+const signUp = async (userData) => {
+    const defaultUserData = {
+        ...userData,
+        mobileNumber: "0000000000",
+        birthDate: "2000-01-01"
+    };
+    try {
+        const response = await apiAxios.post('/users/signup', defaultUserData);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+export const useSignUp = () => {
+    return useMutation(signUp);
+};
+
+export const useUser = () => {
+
+    const user_token = getToken()
+    const getUserInfo = async () => {
+
+        const headers = {
+            Authorization: `Bearer ${user_token}`,
+        };
+
+        const response = await apiAxios.get('/users/me', { headers });
+
+        return response.data;
+    };
+
+    return useQuery('user', getUserInfo);
+};
 

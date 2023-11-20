@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import Box from "@mui/material/Box";
-import {Button, CircularProgress, Divider, Paper, Typography} from "@mui/material";
+import {Button, CircularProgress, Divider, Typography, useMediaQuery} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ProductCartList from "../components/MyCartPageComponents/ProductCartList/ProductCartList";
 import OrderCheckoutSummary from "../components/MyCartPageComponents/OrderCheckoutSummary/OrderCheckoutSummary";
@@ -9,16 +9,25 @@ import PaymentsList from "../components/CheckoutPageComponents/Payments/Payments
 import {useNavigate} from "react-router-dom";
 import AddressesList from "../components/CheckoutPageComponents/AddressesList/AddressesList";
 import {useCart, usePutOrder} from "../hooks/useAppAPIs";
+import EmptyCart from "../components/EmptyCart/EmptyCart";
+import AlertStack from "../utils/AlertStack/AlertStack";
+import {Container} from "@mui/system";
 
 
 
 const CheckoutPage = () => {
     const [addressSelectedCard, setAddressSelectedCard] = useState(1);
     const [paymentSelectedCard, setPaymentSelectedCard] = useState(1);
+    const [successAlertVisible, setSuccessAlertVisible] = useState(false);
+    const [errorAlertVisible, setErrorAlertVisible] = useState(false);
+    const [warningAlertVisible, setWarningAlertVisible] = useState(false);
+    const [message, setMessage] = useState('')
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
 
     const navigate = useNavigate();
+    const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 425px)');
+
     const handleSelectingAddressCard = (cardId) => {
         setAddressSelectedCard(cardId);
     };
@@ -29,20 +38,30 @@ const CheckoutPage = () => {
     // const currentAddress = addresses.find((item) => item.id === addressSelectedCard);
     // const currentPaymentMethod = paymentsMethods.find((item) => item.id === paymentSelectedCard);
 
-    const { placeOrder } = usePutOrder();
 
+    const PutOrderMutation = usePutOrder();
+    const isPlacingOrderLoading = PutOrderMutation.isLoading
     const handlePlacingOrder = async () => {
 
         try {
-            // Call the placeOrder function from the usePutOrder hook
-            await placeOrder();
-
-            // Additional logic after placing the order if needed
-            console.log('Order placed successfully!');
+            const response = await PutOrderMutation.mutateAsync()
+            setMessage(response.message)
+            setSuccessAlertVisible(true);
+            setTimeout(() => {
+                navigate('/');
+            }, 10000);
         } catch (error) {
+            setMessage(error.message)
+            setErrorAlertVisible(true);
             console.error('Error placing order:', error);
-            // Handle error if needed
+
         }
+    };
+
+    const handleCloseAlert = () => {
+        setSuccessAlertVisible(false);
+        setErrorAlertVisible(false);
+        setWarningAlertVisible(false);
     };
 
     if (isLoading) {
@@ -67,64 +86,76 @@ const CheckoutPage = () => {
 
     if (cartProducts.length === 0) {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
-                <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Your Cart is empty !!</Typography>
-                <Typography sx={{color:'primary.main'}} variant={'h2'} component={'h2'}>Add some products to it :)</Typography>
-            </Box>
+           <EmptyCart />
         )
     }
 
-    console.log(cartProducts)
     return (
         <>
             {
                 cartProducts &&
-                <div>
+                <div style={{marginLeft: '1rem'}}>
                     <StyledTitle variant="h2" component={'h1'} >
                         Checkout
                     </StyledTitle>
 
-                    <Grid container spacing={{ sm: 1, md: 8, lg: 10, xl: 15 }}>
+                    <Grid container spacing={{ xs: 2, md: 8, lg: 10}}>
                         <Grid item xs={12} sm={6} md={8}>
-                            <Paper elevation={0}>
-                                <AddressesList
-                                    onSelect={handleSelectingAddressCard}
-                                    selectedCard={addressSelectedCard}
-                                />
-                                <PaymentsList
+                            <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}} elevation={0}>
+                               <Box sx={{width: isSmallScreen ?'295px' : '100%'}}>
+                                   <AddressesList
+                                       onSelect={handleSelectingAddressCard}
+                                       selectedCard={addressSelectedCard}
+                                   />
+                                   <PaymentsList
 
-                                    selectedCard={paymentSelectedCard}
-                                    onSelect={handleSelectingPaymentCard}
-                                />
+                                       selectedCard={paymentSelectedCard}
+                                       onSelect={handleSelectingPaymentCard}
+                                   />
+                               </Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                                     <Button sx={{ textDecoration: 'underline' }} onClick={()=> navigate('/my-cart')}>Back to Cart</Button>
-                                    <Button variant="contained" color="primary" onClick={handlePlacingOrder}>
+                                    <Button
+                                        variant="contained" color="primary"
+                                        startIcon={isPlacingOrderLoading ? <CircularProgress size={'20px'} sx={{color: 'white'}}/> :""}
+                                        onClick={handlePlacingOrder}
+                                    >
                                         Place Order
                                     </Button>
                                 </Box>
-                            </Paper>
+                            </Container>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <Typography variant={'h3'} component={'h2'} sx={{ marginBottom: '10px' }}>
-                                        Order Summary
-                                    </Typography>
-                                    <Divider />
-                                    <ProductCartList
-                                        cartProducts={cartProducts.cartItems}
-                                        showTable={false}
-                                    />
+                                    <Box >
+                                        <Typography variant={'h3'} component={'h2'} sx={{ marginBottom: '10px' }}>
+                                            Order Summary
+                                        </Typography>
+                                        <Divider />
+                                        <ProductCartList
+                                            cartProducts={cartProducts.cartItems}
+                                            showTable={false}
+                                        />
+                                    </Box>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <OrderCheckoutSummary
                                         headTitle={"Order Details"}
+                                        width={'260px'}
                                         cartProducts={cartProducts}
                                     />
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
+                    <AlertStack
+                        warningVisible={warningAlertVisible}
+                        successVisible={successAlertVisible}
+                        errorVisible={errorAlertVisible}
+                        onCloseAlert={handleCloseAlert}
+                        message={message}
+                    />
                 </div>
             }
         </>

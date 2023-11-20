@@ -11,6 +11,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import {useSignUp} from "../hooks/useAppAPIs";
+import {useState} from "react";
 
 function Copyright(props) {
     return (
@@ -26,17 +30,26 @@ function Copyright(props) {
 }
 
 export default function SignUpPage() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const navigate = useNavigate();
+    const signUpMutation = useSignUp();
+    const { handleSubmit, control, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        try {
+            await signUpMutation.mutateAsync(data);
+
+            console.log('Sign-up successful!');
+            navigate('/');
+        } catch (error) {
+            setErrorMsg(error.message)
+            console.log('Error signing up:', error.message);
+        }
     };
 
     return (
-
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -53,48 +66,95 @@ export default function SignUpPage() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                {errorMsg.length>1 &&
+                    <Typography color={'error.main'} component="h1" variant="h5">
+                        {errorMsg}
+                    </Typography>
+                }
+                <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="given-name"
+                            <Controller
                                 name="firstName"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
+                                control={control}
+                                defaultValue=""
+                                rules={{ required: 'First Name is required' }}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        autoComplete="given-name"
+                                        fullWidth
+                                        id="firstName"
+                                        label="First Name"
+                                        error={!!errors.firstName}
+                                        helperText={errors.firstName && errors.firstName.message}
+                                    />
+                                )}
                             />
+
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
+                            <Controller
                                 name="lastName"
-                                autoComplete="family-name"
+                                control={control}
+                                defaultValue=""
+                                rules={{ required: 'Last Name is required' }}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        autoComplete="family-name"
+                                        fullWidth
+                                        id="lastName"
+                                        label="Last Name"
+                                        error={!!errors.lastName}
+                                        helperText={errors.lastName && errors.lastName.message}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
+                            <Controller
                                 name="email"
-                                autoComplete="email"
+                                control={control}
+                                defaultValue=""
+                                rules={{
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                        message: 'Invalid email address',
+                                    },
+                                }}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        autoComplete="email"
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        error={!!errors.email}
+                                        helperText={errors.email && errors.email.message}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
+                            <Controller
                                 name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="new-password"
+                                control={control}
+                                defaultValue=""
+                                rules={{ required: 'Password is required' }}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        autoComplete="new-password"
+                                        fullWidth
+                                        id="password"
+                                        label="Password"
+                                        type="password"
+                                        error={!!errors.password}
+                                        helperText={errors.password && errors.password.message}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -123,6 +183,5 @@ export default function SignUpPage() {
             </Box>
             <Copyright sx={{ mt: 5 }} />
         </Container>
-
     );
 }

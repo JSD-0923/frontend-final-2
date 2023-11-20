@@ -50,8 +50,8 @@ function a11yProps(index) {
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: '#F1F1F1' }}>
+        <Box sx={{ margin:"1rem" }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: '#F1F1F1',borderRadius: '12px' }}>
                 <Tabs value={value} sx={
                     {
                         '& .MuiTabs-flexContainer': {

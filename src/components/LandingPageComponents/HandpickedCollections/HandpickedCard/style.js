@@ -9,13 +9,13 @@ export const HandPickedCardStyle = {
     marginBottom: '1rem',
     // Mobile Small
     '@media (min-width: 320px)': {
-        height: '100px'
-    },
-    '@media (min-width: 375px)': {
         height: '120px'
     },
+    '@media (min-width: 375px)': {
+        height: '130px'
+    },
     '@media (min-width: 425px)': {
-        height: '140px'
+        height: '150px'
     },
     '@media (min-width: 768px)': {
         height: '140px'

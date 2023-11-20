@@ -9,7 +9,7 @@ const ShopByBrands = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const { data: brands, isLoading, isError } = useLandingProducts('brands');
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column',width:'100%' }}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
