@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import ProductsList from '../components/ProductsList/ProductsList';
 import imghero from '../assets/images/black-friday.png';
@@ -29,6 +30,7 @@ const CategoriesPage = () => {
         </Box>
       </div>
     );
+
   }
   if (error) {
     return <h1>{error}</h1>;
@@ -41,6 +43,7 @@ const CategoriesPage = () => {
     setPageContent(pages[value - 1]);
   };
 
+
   const handleNext=()=>{
     setPage(page+1)
     setPageContent(pages[page])
@@ -50,11 +53,14 @@ const CategoriesPage = () => {
       <img alt={'pic'} src={imghero} width='100%' />
       <StyledTitle variant="h2" component={'h1'}>
         Handbags
+
       </StyledTitle>
       <ProductsList products={pageContent} />
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
         <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
+
           <Pagination count={pages.length} page={page} onChange={handleChange} shape="rounded" color="primary" hidePrevButton hideNextButton />
+
         </Box>
         <Button onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
       </Box>

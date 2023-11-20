@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {Card, CardMedia, Grid, Typography} from "@mui/material";
 import {ReactComponent as ArrowIcon} from "../../../assets/icons/arrow.svg";
 import {useNavigate } from 'react-router-dom';
-
+import { useRef } from 'react';
 import {
     BottomCard,
     DefaultStyleBox,
@@ -15,6 +15,7 @@ import {
 
 
 const FilteredSection = () => {
+    
     const navigate = useNavigate()
 
     const handleAccessoriesCardClick = () => {
@@ -24,10 +25,10 @@ const FilteredSection = () => {
     const handleSkincareCardClick = () => {
         navigate("/products?categoryId=3");
     };
-console.log('hihi')
+
   return (
 
-      <Grid container spacing={2} sx={{marginTop: '1rem'}}>
+      <Grid  container spacing={2} sx={{marginTop: '1rem'}}>
           <Typography
               component={'h2'}
               variant={'h2'}

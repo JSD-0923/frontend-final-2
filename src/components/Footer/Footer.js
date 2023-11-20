@@ -7,14 +7,12 @@ import {
     AccordionSummary,
     Typography, useMediaQuery
 } from "@mui/material";
-// import { theme } from '../../MUI Themes/customTheme';
+
 import  theme  from '../../themes/customTheme'
 import FooterContainer from "./FooterContainer";
 
-
 export default function Footer() {
-
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <>
