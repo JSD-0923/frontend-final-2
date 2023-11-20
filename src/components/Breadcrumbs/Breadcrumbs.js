@@ -10,7 +10,7 @@ const CustomBreadcrumbs = (props) => {
 
     const {links, label} = props
 return (
-    <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start', marginLeft: '20px',marginBottom: '1rem', marginTop: '24px'}}>
+    <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start',marginBottom: '1rem', marginTop: '24px'}}>
         {links.map(link =>
             {
                 return (

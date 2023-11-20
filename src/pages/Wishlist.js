@@ -2,13 +2,16 @@
 import React from 'react'
 import ProductsList from '../components/ProductsList/ProductsList'
 import { StyledTitle } from "../themes/StyledPageTitle";
-import { Pagination, Box, Container, Button, CircularProgress} from '@mui/material'
+import { Box, Container, CircularProgress} from '@mui/material'
 import { useWishlist} from '../hooks/useAppAPIs';
+import Typography from "@mui/material/Typography";
+import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 const Wishlist = () => {
 
    const {  data: wishlistProducts, isLoading ,error } = useWishlist();
 
+    console.log(wishlistProducts)
    if(isLoading)
    {
       return (
@@ -21,7 +24,7 @@ const Wishlist = () => {
    }
    if(error)
    {
-      return <h1>{error}</h1>
+      return <h1>test</h1>
    }
    return (
 
@@ -29,17 +32,10 @@ const Wishlist = () => {
           <StyledTitle variant="h2" component={'h1'} >
              My Wishlist
           </StyledTitle>
-           {wishlistProducts && <ProductsList fill={true} products={wishlistProducts.wishlist}/>}
-           {wishlistProducts.wishlist.length > 20 &&
-               <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
-                   <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
-                       <Pagination count={10} shape="rounded" color="primary" hidePrevButton hideNextButton
-                       />
-                   </Box>
-                   <Button variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
-               </Box>
-           }
 
+           <CustomBreadcrumbs links={[{name: 'Home', path: '/'}]} label={'My Wishlist'} />
+
+           {wishlistProducts ? <ProductsList fill={true} products={wishlistProducts.wishlist}/> : <Typography variant={'h3'} component={'h3'}>Your Wishlist is Empty </Typography>}
        </Container>
    )
 }
