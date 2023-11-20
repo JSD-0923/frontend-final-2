@@ -303,7 +303,7 @@ export const useUser = () => {
         }
     };
 
-    const { data: userData, isLoading, isError, refetch: refetchUser } = useQuery('user', getUserInfo);
+    const { data: userData, isLoading, isError, refetch: refetchUser } = useQuery(['user', 'me'], getUserInfo);
 
     return { userData, isLoading, isError, refetchUser };
 };

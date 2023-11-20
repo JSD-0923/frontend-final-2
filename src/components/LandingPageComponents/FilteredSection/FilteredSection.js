@@ -24,7 +24,7 @@ const FilteredSection = () => {
     const handleSkincareCardClick = () => {
         navigate("/products?categoryId=3");
     };
-console.log('hihi')
+
   return (
 
       <Grid container spacing={2} sx={{marginTop: '1rem'}}>
