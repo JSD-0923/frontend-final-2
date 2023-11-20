@@ -63,7 +63,7 @@ const HeroItem = ({ item }) => {
                 </Typography>
 
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: '22px' }}>
-                    <Button variant="contained" >
+                    <Button variant="contained" onClick={() =>navigate(`/products?categoryId=${item.id}`)} >
                         <ArrowRightAltIcon />
                         see more
                     </Button>
