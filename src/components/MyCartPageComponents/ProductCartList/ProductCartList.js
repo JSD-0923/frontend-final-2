@@ -70,8 +70,8 @@ const ProductCartList = (props) => {
             <Table aria-label="cart items list">
                 {!isSmallScreen && showTable &&
                     <TableHead sx={{ borderBottom: '1px solid #0000001F' }}>
-                        <TableRow sx={{ color: 'red' }}>
-                            <TableCell>Product Name</TableCell>
+                        <TableRow sx={{ padding: 0 }}>
+                            <TableCell sx={{padding: 0}} align="left">Product Name</TableCell>
                             <TableCell align="right">Price</TableCell>
                             <TableCell align="right">Qty</TableCell>
                             <TableCell align="right">Subtotal</TableCell>
@@ -93,13 +93,13 @@ const ProductCartList = (props) => {
 
                                 {!isSmallScreen && showTable &&
                                 <>
-                                    <TableCell align="center" sx={{ margin: 0, verticalAlign: 'top' }}>
+                                    <TableCell align="right" sx={{ margin: 0, verticalAlign: 'top' }}>
                                         ${product.discountedPrice > 0 ? product.discountedPrice.toFixed(2) : product.price.toFixed(2)}
                                     </TableCell>
-                                    <TableCell align="center" sx={{margin: 0, verticalAlign: 'top' }}>
+                                    <TableCell align="right" sx={{margin: 0, verticalAlign: 'top' }}>
                                         {product.quantity}
                                     </TableCell>
-                                    <TableCell align="center" sx={{ margin: 0, verticalAlign: 'top' }}>
+                                    <TableCell align="right" sx={{ margin: 0, verticalAlign: 'top' }}>
                                         ${product.totalPrice.toFixed(2)}
                                     </TableCell>
 
@@ -138,7 +138,7 @@ const ProductCartList = (props) => {
                                                 borderBottom: '1px solid',
                                                 paddingBottom: '2px',
                                                 borderRadius: 0,
-                                                right: '2rem',
+                                                right: '1rem',
                                                 bottom: ['initial', 'initial', '4rem'],
                                             }}
                                             startIcon={

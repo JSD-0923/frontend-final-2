@@ -8,53 +8,70 @@ import {StyledTitle} from "../themes/StyledPageTitle";
 import PaymentsList from "../components/CheckoutPageComponents/Payments/PaymentsList";
 import {useNavigate} from "react-router-dom";
 import AddressesList from "../components/CheckoutPageComponents/AddressesList/AddressesList";
-import {useCart, usePutOrder} from "../hooks/useAppAPIs";
+import {useCart, usePutOrder, useUpdateOrderInfo, useUpdateOrderPayment} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
 import AlertStack from "../utils/AlertStack/AlertStack";
 import {Container} from "@mui/system";
 import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import {paymentsMethods} from "../utils/consts";
 
 
 
 const CheckoutPage = () => {
-    const [addressSelectedCard, setAddressSelectedCard] = useState(1);
-    const [paymentSelectedCard, setPaymentSelectedCard] = useState(1);
+    const [cardId, setCardId] = useState(null);
+    const [paymentSelectedCard, setPaymentSelectedCard] = useState(null);
     const [successAlertVisible, setSuccessAlertVisible] = useState(false);
     const [errorAlertVisible, setErrorAlertVisible] = useState(false);
     const [warningAlertVisible, setWarningAlertVisible] = useState(false);
     const [message, setMessage] = useState('')
 
     const {data:cartProducts, isLoading, isError, error} = useCart()
+    const PutOrderMutation = usePutOrder();
+    const useUpdateOrderInfoMutation = useUpdateOrderInfo()
+    const useUpdateOrderPaymentMutation = useUpdateOrderPayment()
 
     const navigate = useNavigate();
+
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 425px)');
 
     const handleSelectingAddressCard = (cardId) => {
-        setAddressSelectedCard(cardId);
+        setCardId(cardId);
     };
     const handleSelectingPaymentCard = (cardId) => {
         setPaymentSelectedCard(cardId);
     };
 
-    // const currentAddress = addresses.find((item) => item.id === addressSelectedCard);
-    // const currentPaymentMethod = paymentsMethods.find((item) => item.id === paymentSelectedCard);
+    const currentPaymentMethod = paymentsMethods.find((item) => item.id === paymentSelectedCard);
 
 
-    const PutOrderMutation = usePutOrder();
     const isPlacingOrderLoading = PutOrderMutation.isLoading
     const handlePlacingOrder = async () => {
 
+        if (!cardId) {
+            setMessage("Please Select an Address");
+            setWarningAlertVisible(true);
+            return
+        }
+
+        else if (!currentPaymentMethod) {
+            setMessage("Please Select an Payment Method");
+            setWarningAlertVisible(true);
+            return
+        }
         try {
-            const response = await PutOrderMutation.mutateAsync()
-            setMessage(response.message)
+            const response =  await PutOrderMutation.mutateAsync();
+             await useUpdateOrderInfoMutation.mutateAsync({ orderId: cartProducts.orderId, addressId: cardId });
+             await useUpdateOrderPaymentMutation.mutateAsync({ orderId: cartProducts.orderId, paymentMethod: currentPaymentMethod.title })
+
+            setMessage(response.message);
             setSuccessAlertVisible(true);
+
             setTimeout(() => {
                 navigate('/');
             }, 10000);
         } catch (error) {
-            setMessage(error.message)
+            setMessage(error.message);
             setErrorAlertVisible(true);
-            console.error('Error placing order:', error);
 
         }
     };
@@ -116,7 +133,7 @@ const CheckoutPage = () => {
                                <Box sx={{width: isSmallScreen ?'295px' : '100%'}}>
                                    <AddressesList
                                        onSelect={handleSelectingAddressCard}
-                                       selectedCard={addressSelectedCard}
+                                       selectedCard={cardId}
                                    />
                                    <PaymentsList
 

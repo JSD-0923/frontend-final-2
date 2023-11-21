@@ -39,23 +39,18 @@ const MyCartPage = () => {
         )
     }
 
-    if (cartProducts.length === 0) {
-        return (
-           <>
-               <CustomBreadcrumbs links={links} label={'My Cart'}/>
-               <EmptyCart />
-           </>
-        )
-    }
 
     return (
-       <>
-           {cartProducts &&
+       <div style={{width: '90%', maxWidth: '1730px'}}>
+           <CustomBreadcrumbs links={links} label={'My Cart'}/>
+           <StyledTitle sx={{ alignSelf: 'flex-start'}} variant="h2" component={'h1'} >
+               My Cart
+           </StyledTitle>
+           {cartProducts.length === 0 ?  <>
+                   <EmptyCart />
+               </>
+               :
                <div style={{ width: '90%'}} >
-                   <StyledTitle sx={{ paddingX: '1rem'}} variant="h2" component={'h1'} >
-                       My Cart
-                   </StyledTitle>
-                   <CustomBreadcrumbs links={links} label={'My Cart'}/>
                    <Grid container spacing={3} style={{ justifyContent: 'space-between' }}>
                        <Grid item xs={12} md={7} lg={6}>
                            <ProductCartList cartProducts={cartProducts.cartItems}/>
@@ -71,7 +66,7 @@ const MyCartPage = () => {
 
                </div>
            }
-       </>
+       </div>
     )
 }
 

@@ -4,14 +4,13 @@ import ProductsList from '../components/ProductsList/ProductsList'
 import { StyledTitle } from "../themes/StyledPageTitle";
 import { Box, Container, CircularProgress} from '@mui/material'
 import { useWishlist} from '../hooks/useAppAPIs';
-import Typography from "@mui/material/Typography";
 import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import EmptyWishList from "../components/EmptyWishList/EmptyWishList";
 
 const Wishlist = () => {
 
    const {  data: wishlistProducts, isLoading ,error } = useWishlist();
 
-    console.log(wishlistProducts)
    if(isLoading)
    {
       return (
@@ -35,7 +34,7 @@ const Wishlist = () => {
 
            <CustomBreadcrumbs links={[{name: 'Home', path: '/'}]} label={'My Wishlist'} />
 
-           {wishlistProducts ? <ProductsList fill={true} products={wishlistProducts.wishlist}/> : <Typography variant={'h3'} component={'h3'}>Your Wishlist is Empty </Typography>}
+           {wishlistProducts ? <ProductsList fill={true} products={wishlistProducts.wishlist}/> : <EmptyWishList />}
        </Container>
    )
 }

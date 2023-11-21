@@ -2,21 +2,25 @@ import Card from "@mui/material/Card";
 import {Box, CardMedia, Typography, useMediaQuery} from "@mui/material";
 import Price from "../../../../utils/Price/Price";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 
 const ProductCartCard = (props) => {
 
     const {product} = props
 
+    const navigation = useNavigate();
+
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
     return (
-        <Card elevation={0} sx={{ display: 'flex', gap: '1rem', marginTop: '1rem',flexDirection: 'column', justifyContent: 'center' }}>
+        <Card  elevation={0} sx={{ display: 'flex', gap: '1rem', marginTop: '1rem',flexDirection: 'column', justifyContent: 'center' }}>
        <Box sx={{display: 'flex', gap: '12px'}}>
            <CardMedia
                component="img"
-               sx={{ width: 120, height: 120, borderRadius: '8px' }}
+               sx={{cursor: 'pointer', width: 120, height: 120, borderRadius: '8px' }}
                image={product.image}
                alt="product image"
+               onClick={() => navigation(`/products/${product.id}`)}
            />
            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-around' }}>
                <Typography component="h2" variant="body1">
