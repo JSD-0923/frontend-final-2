@@ -107,7 +107,7 @@ export const useAddToWishlist = (productId) => {
             }
         },
         onSuccess: () => {
-            console.log('added successfully');
+
         },
     });
 };
