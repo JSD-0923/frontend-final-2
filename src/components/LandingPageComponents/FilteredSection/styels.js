@@ -69,7 +69,6 @@ export const DefaultStyleBox = styled(Box)(() => ({
     flexDirection: 'column',
     alignSelf: 'flex-end',
     right: '1rem',
-
 }));
 
 export const BottomCard = styled(Card)(() => ({
