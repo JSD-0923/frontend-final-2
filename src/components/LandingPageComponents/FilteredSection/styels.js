@@ -69,7 +69,6 @@ export const DefaultStyleBox = styled(Box)(() => ({
     flexDirection: 'column',
     alignSelf: 'flex-end',
     right: '1rem',
-
 }));
 
 export const BottomCard = styled(Card)(() => ({
@@ -79,6 +78,7 @@ export const BottomCard = styled(Card)(() => ({
     alignItems: 'center',
     width: '100%',
     borderRadius: '10px',
+    cursor: 'pointer',
     // Mobile Small
     '@media (max-width: 425px)': {
         height: '100px'

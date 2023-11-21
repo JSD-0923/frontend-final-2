@@ -36,7 +36,7 @@ const FilteredSection = () => {
               Makeup & Skincare
           </Typography>
           <Grid item xs={12}  sx={{margin: '1rem'}}>
-              <Card onClick={handleAccessoriesCardClick } sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}  >
+              <Card onClick={handleAccessoriesCardClick } sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', cursor: 'pointer' }}  >
                   <CardMedia 
                       component="img"
                       image={require('../../../assets/images/filtterdSecton-1st-image.jpg')}
