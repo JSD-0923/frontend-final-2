@@ -1,49 +1,44 @@
 import Toolbar from "@mui/material/Toolbar";
-import {Box, Grid, List, ListItemButton, ListItemText, Typography, useMediaQuery} from "@mui/material";
+import { Box, Grid, List, ListItemButton, ListItemText, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
-
-import {ReactComponent as FacebookIcon} from '../../assets/icons/fbLogo.svg'
-import {ReactComponent as InstagramIcon} from '../../assets/icons/insta-logo.svg'
-import {ReactComponent as TwitterIcon} from '../../assets/icons/twitter-logo.svg'
-import {ReactComponent as YoutubeIcon} from '../../assets/icons/youtube-logo.svg'
-import {ReactComponent as LocationIcon} from '../../assets/icons/location.svg'
+import { ReactComponent as FacebookIcon } from '../../assets/icons/fbLogo.svg'
+import { ReactComponent as InstagramIcon } from '../../assets/icons/insta-logo.svg'
+import { ReactComponent as TwitterIcon } from '../../assets/icons/twitter-logo.svg'
+import { ReactComponent as YoutubeIcon } from '../../assets/icons/youtube-logo.svg'
+import { ReactComponent as LocationIcon } from '../../assets/icons/location.svg'
 import theme from "../../themes/customTheme";
 
-
 const FooterContainer = () => {
-
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const alignItemsValue = isSmallScreen ?'flex-start': 'flex-end'
-
+    const alignItemsValue = isSmallScreen ? 'flex-start' : 'flex-end'
     const ShopByCategoryListItems = [
         {
             text: 'Skincare',
-            path: '/'
+            path: '/products?categoryId=3'
         },
         {
             text: 'Personal Care',
-            path: '/'
+            path: '/products?categoryId=6'
         },
         {
             text: 'Handbags',
-            path: '/'
+            path: '/products?categoryId=1'
         },
         {
             text: 'Apparels',
-            path: '/'
+            path: '/products?categoryId=5'
         },
         {
             text: 'Watches',
-            path: '/'
+            path: '/products?categoryId=2'
         },
         {
             text: 'Eye Wear',
-            path: '/'
+            path: '/products?categoryId=7'
         },
         {
             text: 'Jewellery',
-            path: '/'
+            path: '/products?categoryId=4'
         },
     ]
     const ShopByProductsItems = [
@@ -74,20 +69,20 @@ const FooterContainer = () => {
         <Toolbar sx={FooterToolbarStyle}>
             <Grid container>
                 <Grid item xs={12} md={5}>
-                    <Box  sx={{width: '100%', display: 'flex', gap:'1rem'}}>
+                    <Box sx={{ width: '100%', display: 'flex', gap: '1rem' }}>
                         <Box  >
-                            <Typography sx={{ color: 'primary.contrastText'}} variant={'body1'} component={'h2'}>Shop by Category</Typography>
+                            <Typography sx={{ color: 'primary.contrastText' }} variant={'body1'} component={'h2'}>Shop by Category</Typography>
                             <List >
                                 {ShopByCategoryListItems.map((category) => (
                                     <ListItemButton
                                         key={category.text}
                                         href={category.path}
-                                        sx={{  margin: 0, padding: 0, marginTop: '8px' }}
+                                        sx={{ margin: 0, padding: 0, marginTop: '8px' }}
                                     >
                                         <ListItemText
                                             primary={
                                                 <Typography
-                                                    sx={{color:"lightText.main", fontWeight: 500}}
+                                                    sx={{ color: "lightText.main", fontWeight: 500 }}
                                                     variant={'body1'}
                                                     component={'h2'}
                                                 >
@@ -98,23 +93,25 @@ const FooterContainer = () => {
                             </List>
                         </Box>
                         <Box  >
-                            <Typography sx={{ color: 'primary.contrastText'}}
-                                        variant={'body1'}
-                                        component={'h2'}
+                            <Typography sx={{ color: 'primary.contrastText' }}
+                                variant={'body1'}
+                                component={'h2'}
                             >
-                                Shop by Category
+                                Shop by products
                             </Typography>
                             <List >
+
                                 {ShopByProductsItems.map((product) => (
                                     <ListItemButton
                                         key={product.text}
                                         href={product.path}
-                                        sx={{  margin: 0, padding: 0, marginTop: '8px' }}
+                                        sx={{ margin: 0, padding: 0, marginTop: '8px' }}
                                     >
+
                                         <ListItemText
                                             primary={
                                                 <Typography
-                                                    sx={{color:"lightText.main", fontWeight: 500}}
+                                                    sx={{ color: "lightText.main", fontWeight: 500 }}
                                                     variant={'body1'}
                                                     component={'h2'}
                                                 >
@@ -129,24 +126,24 @@ const FooterContainer = () => {
                 <Grid item xs={12} md={7}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: alignItemsValue }}  >
 
-                        <Box display="flex"  marginTop={2} marginX={-1}>
+                        <Box display="flex" marginTop={2} marginX={-1}>
 
                             <Box mx={1}>
                                 <FacebookIcon />
                             </Box>
                             <Box mx={1}>
-                                <InstagramIcon/>
+                                <InstagramIcon />
                             </Box>
                             <Box mx={1}>
-                                <TwitterIcon/>
+                                <TwitterIcon />
                             </Box>
                             <Box mx={1}>
-                                <YoutubeIcon/>
+                                <YoutubeIcon />
                             </Box>
                         </Box>
 
                         <Box display="flex" alignItems="center" marginTop={3}>
-                            <LocationIcon/>  <Typography variant={'h4'} component={'h2'} color={'primary.contrastText'}>United States</Typography>
+                            <LocationIcon />  <Typography variant={'h4'} component={'h2'} color={'primary.contrastText'}>United States</Typography>
                         </Box>
 
                         <Typography variant={'h4'} component={'span'} color={'lightText.main'} marginTop={2}>

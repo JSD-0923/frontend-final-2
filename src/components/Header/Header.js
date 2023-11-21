@@ -187,7 +187,6 @@ const Header = () => {
                   <>
                     <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
                     <UserIcon />
-                    <Typography sx={{ margin: '5px' }}>Hello Guest</Typography>
                     </IconButton>
                   </>
               )}
