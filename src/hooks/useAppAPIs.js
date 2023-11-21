@@ -283,7 +283,7 @@ export const useUser = () => {
 
     const getUserInfo = async () => {
         if (!user_token) {
-            return null; // No need to fetch user data if there's no token
+            return null;
         }
 
         const headers = {

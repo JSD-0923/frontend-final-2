@@ -5,7 +5,6 @@ export const StyledTitle = styled(Typography)(({ theme ,  sx}) => ({
     fontSize: '34px',
     color: theme.palette.primary.main,
     marginBottom: '20px',
-    marginTop: '20px',
 
     [theme.breakpoints.down('md')]: {
         fontSize: '20px',

@@ -26,7 +26,7 @@ const SubTitleStyle = {
 }
 const HeroItem = ({ item }) => {
     const navigate = useNavigate();
-    const StyledTitle = styled(Typography)(({ theme }) => ({
+    styled(Typography)(({ theme }) => ({
         padding: '20px',
         fontWeight: 'bold',
         color: theme.palette.primary.main,
@@ -36,12 +36,11 @@ const HeroItem = ({ item }) => {
             fontSize: '23px',
         },
 
-    }))
-
+    }));
     return (
         <Box
-            sx={{ position: 'relative', }}>
-            <img src={item.image} alt={item.title} style={{ width: '100%' }} />
+            sx={{ position: 'relative', margin: ['20px', '18px', '16px', '14px', '10px'] }}>
+            <img src={item.image} alt={item.title} style={{ width: '100%',borderRadius: '12px' }} />
 
             <Paper
                 sx={{
@@ -54,9 +53,9 @@ const HeroItem = ({ item }) => {
                     backgroundColor: 'rgba(222, 222, 222, 0.7)',
                 }}>
 
-                <StyledTitle variant={"h2"}>
+                <Typography color={"primary.main"} variant={"h2"}>
                     {item.title}
-                </StyledTitle>
+                </Typography>
 
                 <Typography sx={SubTitleStyle} variant={'h3'}>
                     {item.subtitle}
@@ -74,3 +73,4 @@ const HeroItem = ({ item }) => {
 }
 
 export default HeroItem
+

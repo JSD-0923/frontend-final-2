@@ -16,7 +16,7 @@ const HandpickedCard = (props) => {
         <div>
             <Card sx={HandPickedCardStyle} onClick={()=>navigate(`/products?categoryId=${collection.id}&minRating=4.5&maxPrice=100`)}>
                 <CardMedia
-                    sx={{ height: '100%', width: 'cover' }}
+                    sx={{ height: '100%'}}
                     component="img"
                     image={collection.image}
                 />

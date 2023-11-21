@@ -16,7 +16,7 @@ const BrandItem = ({brand}) => {
             <CardMedia onClick={() => navigate(`/products?brandId=${brand.id}`)}
                 component="img"
                 image={brand.image}
-                style={{ width: '50%', height: 'auto' }}
+                style={{ width: '80%', height: 'auto' }}
             />
         </BrandCard>
 

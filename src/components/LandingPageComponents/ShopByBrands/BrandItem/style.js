@@ -6,7 +6,6 @@ export const BrandCard = styled(Card)(({ theme }) => ({
     borderRadius: '16px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
     marginBottom: '1rem',
     boxShadow: 'none',
     // Mobile Small

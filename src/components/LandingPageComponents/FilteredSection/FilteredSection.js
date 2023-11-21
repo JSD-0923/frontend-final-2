@@ -1,8 +1,7 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import {Card, CardMedia, Grid, Typography} from "@mui/material";
 import {ReactComponent as ArrowIcon} from "../../../assets/icons/arrow.svg";
 import {useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
 import {
     BottomCard,
     DefaultStyleBox,
@@ -19,11 +18,11 @@ const FilteredSection = () => {
     const navigate = useNavigate()
 
     const handleAccessoriesCardClick = () => {
-        navigate("/products?categoryId=4");
+        navigate("/products?minDiscount=35&random=true&categoryId=4");
     };
 
     const handleSkincareCardClick = () => {
-        navigate("/products?categoryId=3");
+        navigate("/products?minDiscount=35&random=true&categoryId=3");
     };
 
   return (
@@ -32,11 +31,11 @@ const FilteredSection = () => {
           <Typography
               component={'h2'}
               variant={'h2'}
-              sx={{marginLeft: '1rem'}}
+              sx={{marginLeft: '2rem'}}
           >
               Makeup & Skincare
           </Typography>
-          <Grid item xs={12}  sx={{marginBottom: 2}}>
+          <Grid item xs={12}  sx={{margin: '1rem'}}>
               <Card onClick={handleAccessoriesCardClick } sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',  borderRadius: '8px', }}  >
                   <CardMedia 
                       component="img"
@@ -53,39 +52,41 @@ const FilteredSection = () => {
                       </LifeStyleBox>
               </Card>
           </Grid>
-          <Grid item xs={6}>
-              <BottomCard onClick={handleSkincareCardClick }>
-                  <CardMedia
-                      sx={{ height: '100%', width: 'cover' }}
-                      component="img"
-                      image={require('../../../assets/images/Group 139.png')}
-                  />
-                  <DefaultStyleBox>
-                      <DefaultTypographyH2 component={"h2"} sx={{color: '#A53F64'}} dir="rtl">
-                          Skincare Essentials
-                      </DefaultTypographyH2>
-                      <DefaultTypographyH2 component={"h2"} sx={{color: '#A53F64'}} dir="rtl">
-                          <ArrowIcon />
-                      </DefaultTypographyH2>
-                  </DefaultStyleBox>
-              </BottomCard>
-          </Grid>
-          <Grid item xs={6}>
-              <BottomCard onClick={handleSkincareCardClick }> 
-                  <CardMedia
-                      sx={{ height: '100%', width: 'cover' }}
-                      component="img"
-                      image={require('../../../assets/images/skincare 1.jpg')}
-                  />
-                  <DefaultStyleBox>
-                      <DefaultTypographyH2 component={"h2"} sx={{color: 'primary.main'}} dir="rtl">
-                          Facepacks & Peels
-                      </DefaultTypographyH2>
-                      <DefaultTypographyH2 component={"h2"} sx={{color: 'primary.main'}} dir="rtl">
-                          <ArrowIcon />
-                      </DefaultTypographyH2>
-                  </DefaultStyleBox>
-              </BottomCard>
+          <Grid container sx={{margin: '1rem'}} spacing={2}>
+              <Grid item xs={6}>
+                  <BottomCard onClick={handleSkincareCardClick }>
+                      <CardMedia
+                          sx={{ height: '100%', width: 'cover' }}
+                          component="img"
+                          image={require('../../../assets/images/Group 139.png')}
+                      />
+                      <DefaultStyleBox>
+                          <DefaultTypographyH2 component={"h2"} sx={{color: '#A53F64'}} dir="rtl">
+                              Skincare Essentials
+                          </DefaultTypographyH2>
+                          <DefaultTypographyH2 component={"h2"} sx={{color: '#A53F64'}} dir="rtl">
+                              <ArrowIcon />
+                          </DefaultTypographyH2>
+                      </DefaultStyleBox>
+                  </BottomCard>
+              </Grid>
+              <Grid item xs={6}>
+                  <BottomCard onClick={handleSkincareCardClick }>
+                      <CardMedia
+                          sx={{ height: '100%', width: 'cover' }}
+                          component="img"
+                          image={require('../../../assets/images/skincare 1.jpg')}
+                      />
+                      <DefaultStyleBox>
+                          <DefaultTypographyH2 component={"h2"} sx={{color: 'primary.main'}} dir="rtl">
+                              Facepacks & Peels
+                          </DefaultTypographyH2>
+                          <DefaultTypographyH2 component={"h2"} sx={{color: 'primary.main'}} dir="rtl">
+                              <ArrowIcon />
+                          </DefaultTypographyH2>
+                      </DefaultStyleBox>
+                  </BottomCard>
+              </Grid>
           </Grid>
 
       </Grid>
