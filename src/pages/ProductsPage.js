@@ -70,7 +70,7 @@ const ProductsPage = () => {
     }
 
     return (
-        <Container maxWidth='xl'>
+        <Container sx={{marginTop: '2rem', display: 'flex', flexDirection: 'column'}} maxWidth='1780px'>
             <img alt={'pic'} src={imghero} width='100%' />
             <CustomBreadcrumbs links={links} label={title} />
             {title && (
@@ -83,7 +83,7 @@ const ProductsPage = () => {
                 <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
                     <Pagination count={pages.length} page={page} onChange={handleChange} shape="rounded" color="primary" hidePrevButton hideNextButton />
                 </Box>
-                {products.products.length > 1 &&<Button onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
+                {pageContent.length ===20 &&<Button onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
                 }
             </Box>
         </Container>
