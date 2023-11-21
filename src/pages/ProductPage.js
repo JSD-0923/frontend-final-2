@@ -5,8 +5,8 @@ import ProductPanel from "../components/ProductPageComponents/ProductPanel/Produ
 import ProductTaps from "../components/ProductPageComponents/ProductTaps/ProductTaps";
 import {useProduct} from "../hooks/useAppAPIs";
 import {useParams} from "react-router-dom";
-import CircularProgress from '@mui/material/CircularProgress';
 import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import LoadingProgress from "../components/Loading/LoadingProgress";
 
 const ProductPage = () => {
 
@@ -17,11 +17,7 @@ const ProductPage = () => {
 
     if (isLoading) {
         return (
-            <div style={{  }}>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
-                    <CircularProgress />
-                </Box>
-            </div>
+            <LoadingProgress/>
         )
     }
 
@@ -45,21 +41,25 @@ const ProductPage = () => {
             path: `/products?categoryId=${product.category.id}`
         },
     ]
+
     return (
-        <>
-            <CustomBreadcrumbs links={links} label={product.name}/>
-            {product &&
-                <>
-                    <Paper elevation={0} sx={{marginTop: '1rem'}} >
-                        <Grid container spacing={5}>
-                            <Grid item xs={12} md={6} lg={6}><ProductImageGallery productImage ={product.image}/></Grid>
-                            <Grid item xs={12} md={6} lg={6}><ProductPanel product={product}/></Grid>
-                            <Grid item xs={12}> <ProductTaps description={product.description}  reviews={product.reviewCount}/></Grid>
-                        </Grid>
-                    </Paper>
-                </>
-            }
-        </>
+
+           <div style={{margin: '1rem'}}>
+               <div style={{padding: '1rem'}}>
+                   <CustomBreadcrumbs links={links} label={product.name}/>
+               </div>
+               {product &&
+                   <>
+                       <Paper elevation={0}  >
+                           <Grid container spacing={5}>
+                               <Grid item xs={12} md={6} lg={6}><ProductImageGallery productImage ={product.image}/></Grid>
+                               <Grid item xs={12} md={6} lg={6}><ProductPanel product={product}/></Grid>
+                               <Grid item xs={12}> <ProductTaps description={product.description}  reviews={product.reviewCount}/></Grid>
+                           </Grid>
+                       </Paper>
+                   </>
+               }
+           </div>
     )
 }
 

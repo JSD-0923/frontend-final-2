@@ -3,14 +3,16 @@ import {Link} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import {ReactComponent as NavigateNextIcon} from "../../assets/icons/next-icon.svg";
-import {Breadcrumbs} from "@mui/material";
+import {Breadcrumbs, useMediaQuery} from "@mui/material";
 const CustomBreadcrumbs = (props) => {
 
-    const routerLinkStyle = {textDecoration: 'none', color: '#1B4B66', fontSize: '16px'}
+    const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
+
+    const routerLinkStyle = {textDecoration: 'none', color: '#1B4B66', fontSize: isSmallScreen ?'13px': '16px'}
 
     const {links, label} = props
 return (
-    <Breadcrumbs separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start',marginBottom: '1rem', marginTop: '24px'}}>
+    <Breadcrumbs maxItems={isSmallScreen ? 2 : 1000} separator={<NavigateNextIcon />} aria-label="breadcrumb" sx={{display: 'flex', justifyContent: 'flex-start', alignSelf: 'flex-start',marginBottom: '1rem', marginTop: '24px'}}>
         {links.map(link =>
             {
                 return (
