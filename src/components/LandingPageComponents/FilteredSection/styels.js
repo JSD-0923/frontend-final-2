@@ -79,6 +79,7 @@ export const BottomCard = styled(Card)(() => ({
     alignItems: 'center',
     width: '100%',
     borderRadius: '10px',
+    cursor: 'pointer',
     // Mobile Small
     '@media (max-width: 425px)': {
         height: '100px'

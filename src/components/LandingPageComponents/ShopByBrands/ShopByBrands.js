@@ -17,7 +17,7 @@ const ShopByBrands = () => {
                     Shop by Brands
                 </Typography>
 
-            <Paper elevation={0} sx={{ marginTop: '1rem', display: 'flex',alignSelf: 'center', width: '100%', marginBottom: '3rem' }}>
+            <Paper elevation={0} sx={{ marginTop: '1rem', display: 'flex',alignSelf: 'center', width: '100%', marginBottom: '3rem',  cursor: 'pointer' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width:'100%', gap: "40px" }}>
                     {brands?.map(brand => {
                         return (

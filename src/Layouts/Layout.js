@@ -9,7 +9,7 @@ const Layout = () => {
         <div >
 
             <Header/>
-            <main style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 'auto', maxWidth:'1728px' }}>
+            <main style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 'auto'}}>
             <Outlet />
             </main>
             <Footer/>
