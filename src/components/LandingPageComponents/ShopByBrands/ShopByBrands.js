@@ -1,33 +1,24 @@
 import React from 'react';
 import BrandItem from './BrandItem/BrandItem';
-import { Box, Button, Paper, Typography, useMediaQuery } from "@mui/material";
-import { BrandMockData } from "./brandMockData";
-import theme from "../../../themes/customTheme";
+import {  Paper, Typography } from "@mui/material";
 import { useLandingProducts } from '../../../api/query'
 import { forwardRef } from 'react';
 
 const ShopByBrands = () => {
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const { data: brands, isLoading, isError } = useLandingProducts('brands');
+
+    const { data: brands} = useLandingProducts('brands');
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-            }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1280px', alignSelf: 'center', marginTop: '2rem' }}>
                 <Typography
                     component={'h2'}
                     variant={'h2'}
-                    sx={{ marginLeft: '1rem' }}
+                    sx={{marginLeft: '1rem', marginBottom: '20px'}}
                 >
                     Shop by Brands
                 </Typography>
-                {isSmallScreen && <Button style={{ textTransform: 'none', alignSelf: 'flex-end' }}>View all </Button>}
-            </Box>
 
-            <Paper elevation={0} sx={{ marginTop: '1rem' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+            <Paper elevation={0} sx={{ marginTop: '1rem', display: 'flex',alignSelf: 'center', width: '100%', marginBottom: '3rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width:'100%', gap: "40px" }}>
                     {brands?.map(brand => {
                         return (
                             <BrandItem key={brand.id} brand={brand} />

@@ -1,121 +1,61 @@
 import React from 'react'
 import ProductCard from '../../../utils/ProductCard/ProductCard'
-import { Typography, Paper, Box, Rating, useMediaQuery, Grid, Container } from '@mui/material'
+import {Typography, Box, Rating, useMediaQuery} from '@mui/material'
 import { Button } from '@mui/material'
 import Price from "../../../utils/Price/Price";
 import { useProducts } from '../../../hooks/useAppAPIs';
 import { useNavigate } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import LoadingProgress from "../../Loading/LoadingProgress";
 
 const NewArrival = () => {
   const navigate = useNavigate();
-  const { data: NewArrival } = useProducts('?createdWithin=2023-11-13');
+  const { data: NewArrival, isLoading } = useProducts('?limit=4&createdWithin=2023-11-13&offset=160');
 
   const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
   const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
-  const NewArrivalHeaderStyled = {
-    fontSize: '30px',
-    fontWeight: '400',
-    pt: '30px',
-    pb: '10px',
-    color: 'dark.main',
 
-    '@media (min-width: 320px) and (max-width: 425px)': {
-      fontSize: '25px',
-      paddingTop: '-5px',
-      paddingButtom: '0px',
-
-    },
+  if (isLoading) {
+      return (
+          <LoadingProgress />
+      )
   }
   return (
-    <Container maxWidth='xl'>
-      <Paper
-        sx={{
-          boxShadow: 'none'
-        }}>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <Typography variant='h3' component='div'
-            sx={NewArrivalHeaderStyled}>
-            New Arrival
-          </Typography>
 
-          <Button color="secondary" endIcon={<ArrowForwardIosIcon />} onClick={() => navigate(`/products?createdWithin=2023-11-13`)}
-            sx={{
-              mt: '40px',
-              mb: '20px',
-              color: 'darkTeal.main'
-            }}>View All</Button>
+    <Box sx={{ marginLeft: '20px',marginRight: '1rem', display: 'flex', flexDirection: 'column', alignSelf: 'center' }}>
+        <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px'}}>
+            <Typography sx={{color: 'dark.main'}} variant="h2" component={'h3'} >
+                New Arrivals
+            </Typography>
+          <Button style={{ textTransform: 'none', alignSelf: 'flex-end', fontSize: '16px' }} onClick={() => navigate(`/products?createdWithin=2023-11-13`)} endIcon={<ArrowForwardIosIcon/>}>View all </Button>
         </Box>
-        <Grid container spacing={3}>
-          {NewArrival?.products.slice(0, 4).map((product, index) => (
-            <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignSelf: 'center', marginTop: '1rem' }}>
+          {NewArrival?.products.map((product, index) => (
+            <Box onClick={() => navigate(`/products/${product.id}`)} key={index} sx={{ margin: '1rem',cursor: 'pointer' }} >
               <ProductCard
                 image={product.image}
                 item={product}
                 title={product.name}
                 description={product.highlight}
                 variant={{ title: 'h5', body: 'body2' }}
-                width={260}
+                width={[ '110px','150px','200px', '275px'] }
+                imageSx={{ height: [ '110px','150px','200px', '275px'] }}
               />
-              <Box sx={{ marginLeft: '1rem' }}>
-                <Price variant={{ price: 'body1', Off: 'body1' }} />${product.price}
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px', marginLeft: '1rem' }}>
+                {
+                  product.rating && !isSmallScreen && !isMediumScreen &&
+                  <Rating name="half-rating-read" value={product.rating} precision={0.5} readOnly />
+                }
+                <Box sx={{marginTop: '-1rem'}}>
+                    <Price originalPrice={product.price} discountRate={0}  variant={{ price: 'body1', Off: 'body1' }} />
+                </Box>
               </Box>
-            </Grid>
+
+            </Box>
+
           ))}
-        </Grid>
-      </Paper>
-    </Container>
-    // // <Box sx={{ marginBottom: '1rem', marginTop: '1rem' }}>
-    //   <Paper
-    //     elevation={0}
-
-    //   >
-    //     <Box sx={{
-    //       display: 'flex',
-    //       justifyContent: 'space-between',
-    //       alignItems: 'center',
-    //     }}>
-    //       <Typography
-    //         component={'h2'}
-    //         variant={'h2'}
-    //         sx={{ marginLeft: '1rem' }}
-    //       >
-    //         New Arrivals
-    //       </Typography>
-    //       <Button style={{ textTransform: 'none', alignSelf: 'flex-end' }} onClick={() => navigate(`/products?createdWithin=2023-11-13`)}>View all </Button>
-    //     </Box>
-    //     <Box sx={{ display: 'flex' }}>
-    //       {NewArrival?.products.slice(0, 4).map((product, index) => (
-    //         <Box key={index} sx={{ margin: '1rem' }}>
-    //           <ProductCard
-    //             image={product.image}
-    //             item={product}
-    //             title={product.name}
-    //             description={product.highlight}
-    //             variant={{ title: 'h5', body: 'body2' }}
-    //             width={260}
-    //           />
-    //           <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px', marginLeft: '1rem' }}>
-    //             {
-    //               product.rating && !isSmallScreen && !isMediumScreen &&
-    //               <Rating name="half-rating-read" value={product.rating} precision={0.5} readOnly />
-    //             }
-    //           </Box>
-    //           <Box sx={{ marginLeft: '1rem' }}>
-    //             <Price  variant={{ price: 'body1', Off: 'body1' }} />${product.price}
-    //           </Box>
-
-    //         </Box>
-
-    //       ))}
-    //     </Box>
-    //   </Paper>
-    // // </Box>
+        </Box>
+     </Box>
   )
 }
 

@@ -5,25 +5,27 @@ import {ReactComponent as FilledFavoriteIcon} from "../../assets/icons/Fill-favo
 
 const ProductCard = (props) => {
 
-    const { image, title, description, width, variant, addToFavourite=true, onClick, fill=false} = props
+    const { image, title, description, width, variant, addToFavourite=true, onClick, fill=false, imageSx} = props
 
     const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
     const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
-
-    let _width = width || 280
-    if (isSmallScreen) {
-        _width = width*0.5 || 135
-    }
-    if (isMediumScreen) {
-        _width = width*0.75 || 210
-    }
+    let _width = width
+   if(!Array.isArray(_width)) {
+        _width = width || 280
+       if (isSmallScreen) {
+           _width = width*0.5 || 135
+       }
+       if (isMediumScreen) {
+           _width = width*0.75 || 210
+       }
+   }
 
     return (
     <Card sx={{ width: _width, boxShadow: "none", margin: 0 }}>
         {image &&
             <CardMedia
                 component="img"
-                sx={{ height: '200px',objectFit:'cover', width: '100%', borderRadius: '8px' }}
+                sx={{objectFit:'cover', width: '100%', borderRadius: '8px', ...imageSx }}
                 image={image}
             />
         }

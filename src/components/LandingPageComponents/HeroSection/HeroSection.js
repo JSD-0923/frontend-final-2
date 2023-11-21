@@ -11,17 +11,13 @@ const HeroSection = () => {
       },
     },
   };
-
-  const bannerImages = [
-    {image: require('../../../assets/bannersImages/banner-1.png')},
-  ]
   return (
 
-    <Carousel maxWidth='xl' sx={{ borderRadius: "10px", margin: '1rem', width: '100%' }} {...settings}>
-      {
-        Items.map((item, i) => <HeroItem key={i} item={item} />)
-      }
-    </Carousel>
+      <Carousel maxWidth='xl' sx={{ borderRadius: "10px",  width: '100%',marginBottom: '2rem' }} {...settings}>
+        {
+          Items.map((item, i) => <HeroItem key={i} item={item} />)
+        }
+      </Carousel>
 
   )
 }

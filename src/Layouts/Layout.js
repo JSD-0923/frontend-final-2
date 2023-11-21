@@ -9,11 +9,10 @@ const Layout = () => {
         <div >
 
             <Header/>
-            <main style={{ maxWidth: '1920px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 'auto' }}>
+            <main style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 'auto', maxWidth:'1728px' }}>
             <Outlet />
             </main>
             <Footer/>
-            
         </div>
     )
 }

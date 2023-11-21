@@ -17,13 +17,16 @@ export const HandPickedCardStyle = {
     '@media (min-width: 425px)': {
         height: '150px'
     },
-    '@media (min-width: 768px)': {
-        height: '140px'
+    '@media (min-width: 768px) and (max-width: 1000px)': {
+        height: '150px'
+    },
+    '@media (min-width: 1001px) and (max-width: 1220px)': {
+        height: '200px'
     },
 
-    '@media (min-width: 1024px)': {
-        width: '240px',
-        height: '240px'
+    '@media (min-width: 1221px)': {
+        width: '275px',
+        height: '275px'
     },
 }
 

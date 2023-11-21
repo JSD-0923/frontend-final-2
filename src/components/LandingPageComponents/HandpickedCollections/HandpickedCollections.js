@@ -2,11 +2,11 @@ import React from 'react'
 import HandpickedCard from './HandpickedCard/HandpickedCard'
 import { Box, Paper, Typography } from "@mui/material";
 import { HandpickedCollectionsStyledBox, HandpickedCollectionsStyledPaper } from "./style";
-import { HandpickedCollectionsData } from "./HandpickedCollectionsMock";
 import { useLandingProducts } from '../../../api/query'
+import LoadingProgress from "../../Loading/LoadingProgress";
 const HandpickedCollections = () => {
 
-    const { data: Handpicked, isLoading, isError } = useLandingProducts('categories');
+    const { data: Handpicked, isLoading } = useLandingProducts('categories');
     let filteredHandpicked = []
     if (Handpicked) {
         filteredHandpicked = Handpicked.filter(item => {
@@ -15,18 +15,23 @@ const HandpickedCollections = () => {
     }
     return (
         <Paper sx={HandpickedCollectionsStyledPaper}>
-            <Typography
-                component={'h2'}
-                variant={'h2'}
-                sx={{ margin: '1rem', color: 'primary.contrastText' }}
-            >
-                Handpicked Collections
-            </Typography>
-            <Box sx={HandpickedCollectionsStyledBox}>
-                {filteredHandpicked?.map((item) =>
-                    <HandpickedCard key={item.id} collection={item} />
-                )}
+            {isLoading &&  <div>
+                <LoadingProgress />
+            </div>}
+            <Box sx={{display: 'flex', flexDirection: 'column', maxWidth: '1280px', alignSelf: 'center'}}>
+                <Typography
+                    component={'h2'}
+                    variant={'h2'}
+                    sx={{ marginLeft: '1rem', color: 'primary.contrastText', marginTop: '2rem', marginBottom: '2rem' }}
+                >
+                    Handpicked Collections
+                </Typography>
+                <Box sx={HandpickedCollectionsStyledBox}>
+                    {filteredHandpicked?.map((item) =>
+                        <HandpickedCard key={item.id} collection={item} />
+                    )}
 
+                </Box>
             </Box>
         </Paper>
     )
