@@ -5,8 +5,6 @@ import ProductsPage from "../pages/ProductsPage";
 import ProductPage from "../pages/ProductPage";
 import MyCartPage from "../pages/MyCartPage";
 import CheckoutPage from "../pages/CheckoutPage";
-import UserProfilePage from "../pages/UserProfilePage";
-import MyOrdersPage from "../pages/MyOrdersPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -15,6 +13,8 @@ import SignUpPage from "../pages/SignUpPage";
 import AuthRoute from "../components/AuthRoute/AuthRoute";
 import {AuthRouteLoader, SignInLoader} from "../utils/loaders";
 import Wishlist from "../pages/Wishlist";
+import UserProfileLayout from "../pages/UserProfilePage";
+import PersonalInfoPage from "../pages/PersonalInfoPage";
 
 
 export const router = createBrowserRouter([
@@ -36,12 +36,19 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "/user-profile",
-                        element: <UserProfilePage />,
+                        element: <UserProfileLayout />,
+                        children: [
+                            {
+                                path: "info",
+                                element: <PersonalInfoPage />,
+                            },
+                            {
+                                path: "sign",
+                                element: <SignUpPage />,
+                            },
+                        ],
                     },
-                    {
-                        path: "/my-orders",
-                        element: <MyOrdersPage />,
-                    },
+
                     {
                         path: "/my-orders/:id",
                         element: <OrderDetailsPage />,
