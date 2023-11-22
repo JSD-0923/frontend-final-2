@@ -9,10 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { SearchBox } from '../SearchBox/SearchBox';
-import SearchIcon from '@mui/icons-material/Search';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { ReactComponent as CoralLogo } from "../../assets/icons/coral-logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useLandingProducts } from '../../api/query'
@@ -174,7 +171,7 @@ const Header = () => {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
+                <MenuItem onClick={() => { navigate('/user-profile/info'); handleClose(); }}>View Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </>
