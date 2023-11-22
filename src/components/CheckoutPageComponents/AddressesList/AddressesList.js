@@ -57,9 +57,9 @@ const AddressesList = (props) => {
                     <Typography variant={'h3'} component={'h2'} color={'TypeLowEmphasis.main'}>Addresses list:</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{margin: '1rem'}}>
-                    {!addresses && <Typography>No addresses yet, please add one at least!</Typography>}
+                    {!addresses && <Typography sx={{marginBottom: '1rem'}}>No addresses yet, please add one at least!</Typography>}
                     <Grid container spacing={2}>
-                        {addresses?.addresses.map((address) => (
+                        {addresses && addresses.addresses.map((address) => (
                             <UserAddress
                                 key={address.id}
                                 address={address}
