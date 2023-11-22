@@ -10,7 +10,8 @@ import Button from "@mui/material/Button";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useLogout} from "../hooks/useAppAPIs";
 import {Outlet, useNavigate} from "react-router-dom";
-import {Grid} from "@mui/material";
+import { Grid} from "@mui/material";
+
 
 
 const tabLabels = [
@@ -59,13 +60,15 @@ function a11yProps(index) {
 const UserProfileLayout = () => {
     const [value, setValue] = React.useState(0);
 
+
     const navigate = useNavigate();
     const userMutation = useLogout();
     const handleChange = (event, newValue) => {
         setValue(newValue);
 
-        const paths = ["/user-profile/info", "/user-profile/sign"];
+        const paths = ["/user-profile/info", "/user-profile/refer", "/user-profile/orders", "/user-profile/reviews","/user-profile/addresses", "/user-profile/cards"];
         navigate(paths[newValue]);
+
     };
 
     const handleLogout = async () => {
@@ -121,14 +124,13 @@ const UserProfileLayout = () => {
                        <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>Personal Information <NavigateNextIcon /></div>}{...a11yProps(0)} />
                        <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>Refer and Earn <NavigateNextIcon /></div>} {...a11yProps(1)} />
                        <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Orders <NavigateNextIcon /></div>} {...a11yProps(2)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Wishlist <NavigateNextIcon /></div>} {...a11yProps(3)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Reviews <NavigateNextIcon /></div>} {...a11yProps(4)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Address Book <NavigateNextIcon /></div>} {...a11yProps(5)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Saved Cards <NavigateNextIcon /></div>} {...a11yProps(6)} />
+                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Reviews <NavigateNextIcon /></div>} {...a11yProps(3)} />
+                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Address Book <NavigateNextIcon /></div>} {...a11yProps(4)} />
+                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Saved Cards <NavigateNextIcon /></div>} {...a11yProps(5)} />
                    </Tabs>
                </Grid>
                  <Grid item xs={9}>
-                     <TabPanel value={value} index={0}>
+                     <TabPanel value={value} index={value}>
                          <Outlet/>
                      </TabPanel>
                  </Grid>

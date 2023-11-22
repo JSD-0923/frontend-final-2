@@ -10,6 +10,7 @@ export const SearchBox = () => {
 
         if (event.key === 'Enter') {
             handleProductsPage();
+            setUserInput('')
         }
     }
     const handleUserInput = (event) => {

@@ -174,7 +174,7 @@ const Header = () => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
+                            <MenuItem onClick={() => { navigate('/user-profile/info'); handleClose(); }}>View Profile</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </>

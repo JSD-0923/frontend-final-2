@@ -1,13 +1,8 @@
-import OrdersList from "../components/MyOrdersPageComponents/OrdersList/OrdersList";
-
 const MyOrdersPage = () => {
 
     return (
        <div>
-           <h3>this is breadcrumbs Comp</h3>
-           <h3>this is My Orders</h3>
-           <h3>this is search bar</h3>
-           <OrdersList />
+        <h2>orders page</h2>
        </div>
     )
 }

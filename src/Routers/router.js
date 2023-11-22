@@ -13,8 +13,10 @@ import SignUpPage from "../pages/SignUpPage";
 import AuthRoute from "../components/AuthRoute/AuthRoute";
 import {AuthRouteLoader, SignInLoader} from "../utils/loaders";
 import Wishlist from "../pages/Wishlist";
-import UserProfileLayout from "../pages/UserProfilePage";
+import UserProfileLayout from "../pages/UserProfileLayout";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
+import MyOrdersPage from "../pages/MyOrdersPage";
+import AddressesPage from "../pages/AddressesPage";
 
 
 export const router = createBrowserRouter([
@@ -43,9 +45,24 @@ export const router = createBrowserRouter([
                                 element: <PersonalInfoPage />,
                             },
                             {
-                                path: "sign",
-                                element: <SignUpPage />,
+                                path: "refer",
+                                element: <NotFoundPage />,
                             },
+                            {
+                                path: "orders",
+                                element: <MyOrdersPage />,
+                            },{
+                                path: "reviews",
+                                element: <NotFoundPage />,
+                            },
+                            {
+                                path: "addresses",
+                                element: <AddressesPage />,
+                            },
+                            {
+                                path: "cards",
+                                element: <NotFoundPage />,
+                            }
                         ],
                     },
 
