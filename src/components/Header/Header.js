@@ -151,10 +151,10 @@ const Header = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ backgroundColor: 'accent.main', flexGrow: 1, display: { xs: 'none', md: 'flex' }, width: '362px', height: '44px', mr: '15px' }}>
+          <Box sx={{ backgroundColor: 'accent.main', flexGrow: 1, display: { xs: 'flex', md: 'flex' }, width: '362px', height: '44px', mr: '15px' }}>
             <SearchBox />
           </Box>
-            <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'flex' } }}>
                 <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
                     <FavoriteBorderIcon />
                 </IconButton>
@@ -189,7 +189,7 @@ const Header = () => {
                 </Link>
             </Box>
 
-          <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
 
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '20px', color: 'primary.main', }}>
               <AddBoxOutlinedIcon />
@@ -202,7 +202,7 @@ const Header = () => {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: '20px', color: 'primary.main', }}>
               <NotificationsNoneOutlinedIcon />
             </IconButton>
-          </Box>
+          </Box> */}
         </Toolbar>
     </AppBar>
   );
