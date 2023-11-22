@@ -21,6 +21,7 @@ import {ReactComponent as FillUserIcon} from "../../assets/icons/profile-fill.sv
 import {ReactComponent as EmptyCartIcon} from "../../assets/icons/empty-cart.svg";
 import {useLogout, useUser} from "../../hooks/useAppAPIs";
 import {useState} from "react";
+import Link from "@mui/material/Link";
 
 
 const Header = () => {
@@ -153,49 +154,40 @@ const Header = () => {
           <Box sx={{ backgroundColor: 'accent.main', flexGrow: 1, display: { xs: 'none', md: 'flex' }, width: '362px', height: '44px', mr: '15px' }}>
             <SearchBox />
           </Box>
-          <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, }}>
+            <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
+                    <FavoriteBorderIcon />
+                </IconButton>
 
-
-            <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
-              <FavoriteBorderIcon />
-            </IconButton>
-
-              {userData ? (
-                  <>
-                      <IconButton
-                          onClick={handleClick}
-                      >
-                          <FillUserIcon />
-                          <Typography sx={{ marginLeft: '5px', marginRight: '5px' }}>Hello {userData.firstName}</Typography>
-                      </IconButton>
-                      <Menu
-                          id="basic-menu"
-                          anchorEl={anchorEl}
-                          open={Boolean(anchorEl)}
-                          onClose={handleClose}
-                          MenuListProps={{
-                              'aria-labelledby': 'basic-button',
-                          }}
-                      >
-                          <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
-                          <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                      </Menu>
-
-                  </>
-              ) : (
-                  <>
-                    <IconButton onClick={()=> navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main', }}>
-                    <UserIcon />
+                {userData ? (
+                    <>
+                        <IconButton onClick={handleClick} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
+                            <FillUserIcon />
+                        </IconButton>
+                        <Typography sx={{ display: 'block', marginTop: '10px',marginRight: '5px', color: 'primaryTint.main' }}>Hello {userData.firstName}</Typography>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={() => { navigate('/user-profile'); handleClose(); }}>View Profile</MenuItem>
+                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        </Menu>
+                    </>
+                ) : (
+                    <IconButton onClick={() => navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
+                        <UserIcon />
                     </IconButton>
-                  </>
-              )}
+                )}
 
-
-
-            <IconButton onClick={()=>navigate('/my-cart')} sx={{ p: 0, color: 'primary.main', }}>
-              <EmptyCartIcon />
-            </IconButton>
-          </Box>
+                <Link href={'/my-cart'} sx={{ marginTop: '8px', display: 'block' }}>
+                    <EmptyCartIcon />
+                </Link>
+            </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
 

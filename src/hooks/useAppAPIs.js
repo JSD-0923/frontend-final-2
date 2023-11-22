@@ -33,7 +33,6 @@ export const useProduct = (id) => {
 // Add Product to Cart
 
 export const useAddToCart = (productId, quantity) => {
-// const token = getToken()
     return useMutation({
         mutationFn: async () => {
             try {
@@ -52,7 +51,7 @@ export const useAddToCart = (productId, quantity) => {
             }
         },
         onSuccess: () => {
-            console.log('added successfully');
+
         },
     });
 };
@@ -222,7 +221,6 @@ export const useAddAddress = () => {
 // Place Order
 
 export const usePutOrder = () => {
-    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async () => {
@@ -236,10 +234,6 @@ export const usePutOrder = () => {
             } catch (error) {
                 throw error;
             }
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries(['cart', 'get']);
-            console.log('Order placed successfully');
         },
     });
 };
@@ -388,5 +382,55 @@ export const useLogout = () => {
         }
     );
 };
+
+
+// add user address to the order
+export const useUpdateOrderInfo = () => {
+    return useMutation({
+        mutationFn: async ({ orderId, addressId }) => {
+            console.log('orderId', orderId);
+            console.log('addressId', addressId);
+            try {
+                const response = await apiAxios.put(`/orders/${orderId}/address`, { addressId }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+    });
+};
+
+
+// update order payment(complete order).
+export const useUpdateOrderPayment = () => {
+
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: async ({ orderId, paymentMethod }) => {
+            try {
+                const response = await apiAxios.put(`/orders/${orderId}/payment`, { paymentMethod }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+            console.log('Order placed successfully');
+        },
+    });
+};
+
+
+
 
 
