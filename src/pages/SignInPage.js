@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 import {useSignInUser, useUser} from "../hooks/useAppAPIs";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 const SignInPage = () => {
@@ -25,6 +26,7 @@ const SignInPage = () => {
 
     const { refetchUser } = useUser();
 
+    const singInLoading = userMutation.isLoading
     const onSubmit = async (data) => {
         try {
             const response = await userMutation.mutateAsync(data);
@@ -108,6 +110,7 @@ const SignInPage = () => {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        startIcon={singInLoading ? <CircularProgress sx={{color: 'white'}} size={'20px'}/> : null}
                     >
                         Sign In
                     </Button>

@@ -26,7 +26,8 @@ const ProductsPage = () => {
         if (products && !isLoading) {
             const calculatedPages = createPages(products.products, 20);
             setPages(calculatedPages);
-            setPageContent(calculatedPages[0]);
+
+            setPageContent(calculatedPages[0] || []);
         }
     }, [products, isLoading]);
 

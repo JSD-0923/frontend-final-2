@@ -32,7 +32,7 @@ const ProductCartList = (props) => {
             setLoadingRemoveButtonId(productId);
             const response = await RemoveFromCartMutation.mutateAsync(productId);
 
-            setMessage(response.message);
+            setMessage('Product deleted successfully from cart.');
             setSuccessAlertVisible(true);
 
         } catch (error) {
