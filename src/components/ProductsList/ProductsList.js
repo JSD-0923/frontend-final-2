@@ -31,7 +31,7 @@ const ProductsList = (props) => {
                           title={productItem.name}
                           description={productItem.highlight}
                           variant={{ title: 'body1', body: 'h6' }}
-                          width={330}
+                          width={285}
                           onClick={onClick}
                           fill={fill}
                       />

@@ -15,6 +15,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {useSignUp} from "../hooks/useAppAPIs";
 import {useState} from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Copyright(props) {
     return (
@@ -37,12 +38,14 @@ export default function SignUpPage() {
     const signUpMutation = useSignUp();
     const { handleSubmit, control, formState: { errors } } = useForm();
 
+    const signUpLoading = signUpMutation.isLoading
+
     const onSubmit = async (data) => {
         try {
             await signUpMutation.mutateAsync(data);
 
             console.log('Sign-up successful!');
-            navigate('/');
+            navigate('/sign-in');
         } catch (error) {
             setErrorMsg(error.message)
             console.log('Error signing up:', error.message);
@@ -169,6 +172,7 @@ export default function SignUpPage() {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        startIcon={signUpLoading ? <CircularProgress sx={{color: 'white'}} size={'20px'}/> : null}
                     >
                         Sign Up
                     </Button>

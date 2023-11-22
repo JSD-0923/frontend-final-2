@@ -1,19 +1,22 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useSearch = (value) => {
     const navigate = useNavigate()
-    let queryString = useLocation().search;
+    let searchParams = new URLSearchParams(useLocation().search);
 
     const handleProductsPage = () => {
 
-        if (queryString) {
-            navigate(`products${queryString}&search=${value}`)
-        }
-        else {
-            navigate(`products?search=${value}`)
+        if (searchParams.has('search')) {
+
+            searchParams.set('search', value);
+        } else {
+
+            searchParams.append('search', value);
         }
 
-    }
+
+        navigate(`products?${searchParams.toString()}`);
+    };
+
     return { handleProductsPage }
 }

@@ -111,10 +111,12 @@ const CheckoutPage = () => {
 
     if (cartProducts.length === 0) {
         return (
-            <>
-                <CustomBreadcrumbs links={links} label={'Checkout'}/>
+            <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                <div style={{marginLeft: '2rem', display:'flex', alignSelf: 'flex-start'}}>
+                    <CustomBreadcrumbs links={links} label={'Checkout'}/>
+                </div>
                 <EmptyCart />
-            </>
+            </div>
         )
     }
 

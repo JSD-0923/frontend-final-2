@@ -14,24 +14,7 @@ const useLandingProducts = (filter) => {
 }
 
 
-const fetchProducts= async (filter) => {
-
-  return await apiAxios.get(`/products/filter${filter}
-  `).then(res => res.data)
-}
-const useProducts = (filter) => {
-  return useQuery({
-    queryKey: ['products', 'list',filter],
-    queryFn:  () =>  fetchProducts(filter),
-    staleTime: Infinity
-  })
-}
-
-
-
-// useProducts
-
-export { useProducts , useLandingProducts  };
+export { useLandingProducts  };
 
 
 
