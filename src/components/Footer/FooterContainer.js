@@ -124,7 +124,7 @@ const FooterContainer = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={7}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: alignItemsValue }}  >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: alignItemsValue, gap:2 }}  >
 
                         <Box display="flex" marginTop={2} marginX={-1}>
 
@@ -142,11 +142,27 @@ const FooterContainer = () => {
                             </Box>
                         </Box>
 
-                        <Box display="flex" alignItems="center" marginTop={3}>
+                        <ListItemButton
+                            href={'/about'}
+
+                        >
+
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        sx={{ color: "lightText.main", fontWeight: 500 }}
+                                        variant={'h3'}
+                                        component={'span'}
+                                    >
+                                        About Us
+                                    </Typography>} />
+                        </ListItemButton>
+
+                        <Box display="flex" alignItems="center" >
                             <LocationIcon />  <Typography variant={'h4'} component={'h2'} color={'primary.contrastText'}>United States</Typography>
                         </Box>
 
-                        <Typography variant={'h4'} component={'span'} color={'lightText.main'} marginTop={2}>
+                        <Typography variant={'h4'} component={'span'} color={'lightText.main'} >
                             © 2021 | Cora Leviene All Rights Reserved
                         </Typography>
                     </Box>

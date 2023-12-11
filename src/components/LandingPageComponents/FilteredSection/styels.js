@@ -79,6 +79,9 @@ export const BottomCard = styled(Card)(() => ({
     width: '100%',
     borderRadius: '10px',
     cursor: 'pointer',
+    ':hover': {
+        border: '1px solid #1B4B66',
+    },
     // Mobile Small
     '@media (max-width: 425px)': {
         height: '100px'

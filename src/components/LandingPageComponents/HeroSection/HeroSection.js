@@ -10,6 +10,8 @@ const HeroSection = () => {
         display: "none",
       },
     },
+    animation: "slide",
+    duration: 1000,
   };
   return (
 

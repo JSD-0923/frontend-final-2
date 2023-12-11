@@ -7,26 +7,36 @@ export const HandPickedCardStyle = {
     flexDirection: 'column',
     borderRadius: '10px',
     marginBottom: '1rem',
-    // Mobile Small
-    '@media (min-width: 320px)': {
-        height: '120px'
+    height: 'auto',
+    transition: 'transform 0.3s ease-in-out',
+    ':hover': {
+        transform: 'scale(1.05)',
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
     },
-    '@media (min-width: 375px)': {
-        height: '130px'
+    '@media (min-width: 320px) and (max-width: 374px)': {
+        width: '120px',
+        height: '120px',
     },
-    '@media (min-width: 425px)': {
-        height: '150px'
-    },
-    '@media (min-width: 768px) and (max-width: 1000px)': {
-        height: '150px'
-    },
-    '@media (min-width: 1001px) and (max-width: 1220px)': {
-        height: '200px'
-    },
+    '@media (min-width: 375px) and (max-width: 424px)': {
+        width: '155px',
 
-    '@media (min-width: 1221px)': {
-        width: '275px',
-        height: '275px'
+    },
+    '@media (min-width: 425px) and (max-width: 767px)': {
+        width: '175px',
+        height: '175px',
+    },
+    '@media (min-width: 768px) and (max-width: 1023px)': {
+        width: '160px',
+        height: '160px',
+
+    },
+    '@media (min-width: 1024px) and (max-width: 1439px)': {
+        width: '220px',
+        height: '220px',
+    },
+    '@media (min-width: 1440px) ': {
+        width: '320px',
+        height: '320px',
     },
 }
 

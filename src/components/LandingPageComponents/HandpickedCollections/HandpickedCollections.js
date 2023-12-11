@@ -18,21 +18,20 @@ const HandpickedCollections = () => {
             {isLoading &&  <div>
                 <LoadingProgress />
             </div>}
-            <Box sx={{display: 'flex', flexDirection: 'column', maxWidth: '1280px', alignSelf: 'center'}}>
-                <Typography
-                    component={'h2'}
-                    variant={'h2'}
-                    sx={{ marginLeft: '1rem', color: 'primary.contrastText', marginTop: '2rem', marginBottom: '2rem' }}
-                >
-                    Handpicked Collections
-                </Typography>
+            <Typography
+                component={'h2'}
+                variant={'h2'}
+                sx={{ marginLeft: '1rem', color: 'primary.contrastText', marginTop: '2rem', marginBottom: '2rem' }}
+            >
+                Handpicked Collections
+            </Typography>
+
                 <Box sx={HandpickedCollectionsStyledBox}>
                     {filteredHandpicked?.map((item) =>
                         <HandpickedCard key={item.id} collection={item} />
                     )}
 
                 </Box>
-            </Box>
         </Paper>
     )
 }

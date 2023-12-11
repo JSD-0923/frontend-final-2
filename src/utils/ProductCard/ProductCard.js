@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Card, Box, Typography, CardMedia, CardContent, useMediaQuery, IconButton} from "@mui/material";
+import {Card, Box, Typography, CardMedia, CardContent, IconButton} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {ReactComponent as FilledFavoriteIcon} from "../../assets/icons/Fill-favo-icon.svg";
 import defaultImage from '../../assets/images/alt-image.png';
@@ -10,8 +10,6 @@ const ProductCard = (props) => {
     const [is1to1Ratio, setIs1to1Ratio] = useState(false);
     const [imageError, setImageError] = useState(false);
 
-    const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
-    const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:1024px)');
     let _width = width
 
     useEffect(() => {
@@ -35,15 +33,7 @@ const ProductCard = (props) => {
         }
         return defaultImage;
     };
-   if(!Array.isArray(_width)) {
-        _width = width || 280
-       if (isSmallScreen) {
-           _width = width*0.45 || 135
-       }
-       if (isMediumScreen) {
-           _width = width*0.75 || 210
-       }
-   }
+
 
     return (
     <Card sx={{ width: _width, boxShadow: "none", margin: 0 }}>
