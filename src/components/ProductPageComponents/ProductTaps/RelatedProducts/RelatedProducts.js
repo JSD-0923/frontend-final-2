@@ -28,12 +28,16 @@ const RelatedProducts = () => {
     }
     return (
        <>
+           <Typography sx={{marginBottom: '1rem'}} variant={'h3'} component={'h3'}>You May Interested In:</Typography>
            {products &&
                <Box sx={{display: 'flex', gap: '15px', flexWrap: 'wrap'}}>
                    {products.products.map((product, index) => (
-                       <ButtonBase key={index} onClick={() => handleClick(product.id)}>
+                       <ButtonBase key={index} onClick={() => handleClick(product.id)} sx={{transition: 'transform 0.3s ease-in-out',':hover': {
+                           transform: 'scale(1.05)',
+                           boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+                       }}}>
                            <Box key={index} sx={{minWidth:'160px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}} >
-                               <Box sx={{display: 'flex', alignSelf: 'center'}}>
+                               <Box sx={{display: 'flex', alignSelf: 'center' }}>
                                    <ProductCard
                                        image={product.image}
                                        item={product}
