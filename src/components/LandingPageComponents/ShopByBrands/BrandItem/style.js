@@ -8,6 +8,11 @@ export const BrandCard = styled(Card)(({ theme }) => ({
     justifyContent: 'center',
     marginBottom: '1rem',
     boxShadow: 'none',
+    transition: 'transform 0.3s ease-in-out',
+    ':hover': {
+        transform: 'scale(1.05)',
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+    },
     // Mobile Small
     '@media (min-width: 320px)': {
         width: '90px',

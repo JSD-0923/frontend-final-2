@@ -151,42 +151,47 @@ const Header = () => {
         <Box sx={{ backgroundColor: 'accent.main', flexGrow: 1, display: { xs: 'flex', md: 'flex' }, width: '362px', height: '44px', mr: '15px' }}>
           <SearchBox />
         </Box>
-        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'flex' } }}>
-          <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
-            <FavoriteBorderIcon />
-          </IconButton>
-
-          {userData ? (
-            <>
-              <IconButton onClick={handleClick} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
-                <FillUserIcon />
-              </IconButton>
-              <Typography sx={{ display: 'block', marginTop: '10px', marginRight: '5px', color: 'primaryTint.main' }}>Hello {userData.firstName}</Typography>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-                <MenuItem onClick={() => { navigate('/user-profile/info'); handleClose(); }}>View Profile</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <IconButton onClick={() => navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
-              <UserIcon />
+        <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: 'flex'}}>
+            <IconButton onClick={() => navigate('/my-wishlist')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
+              <FavoriteBorderIcon />
             </IconButton>
-          )}
 
-          <Link href={'/my-cart'} sx={{ marginTop: '8px', display: 'block' }}>
-            <EmptyCartIcon />
-          </Link>
+            {userData ? (
+                <>
+                  <div style={{display: 'flex', flexDirection: "column", justifyContent: 'center'}}>
+                    <IconButton onClick={handleClick} sx={{ display: 'flex',p: 0, mr: '5px', color: 'primary.main', alignSelf: 'center' }}>
+                      <FillUserIcon />
+                    </IconButton>
+                  </div>
+                  <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                      MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                      }}
+                  >
+                    <MenuItem onClick={() => { navigate('/user-profile/info'); handleClose(); }}>View Profile</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  </Menu>
+                </>
+            ) : (
+                <IconButton onClick={() => navigate('/sign-in')} sx={{ p: 0, mr: '5px', color: 'primary.main' }}>
+                  <UserIcon />
+                </IconButton>
+            )}
+
+            <Link href={'/my-cart'} sx={{ marginTop: '8px', display: 'block' }}>
+              <EmptyCartIcon />
+            </Link>
+          </div>
+
         </Box>
 
       </Toolbar>
+      <Typography sx={{ color: 'primaryTint.main', display:'flex', justifyContent: 'flex-end', marginRight: '1rem', marginTop:'-1rem' }}>Hello {userData?.firstName}</Typography>
     </AppBar>
   );
 }

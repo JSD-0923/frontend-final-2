@@ -11,13 +11,10 @@ export const HandpickedCollectionsStyledPaper = {
 
 export const HandpickedCollectionsStyledBox = {
     display: 'flex',
-    alignSelf: 'center',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
-    maxWidth: '1280px',
-    gap:'40px',
     marginBottom: '2rem',
-    cursor: 'pointer'
+    cursor: 'pointer',
 }
 
 
