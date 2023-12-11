@@ -78,14 +78,13 @@ const ProductPanel = (props) => {
     };
 
     return (
-        <Paper elevation={0} sx={{  display: 'flex', flexDirection: 'column', marginTop: '-1rem', marginRight: '2rem'}}>
+        <Paper elevation={0} sx={{  display: 'flex', flexDirection: 'column', marginTop: '-1rem'}}>
 
             <ProductCard
                 title={product.name}
                 description={product.highlight}
                 variant={{title: 'h2', body:'h3'}}
                 addToFavourite={false}
-                width={500}
             />
 
 
