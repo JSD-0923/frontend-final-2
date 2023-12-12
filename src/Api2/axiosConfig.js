@@ -1,15 +1,23 @@
 import axios from "axios";
-export const apiAxios = axios.create({
+import {getToken} from "../utils/getToken";
+
+const apiAxios = axios.create({
     baseURL: "https://backend-final-2-gosr.onrender.com"
 });
+
 apiAxios.interceptors.request.use(
     (config) => {
+        const token = getToken();
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     (error) => {
         return Promise.reject(error);
     }
-)
+);
+
 apiAxios.interceptors.response.use(
     (response) => {
         return response;
@@ -17,4 +25,6 @@ apiAxios.interceptors.response.use(
     (error) => {
         return Promise.reject(error);
     }
-)
+);
+
+export { apiAxios };

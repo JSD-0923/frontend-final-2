@@ -4,21 +4,19 @@ import {getToken} from "../utils/getToken";
 import {useNavigate} from "react-router-dom";
 
 
-const token = getToken();
-
 //fetch products
 const fetchProducts = async (filter) => {
 
     return await apiAxios.get(`/products/filter${filter}
     `).then(res => res.data)
   }
-  export const useProducts = (filter) => {
+export const useProducts = (filter) => {
     return useQuery({
-      queryKey: ['products', 'list',filter],
-      queryFn:  () =>  fetchProducts(filter),
-      staleTime: Infinity
-    })
-  }
+        queryKey: ['products', 'list', filter],
+        queryFn: () => fetchProducts(filter),
+        staleTime: Infinity
+    });
+};
 
 
 // fetch one product
@@ -36,15 +34,7 @@ export const useAddToCart = (productId, quantity) => {
     return useMutation({
         mutationFn: async () => {
             try {
-                const response = await apiAxios.post(
-                    '/orders/add-to-cart',
-                    { productId, quantity },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        },
-                    }
-                );
+                const response = await apiAxios.post('/orders/add-to-cart', { productId, quantity });
                 return response.data;
             } catch (error) {
                 throw error;
@@ -57,6 +47,7 @@ export const useAddToCart = (productId, quantity) => {
 };
 
 
+
 // Remove Product from Cart
 
 export const useRemoveFromCart = () => {
@@ -64,14 +55,8 @@ export const useRemoveFromCart = () => {
 
     return useMutation({
         mutationFn: async (productId) => {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-
             try {
-                const response = await apiAxios.post('/orders/remove-from-cart', { productId }, config);
+                const response = await apiAxios.post('/orders/remove-from-cart', { productId });
                 return response.data;
             } catch (error) {
                 console.error('Error removing product from cart:', error);
@@ -84,29 +69,18 @@ export const useRemoveFromCart = () => {
     });
 };
 
+
 // Add Product to Whishlist
 
 export const useAddToWishlist = (productId) => {
-
     return useMutation({
         mutationFn: async () => {
             try {
-                const response = await apiAxios.post(
-                    '/wishlists',
-                    { productId },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        },
-                    }
-                );
+                const response = await apiAxios.post('/wishlists', { productId });
                 return response.data;
             } catch (error) {
                 throw error;
             }
-        },
-        onSuccess: () => {
-
         },
     });
 };
@@ -116,23 +90,21 @@ export const useAddToWishlist = (productId) => {
 
 export const useReviews = (id) => {
     return useQuery({
-        queryKey: ['review', 'get', id],
+        queryKey: ['review', 'list', id],
         queryFn: async () => {
             try {
                 const response = await apiAxios.get(`/reviews/${id}`);
                 return response.data;
             } catch (error) {
-
                 if (error.response && error.response.status === 404) {
                     return [];
                 }
-
                 throw error;
             }
         },
-
     });
 };
+
 
 
 // Fetch My Cart
@@ -140,11 +112,7 @@ export const useReviews = (id) => {
 export const useCart = () => {
     const fetchCart = async () => {
         try {
-            const response = await apiAxios.get('/orders/cart', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await apiAxios.get('/orders/cart');
             return response.data;
         } catch (error) {
             if (error.response && error.response.status === 404) {
@@ -163,6 +131,7 @@ export const useCart = () => {
 };
 
 
+
 // Fetch Address
 
 export const useAddresses = () => {
@@ -170,12 +139,7 @@ export const useAddresses = () => {
         queryKey: ['addresses', 'get'],
         queryFn: async () => {
             try {
-                const response = await apiAxios.get('/user-addresses', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
+                const response = await apiAxios.get('/user-addresses');
                 return response.data;
             } catch (error) {
                 console.error(error);
@@ -187,22 +151,14 @@ export const useAddresses = () => {
 };
 
 
+
 // Add New Address
 export const useAddAddress = () => {
     const queryClient = useQueryClient();
 
     return useMutation(async (data) => {
         try {
-
-            const response = await apiAxios.post(
-                '/user-addresses',
-                { ...data },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                }
-            );
+            const response = await apiAxios.post('/user-addresses', { ...data });
             return response.data;
         } catch (error) {
             throw error;
@@ -218,18 +174,14 @@ export const useAddAddress = () => {
 };
 
 
+
 // Place Order
 
 export const usePutOrder = () => {
-
     return useMutation({
         mutationFn: async () => {
             try {
-                const response = await apiAxios.put('/orders/place-order', null, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const response = await apiAxios.put('/orders/place-order');
                 return response.data;
             } catch (error) {
                 throw error;
@@ -237,6 +189,7 @@ export const usePutOrder = () => {
         },
     });
 };
+
 
 
 // Fetch user
@@ -280,12 +233,8 @@ export const useUser = () => {
             return null;
         }
 
-        const headers = {
-            Authorization: `Bearer ${user_token}`,
-        };
-
         try {
-            const response = await apiAxios.get('/users/me', { headers });
+            const response = await apiAxios.get('/users/me');
             return response.data;
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -303,6 +252,7 @@ export const useUser = () => {
 };
 
 
+
 // fetch wishlists products
 
 export const useWishlist = () => {
@@ -310,12 +260,7 @@ export const useWishlist = () => {
         queryKey: ['wishlist', 'get'],
         queryFn: async () => {
             try {
-                const response = await apiAxios.get('/wishlists', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
+                const response = await apiAxios.get('/wishlists');
                 return response.data;
             } catch (error) {
                 console.error(error);
@@ -324,7 +269,8 @@ export const useWishlist = () => {
         },
         staleTime: Infinity
     });
-}
+};
+
 
 // movie product to wishlist
 
@@ -333,14 +279,8 @@ export const useMoveToWishlist = () => {
 
     return useMutation({
         mutationFn: async (productId) => {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-
             try {
-                const response = await apiAxios.post('/orders/move-to-wishlist', { productId }, config);
+                const response = await apiAxios.post('/orders/move-to-wishlist', { productId });
                 return response.data;
             } catch (error) {
                 console.error('Error removing product from cart:', error);
@@ -354,22 +294,14 @@ export const useMoveToWishlist = () => {
 };
 
 
+
 // Logout
 export const useLogout = () => {
-    const navigate= useNavigate()
+    const navigate = useNavigate();
     return useMutation(
-
         async () => {
-            const token = getToken();
-
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-
             try {
-                const response = await apiAxios.post('/users/logout', null, config);
+                const response = await apiAxios.post('/users/logout', null);
                 return response.data;
             } catch (error) {
                 throw error;
@@ -377,11 +309,12 @@ export const useLogout = () => {
         },
         {
             onSuccess: () => {
-             navigate('/')
+                navigate('/');
             },
         }
     );
 };
+
 
 
 // add user address to the order
@@ -391,11 +324,7 @@ export const useUpdateOrderInfo = () => {
             console.log('orderId', orderId);
             console.log('addressId', addressId);
             try {
-                const response = await apiAxios.put(`/orders/${orderId}/address`, { addressId }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const response = await apiAxios.put(`/orders/${orderId}/address`, { addressId });
                 return response.data;
             } catch (error) {
                 throw error;
@@ -405,19 +334,15 @@ export const useUpdateOrderInfo = () => {
 };
 
 
+
 // update order payment(complete order).
 export const useUpdateOrderPayment = () => {
-
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async ({ orderId, paymentMethod }) => {
             try {
-                const response = await apiAxios.put(`/orders/${orderId}/payment`, { paymentMethod }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const response = await apiAxios.put(`/orders/${orderId}/payment`, { paymentMethod });
                 return response.data;
             } catch (error) {
                 throw error;
@@ -429,6 +354,7 @@ export const useUpdateOrderPayment = () => {
         },
     });
 };
+
 
 
 
