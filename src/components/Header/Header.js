@@ -191,7 +191,7 @@ const Header = () => {
         </Box>
 
       </Toolbar>
-      <Typography sx={{ color: 'primaryTint.main', display:'flex', justifyContent: 'flex-end', marginRight: '1rem', marginTop:'-1rem' }}>Hello {userData?.firstName}</Typography>
+      {userData && <Typography sx={{ color: 'primaryTint.main', display:'flex', justifyContent: 'flex-end', marginRight: '1rem', marginTop:'-1rem' }}>Hello {userData.firstName}</Typography>}
     </AppBar>
   );
 }
