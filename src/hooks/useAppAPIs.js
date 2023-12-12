@@ -178,6 +178,7 @@ export const useAddAddress = () => {
 // Place Order
 
 export const usePutOrder = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async () => {
             try {
@@ -186,6 +187,10 @@ export const usePutOrder = () => {
             } catch (error) {
                 throw error;
             }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['cart', 'get']);
+            console.log('Order placed successfully');
         },
     });
 };
@@ -354,6 +359,64 @@ export const useUpdateOrderPayment = () => {
         },
     });
 };
+
+
+
+//fetch order by status
+
+export const useOrders = (status) => {
+    return useQuery({
+        queryKey: ['orders', 'list', status],
+        queryFn: async () => {
+            try {
+                const response = await apiAxios.get(`/orders/?status=${status}`);
+                return response.data;
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    return [];
+                }
+                throw error;
+            }
+        },
+    });
+};
+
+//fetch order items
+
+export const useOrdersItems = (id) => {
+    return useQuery({
+        queryKey: ['orders', 'get', id],
+        queryFn: async () => {
+            try {
+                const response = await apiAxios.get(`/orders/${id}/items`);
+                return response.data;
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    return [];
+                }
+                throw error;
+            }
+        },
+    });
+};
+
+
+//reorder order
+
+export const useReorder = (id) => {
+
+    return useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiAxios.post(`/orders/${id}/reorder`);
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+
+    });
+}
 
 
 

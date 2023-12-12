@@ -32,7 +32,9 @@ const SignInPage = () => {
             const response = await userMutation.mutateAsync(data);
 
             const token = response.token;
+            console.log(response)
             localStorage.setItem('token', token);
+            localStorage.setItem('userId', response.userId);
 
             setTimeout(async () => {
                 await refetchUser();

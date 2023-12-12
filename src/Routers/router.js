@@ -45,31 +45,20 @@ export const router = createBrowserRouter([
                                 element: <PersonalInfoPage />,
                             },
                             {
-                                path: "refer",
-                                element: <NotFoundPage />,
-                            },
-                            {
                                 path: "orders",
                                 element: <MyOrdersPage />,
-                            },{
-                                path: "reviews",
-                                element: <NotFoundPage />,
                             },
                             {
                                 path: "addresses",
                                 element: <AddressesPage />,
                             },
                             {
-                                path: "cards",
-                                element: <NotFoundPage />,
-                            }
+                                path: "orders/:id",
+                                element: <OrderDetailsPage />,
+                            },
                         ],
                     },
 
-                    {
-                        path: "/my-orders/:id",
-                        element: <OrderDetailsPage />,
-                    },
                     {
                         path: "/my-wishlist",
                         element: <Wishlist />,
