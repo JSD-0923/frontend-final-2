@@ -9,19 +9,17 @@ import {StyledTitle} from "../themes/StyledPageTitle";
 import Button from "@mui/material/Button";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useLogout} from "../hooks/useAppAPIs";
-import {Outlet, useNavigate} from "react-router-dom";
-import { Grid} from "@mui/material";
+import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Grid, useMediaQuery} from "@mui/material";
+import {useEffect, useState} from "react";
 
 
 
 const tabLabels = [
     "Personal Information",
-    "Refer and Earn",
     "My Orders",
-    "My Wishlist",
-    "My Reviews",
     "My Address Book",
-    "My Saved Cards",
+    "Order",
 ];
 
 function TabPanel(props) {
@@ -56,17 +54,25 @@ function a11yProps(index) {
         'aria-controls': `vertical-tabpanel-${index}`,
     };
 }
-
+const paths = ["/user-profile/info", "/user-profile/orders", "/user-profile/addresses"];
 const UserProfileLayout = () => {
     const [value, setValue] = React.useState(0);
-
+    const [breadcrumbsLabel, setBreadcrumbsLabel] = useState(tabLabels[value])
+    const [links, setLinks] = useState([{name: 'Home', path: `/`},{name: 'User Profile', path: `/user-profile/info`}]);
 
     const navigate = useNavigate();
     const userMutation = useLogout();
+    const location = useLocation();
+    const {id} = useParams()
+
+    const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 900px)');
+
+    const pathSegments = location.pathname.split('/');
+
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
 
-        const paths = ["/user-profile/info", "/user-profile/refer", "/user-profile/orders", "/user-profile/reviews","/user-profile/addresses", "/user-profile/cards"];
         navigate(paths[newValue]);
 
     };
@@ -83,12 +89,22 @@ const UserProfileLayout = () => {
         }
     };
 
+    useEffect(() => {
+        if (pathSegments.includes("orders") && id) {
+            setLinks([...links, {name: 'Orders', path: `/user-profile/orders`}]);
+            setBreadcrumbsLabel(`Order#${id}`);
+        } else {
+            setLinks([{name: 'Home', path: `/`},{name: 'User Profile', path: `/user-profile/info`}]);
+            setBreadcrumbsLabel(tabLabels[value]);
+        }
+    }, [location.pathname, id]);
+
     return (
      <div style={{width:'90%', margin: '1rem'}}>
-         <CustomBreadcrumbs links={[{name: 'Home', path: `/`}]} label={'Checkout'}/>
+         <CustomBreadcrumbs links={links} label={breadcrumbsLabel}/>
          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem' }}>
              <StyledTitle variant="h2" component={'h1'}>
-                 {tabLabels[value]}
+                 {breadcrumbsLabel}
              </StyledTitle>
              <Button onClick={handleLogout} endIcon={<LogoutIcon />} variant={'outlined'}>
                  Logout
@@ -99,16 +115,16 @@ const UserProfileLayout = () => {
              sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height:'auto', width: '100%'}}
          >
              <Grid container>
-               <Grid item xs={3}>
+               <Grid item xs={12} sm={12} md={3}>
                    <Tabs
-                       orientation="vertical"
+                       orientation={isSmallScreen ? 'horizontal' : 'vertical'}
                        variant="scrollable"
                        value={value}
                        onChange={handleChange}
                        aria-label="user profile"
                        sx={{
                            borderRadius: '12px',
-                           maxWidth: '270px',
+                           maxWidth: isSmallScreen ? '100%' : '270px',
                            borderColor: 'divider',
                            backgroundColor: '#F1F1F1 !important',
                            '.MuiTabs-indicator': {
@@ -122,14 +138,11 @@ const UserProfileLayout = () => {
                        }}
                    >
                        <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>Personal Information <NavigateNextIcon /></div>}{...a11yProps(0)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>Refer and Earn <NavigateNextIcon /></div>} {...a11yProps(1)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Orders <NavigateNextIcon /></div>} {...a11yProps(2)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Reviews <NavigateNextIcon /></div>} {...a11yProps(3)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Address Book <NavigateNextIcon /></div>} {...a11yProps(4)} />
-                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Saved Cards <NavigateNextIcon /></div>} {...a11yProps(5)} />
+                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Orders <NavigateNextIcon /></div>} {...a11yProps(1)} />
+                       <Tab label={<div style={{ display: 'flex', justifyContent: 'space-between', width:'100%' }}>My Address Book <NavigateNextIcon /></div>} {...a11yProps(2)} />
                    </Tabs>
                </Grid>
-                 <Grid item xs={9}>
+                 <Grid item xs={12} sm={9}>
                      <TabPanel value={value} index={value}>
                          <Outlet/>
                      </TabPanel>

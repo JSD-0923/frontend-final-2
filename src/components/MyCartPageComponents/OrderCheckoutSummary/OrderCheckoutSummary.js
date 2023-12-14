@@ -14,7 +14,7 @@ const OrderCheckoutSummary = (props) => {
             <Typography variant={'h3'} component={'h2'} sx={{ marginBottom: '10px'}}>
                 {headTitle}
             </Typography>
-            <Divider />
+            {headTitle.length>1 && <Divider />}
 
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop:'12px', marginBottom:'12px'}}>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>

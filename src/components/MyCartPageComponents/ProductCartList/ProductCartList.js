@@ -14,7 +14,7 @@ import AlertStack from "../../../utils/AlertStack/AlertStack";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const ProductCartList = (props) => {
-    const { cartProducts, showTable=true } = props;
+    const { cartProducts, showTable=true, showButtons=true } = props;
 
     const [successAlertVisible, setSuccessAlertVisible] = useState(false);
     const [errorAlertVisible, setErrorAlertVisible] = useState(false);
@@ -108,7 +108,7 @@ const ProductCartList = (props) => {
 
                             </TableRow>
 
-                            {showTable &&
+                            {showButtons &&
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell colSpan={4} align="right" sx={{ padding: 0, gap: '1rem' }}>
                                         <Button
