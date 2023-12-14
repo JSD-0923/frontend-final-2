@@ -1,22 +1,23 @@
-import {apiAxios} from "../Api2/axiosConfig";
+import {apiAxios} from "../api/axiosConfig";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {getToken} from "../utils/getToken";
 import {useNavigate} from "react-router-dom";
 
 
 //fetch products
-const fetchProducts = async (filter) => {
 
-    return await apiAxios.get(`/products/filter${filter}
-    `).then(res => res.data)
-  }
 export const useProducts = (filter) => {
     return useQuery({
         queryKey: ['products', 'list', filter],
-        queryFn: () => fetchProducts(filter),
+        queryFn: () => apiAxios.get(`/products/filter${filter}`).then(res => res.data),
+        onError: (error) => {
+
+            console.error('Error in useProducts hook:', error);
+        },
         staleTime: Infinity
     });
 };
+
 
 
 // fetch one product
@@ -24,6 +25,17 @@ export const useProduct = (id) => {
     return useQuery({
         queryKey:['product','get', id],
         queryFn:async()=> await apiAxios.get(`/products/${id}`).then(res=>res.data),
+        staleTime: Infinity
+    })
+}
+
+const fetchLandingProducts = async (filter) => {
+    return await apiAxios.get(`/${filter}`)
+}
+export const useLandingProducts = (filter) => {
+    return useQuery({
+        queryKey: ['landingProducts', 'list',filter],
+        queryFn:  () =>  fetchLandingProducts(filter).then(res => res.data),
         staleTime: Infinity
     })
 }

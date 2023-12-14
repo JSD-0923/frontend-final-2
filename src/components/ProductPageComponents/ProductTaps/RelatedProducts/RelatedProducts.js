@@ -1,8 +1,8 @@
 import {ButtonBase, LinearProgress} from "@mui/material";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import ProductCard from "../../../../utils/ProductCard/ProductCard";
-import Price from "../../../../utils/Price/Price";
+import ProductCard from "../../../ProductCard/ProductCard";
+import Price from "../../../Price/Price";
 import {useProducts} from "../../../../hooks/useAppAPIs";
 import Typography from "@mui/material/Typography";
 import {useNavigate} from "react-router-dom";

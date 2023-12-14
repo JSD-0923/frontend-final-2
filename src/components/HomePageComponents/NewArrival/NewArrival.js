@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '../../../utils/ProductCard/ProductCard';
+import ProductCard from '../../ProductCard/ProductCard';
 import { Typography, Box } from '@mui/material';
 import { Button } from '@mui/material';
 import { useProducts } from '../../../hooks/useAppAPIs';

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
-import AlertStack from "../../utils/AlertStack/AlertStack";
+import AlertStack from "../AlertStack/AlertStack";
 import {UseChangePassword} from "../../hooks/useAppAPIs";
 
 

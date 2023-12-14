@@ -1,8 +1,8 @@
-import HeroSection from '../components/LandingPageComponents/HeroSection/HeroSection'
-import NewArrival from '../components/LandingPageComponents/NewArrival/NewArrival'
-import HandpickedCollections from '../components/LandingPageComponents/HandpickedCollections/HandpickedCollections'
-import ShopByBrands from '../components/LandingPageComponents/ShopByBrands/ShopByBrands'
-import FilteredSection from '../components/LandingPageComponents/FilteredSection/FilteredSection'
+import HeroSection from '../components/HomePageComponents/HeroSection/HeroSection'
+import NewArrival from '../components/HomePageComponents/NewArrival/NewArrival'
+import HandpickedCollections from '../components/HomePageComponents/HandpickedCollections/HandpickedCollections'
+import ShopByBrands from '../components/HomePageComponents/ShopByBrands/ShopByBrands'
+import FilteredSection from '../components/HomePageComponents/FilteredSection/FilteredSection'
 import Box from "@mui/material/Box";
 import {useOutletContext} from "react-router-dom";
 import {useEffect, useRef} from "react";

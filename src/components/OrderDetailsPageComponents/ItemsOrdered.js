@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import {Button, Divider, LinearProgress} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ProductCartList from "../MyCartPageComponents/ProductCartList/ProductCartList";
-import AlertStack from "../../utils/AlertStack/AlertStack";
+import AlertStack from "../AlertStack/AlertStack";
 import AddressDetails from "./AddressDetails";
 import CircularProgress from "@mui/material/CircularProgress";
 

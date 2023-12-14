@@ -54,13 +54,6 @@ const ProductsPage = () => {
         );
     }
 
-    if (error) {
-        return <h1>{error}</h1>;
-    }
-
-    if (!products) {
-        return null;
-    }
 
     return (
         <Container aria-label="Product Page" role="region" sx={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} maxWidth='1780px'>
@@ -71,12 +64,20 @@ const ProductsPage = () => {
                     {title}
                 </StyledTitle>
             )}
-            {products.products.length > 0 ? <ProductsList products={products.products} /> : <Typography variant={'h3'} component={'h2'}>No Products Found :(</Typography>}
+            {error &&
+                <>
+                    <Typography component={'h2'} variant={'h2'}>Something went wrong. Please try again.</Typography>
+                    <Button sx={{width: '180px'}} variant="contained" color="primary" onClick={() => window.location.reload()}>
+                        Reload Page
+                    </Button>
+                </>
+            }
+            { products?.products.length > 0 ? <ProductsList products={products.products} /> : <Typography variant={'h3'} component={'h2'}>No Products Found :(</Typography>}
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
-                <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
+                {products && <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
                     <Pagination aria-label="Page navigation" count={products.pagination.totalPages} page={page} onChange={handleChange} shape="rounded" color="primary" hidePrevButton hideNextButton />
-                </Box>
-                {products.pagination.totalPages !== products.pagination.currentPage && <Button aria-label="Next page" onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
+                </Box>}
+                {products?.pagination.totalPages !== products?.pagination.currentPage && <Button aria-label="Next page" onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
                 }
             </Box>
         </Container>

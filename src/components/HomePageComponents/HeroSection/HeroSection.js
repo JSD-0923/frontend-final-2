@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import HeroItem from './HeroItem/HeroItem'
-import { Items } from '../../data'
+import {HeroSectionData} from "../../../utils/consts";
 
 const HeroSection = () => {
   const settings = {
@@ -18,7 +18,7 @@ const HeroSection = () => {
       <section id="hero-section" role="banner" aria-label="Hero Section">
         <Carousel  maxWidth='xl' sx={{ borderRadius: "10px",  width: '100%',marginBottom: '2rem' }} {...settings}>
           {
-            Items.map((item, i) => <HeroItem key={i} item={item} />)
+              HeroSectionData.map((item, i) => <HeroItem key={i} item={item} />)
           }
         </Carousel>
       </section>

@@ -7,7 +7,7 @@ import * as React from "react";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {UseUpdateUser} from "../../hooks/useAppAPIs";
-import AlertStack from "../../utils/AlertStack/AlertStack";
+import AlertStack from "../AlertStack/AlertStack";
 
 
 const UpdateUserInfoForm = (props) => {
