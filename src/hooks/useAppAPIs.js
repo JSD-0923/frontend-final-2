@@ -40,9 +40,6 @@ export const useAddToCart = (productId, quantity) => {
                 throw error;
             }
         },
-        onSuccess: () => {
-
-        },
     });
 };
 
@@ -190,7 +187,6 @@ export const usePutOrder = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['cart', 'get']);
-            console.log('Order placed successfully');
         },
     });
 };
@@ -326,8 +322,6 @@ export const useLogout = () => {
 export const useUpdateOrderInfo = () => {
     return useMutation({
         mutationFn: async ({ orderId, addressId }) => {
-            console.log('orderId', orderId);
-            console.log('addressId', addressId);
             try {
                 const response = await apiAxios.put(`/orders/${orderId}/address`, { addressId });
                 return response.data;
@@ -355,7 +349,6 @@ export const useUpdateOrderPayment = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['cart', 'get']);
-            console.log('Order placed successfully');
         },
     });
 };
