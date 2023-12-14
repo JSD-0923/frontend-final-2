@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import AddressesList from "../components/CheckoutPageComponents/AddressesList/AddressesList";
 import {useCart, usePutOrder, useUpdateOrderInfo, useUpdateOrderPayment} from "../hooks/useAppAPIs";
 import EmptyCart from "../components/EmptyCart/EmptyCart";
-import AlertStack from "../utils/AlertStack/AlertStack";
+import AlertStack from "../components/AlertStack/AlertStack";
 import {Container} from "@mui/system";
 import CustomBreadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import {paymentsMethods} from "../utils/consts";

@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import {Box, Button, Divider, Paper, Rating, Typography, useMediaQuery} from "@mui/material";
-import Price from "../../../utils/Price/Price";
-import QuantityCounter from "../../../utils/QuantityCounter/QuantityCounter";
+import Price from "../../Price/Price";
+import QuantityCounter from "../../QuantityCounter/QuantityCounter";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
     QuantityActionBoxStyle,
@@ -11,9 +11,9 @@ import {
 } from "./style";
 import theme from "../../../themes/customTheme";
 import StarIcon from "@mui/icons-material/Star";
-import ProductCard from "../../../utils/ProductCard/ProductCard";
+import ProductCard from "../../ProductCard/ProductCard";
 import {useAddToCart, useAddToWishlist, useUser} from "../../../hooks/useAppAPIs";
-import AlertStack from "../../../utils/AlertStack/AlertStack";
+import AlertStack from "../../AlertStack/AlertStack";
 import {ReactComponent as ShoppingCartIcon} from "../../../assets/icons/cart.svg";
 import CircularProgress from "@mui/material/CircularProgress";
 

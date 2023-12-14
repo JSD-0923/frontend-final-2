@@ -2,8 +2,9 @@ import React from 'react'
 import HandpickedCard from './HandpickedCard/HandpickedCard'
 import { Box, Paper, Typography } from "@mui/material";
 import { HandpickedCollectionsStyledBox, HandpickedCollectionsStyledPaper } from "./style";
-import { useLandingProducts } from '../../../api/query'
+
 import LoadingProgress from "../../Loading/LoadingProgress";
+import {useLandingProducts} from "../../../hooks/useAppAPIs";
 const HandpickedCollections = (props) => {
 
     const {innerRef} = props

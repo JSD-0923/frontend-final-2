@@ -12,11 +12,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { SearchBox } from '../SearchBox/SearchBox';
 import { ReactComponent as CoralLogo } from "../../assets/icons/coral-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { useLandingProducts } from '../../api/query'
+
 import { ReactComponent as UserIcon } from "../../assets/icons/user-icon.svg";
 import { ReactComponent as FillUserIcon } from "../../assets/icons/profile-fill.svg";
 import { ReactComponent as EmptyCartIcon } from "../../assets/icons/empty-cart.svg";
-import { useLogout, useUser } from "../../hooks/useAppAPIs";
+import {useLandingProducts, useLogout, useUser} from "../../hooks/useAppAPIs";
 import { useState } from "react";
 import Link from "@mui/material/Link";
 

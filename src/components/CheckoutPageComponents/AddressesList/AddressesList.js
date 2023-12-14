@@ -7,7 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddAddress from "../AddAddress/AddAddress";
 import {useAddAddress, useAddresses} from "../../../hooks/useAppAPIs";
 import CircularProgress from "@mui/material/CircularProgress";
-import AlertStack from "../../../utils/AlertStack/AlertStack";
+import AlertStack from "../../AlertStack/AlertStack";
 
 
 const AddressesList = (props) => {

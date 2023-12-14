@@ -14,7 +14,7 @@ import {
     useMoveToWishlist,
     useRemoveFromCart,
 } from '../../../hooks/useAppAPIs';
-import AlertStack from '../../../utils/AlertStack/AlertStack';
+import AlertStack from '../../AlertStack/AlertStack';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const ProductCartList = (props) => {

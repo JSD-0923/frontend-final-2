@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductCard from '../../utils/ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
 import { Typography, Paper, Box, Grid, Rating, useMediaQuery } from '@mui/material';
-import Price from '../../utils/Price/Price';
+import Price from '../Price/Price';
 import { useNavigate } from 'react-router-dom';
 
 const ProductsList = (props) => {

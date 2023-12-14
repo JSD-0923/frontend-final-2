@@ -1,6 +1,6 @@
 import Card from "@mui/material/Card";
 import {Box, CardMedia, Typography, useMediaQuery} from "@mui/material";
-import Price from "../../../../utils/Price/Price";
+import Price from "../../../Price/Price";
 import React from "react";
 import {useNavigate} from "react-router-dom";
 

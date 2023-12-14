@@ -1,8 +1,9 @@
 import React from 'react';
 import BrandItem from './BrandItem/BrandItem';
 import {  Paper, Typography } from "@mui/material";
-import { useLandingProducts } from '../../../api/query'
+
 import { forwardRef } from 'react';
+import {useLandingProducts} from "../../../hooks/useAppAPIs";
 
 const ShopByBrands = (props) => {
 

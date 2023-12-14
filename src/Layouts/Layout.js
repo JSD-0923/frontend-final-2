@@ -34,7 +34,7 @@ const Layout = () => {
                 return 'Cora\'l App - My Wishlist';
             case '/products':
                 const categoryName = getCategoryNameById();
-                return `Cora'l App - ${categoryName}`;
+                return `Cora'l App - ${categoryName || 'Products'}`;
             case '/about':
                 return 'Cora\'l App - About';
             case '/sign-in':
@@ -62,7 +62,8 @@ const Layout = () => {
                 return 'Explore and manage your wishlist at Cora\'l App.';
             case '/products':
                 const categoryName = getCategoryNameById();
-                return  `Discover the latest trends and products of ${categoryName} at Cora\\'l App. Cora'l App` ;
+                return `Discover the latest trends and products of ${categoryName || 'Products'} at Cora'l App. Cora'l App`;
+
             case '/about':
                 return 'Learn more about Cora\'l App and our mission.';
             case '/sign-in':
@@ -79,7 +80,6 @@ const Layout = () => {
         const queryParams = new URLSearchParams(window.location.search);
 
         const idToUse = queryParams.get('categoryId')
-        console.log(idToUse)
 
         const categoryMapping = {
             '1': 'Handbags',
