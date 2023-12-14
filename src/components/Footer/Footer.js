@@ -11,7 +11,9 @@ import {
 import  theme  from '../../themes/customTheme'
 import FooterContainer from "./FooterContainer";
 
-export default function Footer() {
+export default function Footer(props) {
+
+    const {setSection} = props;
 const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
@@ -26,10 +28,10 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
                         <Typography variant={'h2'} component={'h2'} color={'TypeLowEmphasis.main'}>More about CORA’L</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{backgroundColor: 'primary.main'}}>
-                        <FooterContainer />
+                        <FooterContainer setSection={setSection}/>
                     </AccordionDetails>
                 </Accordion>
-            </AppBar> : <AppBar position="static" sx={{ top: 'auto', bottom: 0, marginTop: '3rem'  }}> <FooterContainer /> </AppBar>}
+            </AppBar> : <AppBar position="static" sx={{ top: 'auto', bottom: 0, marginTop: '3rem'  }}> <FooterContainer setSection={setSection}/> </AppBar>}
         </>
     )
 }

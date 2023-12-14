@@ -4,8 +4,9 @@ import { Box, Paper, Typography } from "@mui/material";
 import { HandpickedCollectionsStyledBox, HandpickedCollectionsStyledPaper } from "./style";
 import { useLandingProducts } from '../../../api/query'
 import LoadingProgress from "../../Loading/LoadingProgress";
-const HandpickedCollections = () => {
+const HandpickedCollections = (props) => {
 
+    const {innerRef} = props
     const { data: Handpicked, isLoading } = useLandingProducts('categories');
     let filteredHandpicked = []
     if (Handpicked) {
@@ -14,7 +15,10 @@ const HandpickedCollections = () => {
         });
     }
     return (
-        <Paper sx={HandpickedCollectionsStyledPaper}>
+        <Paper
+            ref={innerRef}
+            sx={HandpickedCollectionsStyledPaper}
+        >
             {isLoading &&  <div>
                 <LoadingProgress />
             </div>}

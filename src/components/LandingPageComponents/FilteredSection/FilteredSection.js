@@ -13,8 +13,9 @@ import {
 
 
 
-const FilteredSection = () => {
-    
+const FilteredSection = (props) => {
+
+    const {innerRef} = props;
     const navigate = useNavigate()
 
     const handleAccessoriesCardClick = () => {
@@ -27,7 +28,7 @@ const FilteredSection = () => {
 
   return (
 
-      <Grid  container spacing={2} sx={{marginTop: '1rem'}}>
+      <Grid ref={innerRef}  container spacing={2} sx={{marginTop: '1rem'}}>
           <Typography
               component={'h2'}
               variant={'h2'}
