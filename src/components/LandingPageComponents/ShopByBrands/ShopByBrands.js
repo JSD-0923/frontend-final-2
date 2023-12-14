@@ -4,11 +4,15 @@ import {  Paper, Typography } from "@mui/material";
 import { useLandingProducts } from '../../../api/query'
 import { forwardRef } from 'react';
 
-const ShopByBrands = () => {
+const ShopByBrands = (props) => {
 
+    const {innerRef} = props;
     const { data: brands} = useLandingProducts('brands');
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignSelf: 'center', marginTop: '2rem'}}>
+        <div
+            style={{ display: 'flex', flexDirection: 'column', width: '100%', alignSelf: 'center', marginTop: '2rem'}}
+        ref={innerRef}
+        >
                 <Typography
                     component={'h2'}
                     variant={'h2'}
