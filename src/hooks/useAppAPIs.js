@@ -419,6 +419,53 @@ export const useReorder = (id) => {
 }
 
 
+// update user information
+
+export const UseUpdateUser = () => {
+
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: async (userData) => {
+
+            try {
+                return await apiAxios.put(`/users`, userData);
+            } catch (error) {
+                throw error;
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['user', 'me']);
+        },
+
+    });
+
+}
+
+
+// change password
+export const UseChangePassword = () => {
+
+    const queryClient = useQueryClient();
+
+    return useMutation(
+        async ({id, oldPassword, newPassword}) => {
+            try {
+                return await apiAxios.put(`/users/${id}/password`, {oldPassword, newPassword});
+            } catch (error) {
+                throw error;
+            }
+        },
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['user', 'me']);
+            },
+        }
+    );
+
+}
+
+
 
 
 

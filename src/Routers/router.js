@@ -10,7 +10,7 @@ import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
-import AuthRoute from "../components/AuthRoute/AuthRoute";
+import AuthRoute from "./AuthRoute/AuthRoute";
 import {AuthRouteLoader, SignInLoader} from "../utils/loaders";
 import Wishlist from "../pages/Wishlist";
 import UserProfileLayout from "../pages/UserProfileLayout";
