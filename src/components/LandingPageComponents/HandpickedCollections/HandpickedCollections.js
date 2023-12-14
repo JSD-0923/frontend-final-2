@@ -16,10 +16,13 @@ const HandpickedCollections = (props) => {
     }
     return (
         <Paper
+            role="region"
+            aria-label="Handpicked Collections Section"
+            component={'section'}
             ref={innerRef}
             sx={HandpickedCollectionsStyledPaper}
         >
-            {isLoading &&  <div>
+            {isLoading &&  <div role="alert" aria-busy="true">
                 <LoadingProgress />
             </div>}
             <Typography

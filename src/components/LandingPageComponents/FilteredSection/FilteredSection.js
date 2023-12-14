@@ -28,11 +28,13 @@ const FilteredSection = (props) => {
 
   return (
 
-      <Grid ref={innerRef}  container spacing={2} sx={{marginTop: '1rem'}}>
+      <Grid component={'section'}  aria-labelledby="makeup-skincare-heading"
+            role="region" ref={innerRef}  container spacing={2} sx={{marginTop: '1rem'}}>
           <Typography
               component={'h2'}
               variant={'h2'}
               sx={{marginLeft: '2rem'}}
+              id="makeup-skincare-heading"
           >
               Makeup & Skincare
           </Typography>

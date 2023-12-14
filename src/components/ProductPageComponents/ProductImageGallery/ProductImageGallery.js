@@ -17,9 +17,9 @@ const ProductImageGallery = (props) => {
     }));
 
     return (
-        <div className="gallery-container" style={{display: 'flex', justifyContent:'center'}}>
+        <section className="gallery-container" aria-label="Product Image Gallery" style={{display: 'flex', justifyContent:'center'}}>
             <ImageGallery showThumbnails={!isSmallScreen}  showFullscreenButton={false} showPlayButton={false} autoPlay={false} items={productImages} />
-        </div>
+        </section>
     );
 }
 

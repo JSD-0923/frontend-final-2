@@ -78,7 +78,7 @@ const ProductPanel = (props) => {
     };
 
     return (
-        <Paper elevation={0} sx={{  display: 'flex', flexDirection: 'column', marginTop: '-1rem'}}>
+        <Paper component={'section'} elevation={0} sx={{  display: 'flex', flexDirection: 'column', marginTop: '-1rem'}} role="region" aria-label="Product Information">
 
             <ProductCard
                 title={product.name}
@@ -97,6 +97,7 @@ const ProductPanel = (props) => {
                     value={product.rating}
                     readOnly
                     emptyIcon={<StarIcon sx={{ color: 'lightText.main' }} fontSize="inherit" />}
+                    aria-label={`Rating: ${product.rating}`}
                 />
 
                 <Typography
@@ -113,7 +114,7 @@ const ProductPanel = (props) => {
                 </Typography>
             </div>
 
-            <Box sx={{marginLeft: '1rem'}}>
+            <Box sx={{marginLeft: '1rem'}} role="region" aria-label="Product Price">
                 <Price variant={{price: 'h1', Off: 'h3'}} discountRate={product.discount} originalPrice={product.price}  />
             </Box>
 
@@ -130,6 +131,7 @@ const ProductPanel = (props) => {
             <Box sx={QuantityActionBoxStyle}>
                 <Button
                     variant="contained"
+                    aria-label="Add to Cart"
                         sx={QuantityActionButtonsStyle}
                         startIcon={isAddToCartLoading ? <CircularProgress size={'20px'} sx={{color: 'white'}}/> :<ShoppingCartIcon/>}
                         onClick={handleAddToCart}
@@ -137,6 +139,7 @@ const ProductPanel = (props) => {
                 </Button>
                 <Button
                     variant="outlined"
+                    aria-label="Add to Wishlist"
                     sx={{ ...QuantityActionButtonsStyle, width: '240px' }}
                     startIcon={isAddToWishlistMutation ? <CircularProgress size={'20px'} sx={{color: 'primary.main'}}/> :<FavoriteBorderIcon/>}
                     onClick={handleAddToWishlist}

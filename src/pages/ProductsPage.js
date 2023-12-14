@@ -63,20 +63,20 @@ const ProductsPage = () => {
     }
 
     return (
-        <Container sx={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} maxWidth='1780px'>
+        <Container aria-label="Product Page" role="region" sx={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} maxWidth='1780px'>
             <img alt={'pic'} src={imghero} width='100%' />
             <CustomBreadcrumbs links={links} label={title} />
             {title && (
-                <StyledTitle variant="h2" component={'h1'} >
+                <StyledTitle role="heading" variant="h2" component={'h1'} >
                     {title}
                 </StyledTitle>
             )}
             {products.products.length > 0 ? <ProductsList products={products.products} /> : <Typography variant={'h3'} component={'h2'}>No Products Found :(</Typography>}
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, gap: '20px' }}>
                 <Box sx={{ height: '36px', bgcolor: 'grey.main', borderRadius: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }} px={2}>
-                    <Pagination count={products.pagination.totalPages} page={page} onChange={handleChange} shape="rounded" color="primary" hidePrevButton hideNextButton />
+                    <Pagination aria-label="Page navigation" count={products.pagination.totalPages} page={page} onChange={handleChange} shape="rounded" color="primary" hidePrevButton hideNextButton />
                 </Box>
-                {products.pagination.totalPages !== products.pagination.currentPage && <Button onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
+                {products.pagination.totalPages !== products.pagination.currentPage && <Button aria-label="Next page" onClick={handleNext} variant="contained" sx={{ color: 'TypeLowEmphasis.main', bgcolor: 'grey.main', height: '36px', width: '67px' }}>Next</Button>
                 }
             </Box>
         </Container>

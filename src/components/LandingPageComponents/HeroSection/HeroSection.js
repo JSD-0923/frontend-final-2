@@ -15,11 +15,13 @@ const HeroSection = () => {
   };
   return (
 
-      <Carousel maxWidth='xl' sx={{ borderRadius: "10px",  width: '100%',marginBottom: '2rem' }} {...settings}>
-        {
-          Items.map((item, i) => <HeroItem key={i} item={item} />)
-        }
-      </Carousel>
+      <section id="hero-section" role="banner" aria-label="Hero Section">
+        <Carousel  maxWidth='xl' sx={{ borderRadius: "10px",  width: '100%',marginBottom: '2rem' }} {...settings}>
+          {
+            Items.map((item, i) => <HeroItem key={i} item={item} />)
+          }
+        </Carousel>
+      </section>
 
   )
 }
