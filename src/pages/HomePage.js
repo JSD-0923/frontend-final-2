@@ -44,7 +44,7 @@ const HomePage = () => {
 
     return (
         <div style={{display:"flex", flexDirection:'column', justifyContent: 'center'}}>
-            <Box style={{ width: '100%', display: 'flex', flexDirection: 'column', marginBottom: '2rem'}} >
+            <Box component={""} style={{ width: '100%', display: 'flex', flexDirection: 'column', marginBottom: '2rem'}} >
                 <HeroSection />
                 <NewArrival />
             </Box>

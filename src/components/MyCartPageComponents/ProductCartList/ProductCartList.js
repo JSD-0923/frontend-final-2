@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import {
     Button,
     Paper,
@@ -6,20 +6,24 @@ import {
     TableBody,
     TableCell,
     TableHead,
-    TableRow, useMediaQuery,
-} from "@mui/material";
-import ProductCartCard from "./ProductCartCard/ProductCartCard";
-import {useMoveToWishlist, useRemoveFromCart} from "../../../hooks/useAppAPIs";
-import AlertStack from "../../../utils/AlertStack/AlertStack";
-import CircularProgress from "@mui/material/CircularProgress";
+    TableRow,
+    useMediaQuery,
+} from '@mui/material';
+import ProductCartCard from './ProductCartCard/ProductCartCard';
+import {
+    useMoveToWishlist,
+    useRemoveFromCart,
+} from '../../../hooks/useAppAPIs';
+import AlertStack from '../../../utils/AlertStack/AlertStack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ProductCartList = (props) => {
-    const { cartProducts, showTable=true, showButtons=true } = props;
+    const { cartProducts, showTable = true, showButtons = true } = props;
 
     const [successAlertVisible, setSuccessAlertVisible] = useState(false);
     const [errorAlertVisible, setErrorAlertVisible] = useState(false);
     const [warningAlertVisible, setWarningAlertVisible] = useState(false);
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
     const [loadingRemoveButtonId, setLoadingRemoveButtonId] = useState(null);
     const [loadingWishlistButtonId, setLoadingWishlistButtonId] = useState(null);
 
@@ -34,7 +38,6 @@ const ProductCartList = (props) => {
 
             setMessage('Product deleted successfully from cart.');
             setSuccessAlertVisible(true);
-
         } catch (error) {
             setMessage(error.message);
             setErrorAlertVisible(true);
@@ -49,7 +52,6 @@ const ProductCartList = (props) => {
 
             setMessage(response.message);
             setSuccessAlertVisible(true);
-
         } catch (error) {
             setMessage(error.response.data.error);
             setErrorAlertVisible(true);
@@ -65,53 +67,47 @@ const ProductCartList = (props) => {
     };
 
     return (
-        <Paper elevation={0}>
-
+        <Paper elevation={0} component="div">
             <Table aria-label="cart items list">
-                {!isSmallScreen && showTable &&
-                    <TableHead sx={{ borderBottom: '1px solid #0000001F' }}>
-                        <TableRow sx={{ padding: 0 }}>
-                            <TableCell sx={{padding: 0}} align="left">Product Name</TableCell>
+                {!isSmallScreen && showTable && (
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Product Name</TableCell>
                             <TableCell align="right">Price</TableCell>
                             <TableCell align="right">Qty</TableCell>
                             <TableCell align="right">Subtotal</TableCell>
                         </TableRow>
                     </TableHead>
-                }
+                )}
 
                 <TableBody>
                     {cartProducts.map((product) => (
                         <React.Fragment key={product.id}>
-
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row" sx={{ padding: 0 }}>
-                                    <ProductCartCard
-                                        product={product}
-                                    />
-
+                            <TableRow>
+                                <TableCell component="th" scope="row">
+                                    <ProductCartCard product={product} />
                                 </TableCell>
 
-                                {!isSmallScreen && showTable &&
-                                <>
-                                    <TableCell align="right" sx={{ margin: 0, verticalAlign: 'top' }}>
-                                        ${product.discountedPrice > 0 ? product.discountedPrice.toFixed(2) : product.price.toFixed(2)}
-                                    </TableCell>
-                                    <TableCell align="right" sx={{margin: 0, verticalAlign: 'top' }}>
-                                        {product.quantity}
-                                    </TableCell>
-                                    <TableCell align="right" sx={{ margin: 0, verticalAlign: 'top' }}>
-                                        ${product.totalPrice.toFixed(2)}
-                                    </TableCell>
-
-                                </>
-                                }
-
+                                {!isSmallScreen && showTable && (
+                                    <>
+                                        <TableCell align="right">
+                                            ${product.discountedPrice > 0
+                                            ? product.discountedPrice.toFixed(2)
+                                            : product.price.toFixed(2)}
+                                        </TableCell>
+                                        <TableCell align="right">{product.quantity}</TableCell>
+                                        <TableCell align="right">
+                                            ${product.totalPrice.toFixed(2)}
+                                        </TableCell>
+                                    </>
+                                )}
                             </TableRow>
 
-                            {showButtons &&
-                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell colSpan={4} align="right" sx={{ padding: 0, gap: '1rem' }}>
+                            {showButtons && (
+                                <TableRow>
+                                    <TableCell colSpan={4} align="right">
                                         <Button
+                                            aria-label={`Move ${product.name} to Wishlist`}
                                             sx={{
                                                 color: 'primary.main',
                                                 borderBottom: '1px solid',
@@ -119,7 +115,11 @@ const ProductCartList = (props) => {
                                                 borderRadius: 0,
                                                 marginRight: '1rem',
                                                 right: '2rem',
-                                                bottom: ['initial', 'initial', '4rem'],
+                                                bottom: [
+                                                    'initial',
+                                                    'initial',
+                                                    '4rem',
+                                                ],
                                             }}
                                             startIcon={
                                                 loadingWishlistButtonId === product.id ? (
@@ -133,13 +133,18 @@ const ProductCartList = (props) => {
                                             Move to Wishlist
                                         </Button>
                                         <Button
+                                            aria-label={`Remove ${product.name} from Cart`}
                                             sx={{
                                                 color: 'error.main',
                                                 borderBottom: '1px solid',
                                                 paddingBottom: '2px',
                                                 borderRadius: 0,
                                                 right: '1rem',
-                                                bottom: ['initial', 'initial', '4rem'],
+                                                bottom: [
+                                                    'initial',
+                                                    'initial',
+                                                    '4rem',
+                                                ],
                                             }}
                                             startIcon={
                                                 loadingRemoveButtonId === product.id ? (
@@ -153,9 +158,8 @@ const ProductCartList = (props) => {
                                             Remove
                                         </Button>
                                     </TableCell>
-
                                 </TableRow>
-                            }
+                            )}
                         </React.Fragment>
                     ))}
                 </TableBody>

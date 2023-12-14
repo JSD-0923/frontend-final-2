@@ -22,10 +22,13 @@ const ProductsList = (props) => {
                   alignItems: 'center',
                   marginLeft: 'auto',
                 }}
+                component={'section'}
+                role="list"
+                aria-label="Product List"
             >
-              <Grid container spacing={3} alignItems={isSmallScreen ? 'center' : 'flex-start'} justifyContent="flex-start">
+              <Grid role="list" aria-label="Product Grid" container spacing={3} alignItems={isSmallScreen ? 'center' : 'flex-start'} justifyContent="flex-start">
                 {products.map((productItem, index) => (
-                    <Grid item xs={6} sm={6} md={4} lg={3} key={index} onClick={() => navigate(`/products/${productItem.id}`)}>
+                    <Grid item xs={6} sm={6} md={4} lg={3} key={index} onClick={() => navigate(`/products/${productItem.id}`)} role="list-item" aria-posinset={index + 1} aria-setsize={products.length}>
                       <ProductCard
                           image={productItem.image}
                           title={productItem.name}
@@ -40,14 +43,14 @@ const ProductsList = (props) => {
                             {productItem.averageRating ? `Rating: ${Math.round(Math.random() * 299) + 1}` : 'No Ratings'}
                           </Typography>
                       ) : (
-                          <Box sx={{ display: 'flex', marginBottom: '5px', marginLeft: '10px' }}>
+                          <Box sx={{ display: 'flex', marginBottom: '5px', marginLeft: '10px' }} role="content-info">
                             <Rating name="half-rating-read" value={productItem.averageRating} precision={0.5} readOnly />
-                            <Typography sx={{ color: 'primary.main', marginLeft: '10px' }} variant={'h6'} component={'p'}>
+                            <Typography sx={{ color: 'primary.main', marginLeft: '10px' }} variant={'h6'} component={'p'} role="status">
                               {productItem.averageRating ? `${Math.round(Math.random() * 299) + 1} Ratings` : 'No rating'}
                             </Typography>
                           </Box>
                       )}
-                      <Box sx={{ marginLeft: '1rem' }}>
+                      <Box sx={{ marginLeft: '1rem' }} role="content-info" aria-label="Product Price">
                         <Price discountRate={productItem.discount} originalPrice={productItem.price} variant={{ price: 'body1', Off: 'h6' }} />
                       </Box>
                     </Grid>

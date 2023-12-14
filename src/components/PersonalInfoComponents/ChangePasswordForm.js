@@ -1,4 +1,4 @@
-import { Grid, InputAdornment, InputLabel} from "@mui/material";
+import {CircularProgress, Grid, InputAdornment, InputLabel} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -27,6 +27,7 @@ const ChangePasswordForm = () => {
     const { register, handleSubmit,  reset,formState: { errors } } = useForm();
 
     const changePasswordMutation = UseChangePassword()
+    const isLoading = changePasswordMutation.isLoading;
     const onSubmitHandler = async (formData) => {
         const userId = +localStorage.getItem('userId');
 
@@ -163,7 +164,7 @@ const ChangePasswordForm = () => {
 
                 </Grid>
                 <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, width: "175px" }}>
-                    Change Password
+                    {isLoading? <CircularProgress size={'20px'} sx={{color: 'white'}}/>  : 'Change Password'}
                 </Button>
             </form>
             <AlertStack

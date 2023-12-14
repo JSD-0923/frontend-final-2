@@ -10,20 +10,28 @@ import {sectionBox} from "./style";
 
 const NewArrival = () => {
     const navigate = useNavigate();
-    const { data: NewArrival, isLoading } = useProducts('?limit=4&createdWithin=2023-11-13&offset=160');
+    const { data: NewArrival, isLoading, isError } = useProducts('?limit=4&createdWithin=2023-11-13&offset=160');
 
     if (isLoading) {
         return <LoadingProgress />;
     }
 
+    if (isError) {
+        return <div>Error fetching data</div>;
+    }
+
     return (
-        <Box sx={{ margin: ['20px', '18px', '16px', '14px', '10px'], marginRight: '1rem', display: 'flex', flexDirection: 'column', alignSelf: 'center', width: '100%' }}>
+        <Box component="section"
+             role="region"
+             aria-label="New Arrivals Section"
+             sx={{ margin: ['20px', '18px', '16px', '14px', '10px'], marginRight: '1rem', display: 'flex', flexDirection: 'column', alignSelf: 'center', width: '100%' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: ['20px', '18px', '16px', '14px', '10px'], }}>
                 <Typography sx={{ color: 'dark.main' }} variant="h2" component={'h3'}>
                     New Arrivals
                 </Typography>
                 <Button
                     style={{ textTransform: 'none', alignSelf: 'flex-end', fontSize: '16px' }}
+                    aria-label="View all new arrivals"
                     onClick={() => navigate(`/products?createdWithin=2023-11-13`)}
                     endIcon={<ArrowForwardIosIcon />}
                 >

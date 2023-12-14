@@ -36,12 +36,14 @@ const ProductCard = (props) => {
 
 
     return (
-    <Card sx={{ width: _width, boxShadow: "none", margin: 0 }}>
+    <Card sx={{ width: _width, boxShadow: "none", margin: 0 }} aria-label={`Product Card for ${title}`}>
         {image &&
             <CardMedia
                 component="img"
                 sx={{objectFit:'cover', width: '100%',height:'auto', borderRadius: '8px', ...imageSx }}
                 src={renderImageSource()}
+                aria-label={`View details for ${title}`}
+                role="img"
             />
         }
       <CardContent>
@@ -53,19 +55,19 @@ const ProductCard = (props) => {
           }}>
             {
                 title &&
-                <Typography gutterBottom variant={variant.title} component="h2">
+                <Typography gutterBottom variant={variant.title} component="h2" role="heading" aria-level="2">
                     {title}
                 </Typography>
             }
             {addToFavourite &&
-                <IconButton>
+                <IconButton aria-label={`Toggle favorite for ${title}`}>
                     {fill ? <FilledFavoriteIcon onClick={onClick}/> : <FavoriteBorderIcon fontSize={'small'} onClick={onClick}/>}
                 </IconButton>
             }
 
         </Box>
           {description &&
-              <Typography noWrap variant={variant.body} color="text.secondary" component="h3">
+              <Typography noWrap variant={variant.body} color="text.secondary" component="p" role="paragraph">
                   {description}
               </Typography>
           }

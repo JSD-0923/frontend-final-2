@@ -1,4 +1,4 @@
-import { Grid,  InputLabel} from "@mui/material";
+import {CircularProgress, Grid, InputLabel} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -32,7 +32,7 @@ const UpdateUserInfoForm = (props) => {
         defaultValues: initialValues
     });
     const updateUserMutation = UseUpdateUser();
-
+    const isLoading = updateUserMutation.isLoading
     const onSubmitHandler = async (formData) => {
 
 
@@ -183,8 +183,8 @@ const UpdateUserInfoForm = (props) => {
 
                     </Grid>
 
-                    <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, width: "136px", alignSelf: 'flex-end' }}>
-                        Save Changes
+                    <Button type="submit" variant="contained" color="primary"  sx={{ mt: 2, width: "136px", alignSelf: 'flex-end' }}>
+                        {isLoading? <CircularProgress size={'20px'} sx={{color: 'white'}}/>  : 'Save Changes'}
                     </Button>
                 </form>
             ) : (

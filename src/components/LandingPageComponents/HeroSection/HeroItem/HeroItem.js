@@ -40,8 +40,7 @@ const HeroItem = ({ item }) => {
     return (
         <Box
             sx={{ position: 'relative', margin: ['20px', '18px', '16px', '14px', '10px'] }}>
-            <img src={item.image} alt={item.title} style={{ width: '100%',borderRadius: '12px' }} />
-
+            <img src={item.image} alt={item.title} aria-label={item.title} style={{ width: '100%',borderRadius: '12px' }} />
             <Paper
                 sx={{
                     position: 'absolute',
@@ -62,7 +61,7 @@ const HeroItem = ({ item }) => {
                 </Typography>
 
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: '22px' }}>
-                    <Button variant="contained" onClick={() =>navigate(`/products?categoryId=${item.id}`)} >
+                    <Button variant="contained" onClick={() =>navigate(`/products?categoryId=${item.id}`)} aria-label={`See more about ${item.title}`}>
                         <ArrowRightAltIcon />
                         see more
                     </Button>

@@ -20,7 +20,7 @@ const QuantityCounter = (props) => {
     };
 
     return (
-        <Box sx={containerStyle}>
+        <Box sx={containerStyle} aria-label="Product Quantity Counter">
             <Button sx={buttonStyle} onClick={decrement}><MinusIcon sx={IconButtonStyle} /></Button>
             <Typography variant={'h5'} component={'h2'} >{quantity}</Typography>
             <Button sx={buttonStyle} onClick={increment}><PlusIcon sx={IconButtonStyle}/></Button>

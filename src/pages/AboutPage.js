@@ -9,7 +9,7 @@ const AboutPage = () => {
 
     return (
         <>
-            <img src={imgabout} width={'100%'} />
+            <img src={imgabout} alt="About Page Header" width={'100%'} />
             <Container maxWidth='xl'>
                 <Box sx={{
                     display: 'flex',
@@ -35,7 +35,7 @@ const AboutPage = () => {
                         <Box >
                             <Typography
                                 sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
+                                component={'h2'} varient={'h1'}>About</Typography>
 
                             <Typography component={'p'} varient={'body1'}
                                 sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main', }}
@@ -43,19 +43,19 @@ const AboutPage = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <img src={imgdescription1} alt="Description" style={{ width: '100%', height: 'auto' }} />
+                        <img src={imgdescription1} alt="Description 1" style={{ width: '100%', height: 'auto' }} />
                     </Grid>
                 </Grid>
 
                 <Grid container spacing={4} sx={{ marginTop: '15px' }}>
                     <Grid item xs={12} md={6} >
-                        <img src={imgdescription2} alt="Description" style={{ width: '100%', height: 'auto' }} />
+                        <img src={imgdescription2} alt="Description 2" style={{ width: '100%', height: 'auto' }} />
                     </Grid>
                     <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <Box>
                             <Typography
                                 sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
+                                component={'h2'} varient={'h1'}>About</Typography>
 
                             <Typography component={'p'} varient={'body1'}
                                 sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main' }}
@@ -70,7 +70,7 @@ const AboutPage = () => {
                         <Box>
                             <Typography
                                 sx={{ fontSize: '20px', fontWeight: '600', color: 'TypeHighEmphasis.main' }}
-                                component={'h1'} varient={'h1'}>About</Typography>
+                                component={'h2'} varient={'h1'}>About</Typography>
 
                             <Typography component={'p'} varient={'body1'}
                                 sx={{ fontSize: '16px', fontWeight: '400', color: 'TypeLowEmphasis.main' }}
@@ -78,7 +78,7 @@ const AboutPage = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <img src={imgdescription3} alt="Description" style={{ width: '100%', height: 'auto' }} />
+                        <img src={imgdescription3} alt="Description 3" style={{ width: '100%', height: 'auto' }} />
                     </Grid>
                 </Grid>
             </Container>
