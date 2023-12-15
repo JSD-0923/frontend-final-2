@@ -16,6 +16,7 @@ const Layout = () => {
 
         document.title = pageTitle;
         document.querySelector('meta[name="description"]').content = pageDescription;
+        setSection('');
     }, [location.pathname]);
 
     const getTitleForLocation = (pathname) => {

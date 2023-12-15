@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const ProductsList = (props) => {
   const { products, onClick, fill } = props;
   const navigate = useNavigate();
-  const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 599px)');
+  const isSmallScreen = useMediaQuery('(min-width:320px) and (max-width: 768px)');
 
   return (
       <>
@@ -17,18 +17,14 @@ const ProductsList = (props) => {
                   width: '100%',
                   boxShadow: 'none',
                   cursor: 'pointer',
-                  alignSelf: 'center',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginLeft: 'auto',
                 }}
                 component={'section'}
                 role="list"
                 aria-label="Product List"
             >
-              <Grid role="list" aria-label="Product Grid" container spacing={3} alignItems={isSmallScreen ? 'center' : 'flex-start'} justifyContent="flex-start">
+              <Grid role="list" aria-label="Product Grid" container spacing={3} >
                 {products.map((productItem, index) => (
-                    <Grid item xs={6} sm={6} md={4} lg={3} key={index} onClick={() => navigate(`/products/${productItem.id}`)} role="list-item" aria-posinset={index + 1} aria-setsize={products.length}>
+                    <Grid sx={{display: 'flex', flexDirection: 'column', alignItems: isSmallScreen ? 'center' : 'space-between'}} item xs={12} sm={6} md={4} lg={3} key={index} onClick={() => navigate(`/products/${productItem.id}`)} role="list-item" aria-posinset={index + 1} aria-setsize={products.length}>
                       <ProductCard
                           image={productItem.image}
                           title={productItem.name}
